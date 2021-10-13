@@ -1,0 +1,16 @@
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\bin\Debug\EquipamentoGrid.exe.config
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\bin\Debug\EquipamentoGrid.exe
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\bin\Debug\EquipamentoGrid.pdb
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\bin\Debug\EquipamentoGrid.xml
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\bin\Debug\MySql.Data.dll
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\bin\Debug\MySql.Data.xml
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.vbprojAssemblyReference.cache
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.Form1.resources
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.Form2.resources
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.Resources.resources
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.vbproj.GenerateResource.cache
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.vbproj.CoreCompileInputs.cache
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.vbproj.CopyComplete
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.exe
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.xml
+C:\Users\pcnov\source\repos\EquipamentoGrid\EquipamentoGrid\obj\Debug\EquipamentoGrid.pdb

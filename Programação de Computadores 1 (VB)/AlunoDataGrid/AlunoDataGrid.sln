@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AlunoDataGrid", "AlunoDataGrid\AlunoDataGrid.vbproj", "{68B7B086-A6C0-4385-A7AD-7D3FA81FEFB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68B7B086-A6C0-4385-A7AD-7D3FA81FEFB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B7B086-A6C0-4385-A7AD-7D3FA81FEFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B7B086-A6C0-4385-A7AD-7D3FA81FEFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B7B086-A6C0-4385-A7AD-7D3FA81FEFB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D9F274D-D1FD-47D7-A816-4EC3CC590006}
+	EndGlobalSection
+EndGlobal

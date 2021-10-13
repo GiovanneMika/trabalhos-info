@@ -1,0 +1,16 @@
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\bin\Debug\AlunoDataGrid.exe.config
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\bin\Debug\AlunoDataGrid.exe
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\bin\Debug\AlunoDataGrid.pdb
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\bin\Debug\AlunoDataGrid.xml
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\bin\Debug\MySql.Data.dll
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\bin\Debug\MySql.Data.xml
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.vbprojAssemblyReference.cache
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.Form1.resources
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.Form2.resources
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.Resources.resources
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.vbproj.GenerateResource.cache
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.vbproj.CoreCompileInputs.cache
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.vbproj.CopyComplete
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.exe
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.xml
+C:\Users\2info2021\Desktop\2°ANO INFO 651021\Programação de Computadores 1 (VB)\AlunoDataGrid\AlunoDataGrid\obj\Debug\AlunoDataGrid.pdb

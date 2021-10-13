@@ -1,0 +1,19 @@
+Giovanne Ribeiro Mika - 2°INFO - 14/05/2021
+
+1) O que são árvores? Como são formadas?
+R. É uma estrutura de dados não linear. Conceitualmente diferente das listas, em que os dados se encontram numa sequência, nas árvores os dados estão dispostos de forma hierárquica, onde um elemento pode se encontrar abaixou ou acima de outros elementos na árvore. De forma homônima, pode corresponder também ao vegetal lenhoso de porte variável, formado por caule principal e indiviso.
+
+2)Quais exemplos de árvores encontradas na informática?
+R. Estruturas de pastas de um sistema operacional, interfaces gráficas, bancos de dados e sites da Internet são exemplos de aplicações de árvores.
+
+3)O que são árvores de busca binária?
+R. Uma árvore de busca binária é uma estrutura de dados baseada em nós. Cada nó armazena valores e pode estar associado à uma sub-árvore à esquerda e/ou à direita.
+
+4)Como são realizados os caminhamentos em árvores binárias pré-ordem, in-ordem e pós-ordem?
+R. Caminhamento é o ato de percorrer todos os nós da árvore de uma forma sistemática sendo cada nó visitado uma única vez.
+
+Caminhamento Pré-Ordem: Nesse caminhamento, partindo da raiz, visitamos o nó raiz, em seguida todos os nós da subárvore esquerda e finalmente os nós da subárvore direita.
+
+Caminhamento In-Ordem: Nesse caminhamento, partindo da raiz, visitamos todos os nós da subárvore esquerda, depois o nó raiz e finalmente os nós da subárvore direita.
+
+Caminhamento Pós-Ordem: Nesse caminhamento, partindo da raiz, visitamos todos os nós da subárvore esquerda, depois os subnós da subárvore direita e, por último, o nó na raiz.

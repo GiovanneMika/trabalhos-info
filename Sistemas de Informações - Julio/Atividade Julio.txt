@@ -1,0 +1,10 @@
+Giovanne Ribeiro Mika - 2°INFO
+
+1)Podem ser consideradas entradas a assinatura do cliente, as informações de entrada e retirada de encomendas, e o cartão ponto. O processamento é feito ao DIAD ser conectado ao adaptador e este transmitir a informação de rastreamento à rede
+de computadores da UPS para armazenagem e processamento pelos computadores centrais da empresa, localizados em Mahwah, Nova Jersey e Alpharetta, Geórgia. A saída é a acessibilidade mundial destas informações e o fornecimento de recibos de entrega aos clientes.
+
+2)É utilizado um sistema automático de rastreamento, além de também fornecer ferramentas que habilitam seus clientes, como a Cisco Systems, a incorporar a seus sites Web, e algumas funções da UPS, como rastreamento e cálculos de custo, de modo a poder rastrear encomendas sem precisar acessar o site da UPS.
+
+3)A UPS através da simplificação e disponibilidade de acesso às suas tecnologias torna um possível ambiente comercial mais agrádavel e palátavel aos seus futuros clientes.
+
+4)A empresa perderia sua hegemonia no setor de distribuição de encomendas para outra empresa, provavelmente sem seu porte colossal, mas com a vantagem tecnológica a seu favor. Em outros tempos a balança penderia a empresa mais tradicional e enraizada no ramo, mas na atualidade se sobressai a empresa que combina ambas as entratégias.

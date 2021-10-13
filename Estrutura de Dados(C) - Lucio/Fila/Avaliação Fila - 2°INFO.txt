@@ -1,0 +1,46 @@
+Giovanne Ribeiro Mika - 2°INFO
+
+1) Explique o funcionamento da estrutura de dados fila: (1,0)
+
+R. Funciona como uma estrutura First in first out, onde o primeiro item inserido será o primeiro a ser retirado, adicionando-se elementos no fim e retirando do inicio.
+
+2) Reescreva a estrutura da fila e a função insere para uma fila do tipo int
+com 40 elementos: (1,0)
+
+R. #include <stdio.h>
+   #include <stdlib.h>
+   struct fila {
+	int ini,fim;
+	int vet[40];
+    };
+    typedef struct fila Fila;
+
+void insere(Fila* f,int v)
+{
+	if (incr(f->fim)== f->ini)
+{
+		printf("Capacidade da fila estourou!!!\n");
+		exit(1);
+}
+	f->vet[f->fim]=v;
+	f->fim=incr (f->fim);
+}
+
+3)Por que definimos o tipo Fila? (0,5)
+
+R. Definimos para que não seja necessário escrever "struct fila" toda vez que quisermos nos referir à estrutura fila, sendo assim Fila serve como uma declaração de sinônimo.
+
+4)Reescreva a função incr para a estrutura criada no exercício 2: (0,5)
+
+R.int incr(int i)
+{
+	if (i==39)
+	return 0;
+	else
+	return i+1;
+}
+
+5)Desenhe como ficariam as filas f1 e f2 após as operações abaixo com os
+dados abaixo: (1,0)
+
+R.

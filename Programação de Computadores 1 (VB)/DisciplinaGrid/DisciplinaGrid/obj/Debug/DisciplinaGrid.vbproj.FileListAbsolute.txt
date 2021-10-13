@@ -1,0 +1,32 @@
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.vbprojAssemblyReference.cache
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.Form1.resources
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.Form2.resources
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.Resources.resources
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.vbproj.GenerateResource.cache
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.vbproj.CoreCompileInputs.cache
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\bin\Debug\DisciplinaGrid.exe.config
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\bin\Debug\DisciplinaGrid.exe
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\bin\Debug\DisciplinaGrid.pdb
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\bin\Debug\DisciplinaGrid.xml
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\bin\Debug\MySql.Data.dll
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\bin\Debug\MySql.Data.xml
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.vbproj.CopyComplete
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.exe
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.xml
+C:\Users\2info2021\source\repos\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.pdb
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\bin\Debug\DisciplinaGrid.exe.config
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\bin\Debug\DisciplinaGrid.exe
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\bin\Debug\DisciplinaGrid.pdb
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\bin\Debug\DisciplinaGrid.xml
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\bin\Debug\MySql.Data.dll
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\bin\Debug\MySql.Data.xml
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.vbprojAssemblyReference.cache
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.Form1.resources
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.Form2.resources
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.Resources.resources
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.vbproj.GenerateResource.cache
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.vbproj.CoreCompileInputs.cache
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.vbproj.CopyComplete
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.exe
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.xml
+D:\2°ANO INFO 651021\Programação de Computadores 1 (VB)\DisciplinaGrid\DisciplinaGrid\obj\Debug\DisciplinaGrid.pdb

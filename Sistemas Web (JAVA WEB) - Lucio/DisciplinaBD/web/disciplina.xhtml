@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+    transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Alunos</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:outputLabel for="itCodigo" value="Código"/>
+            <p:inputText id="itCodigo" value="#{disciplinaBean.disciplina.codigo}" readonly="true"/><br/>
+            <p:outputLabel for="itNome" value="Nome"/>
+            <p:inputText id="itNome" value="#{disciplinaBean.disciplina.nome}" /><br/>
+            <p:outputLabel for="itCargahoraria" value="Carga horária"/>
+            <p:inputNumber id="itCargahoraria" value="#{disciplinaBean.disciplina.cargahoraria}" decimalPlaces="0"/><br/>
+            <p:outputLabel for="itProfessor" value="Professor"/>
+            <p:inputText id="itProfessor" value="#{disciplinaBean.disciplina.professor}" /><br/>
+            <p:commandButton icon="ui-icon-disk" ajax="false" action="#{disciplinaBean.salva()}"/>
+        </h:form>
+        <h:form>
+            <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,6 @@
+A)Se Carlos é feliz, então Jorje é rico
+B)Jorje é rico ou Carlos não é feliz
+C)Carlos é feliz se e somente se Jorje não é rico
+D)Se Jorje não é rico, então Carlos é feliz
+E)É mentira que Jorje não é rico
+F)Se Jorje não é rico e Carlos é feliz, então Jorje é rico.

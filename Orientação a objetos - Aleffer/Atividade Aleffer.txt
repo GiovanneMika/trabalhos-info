@@ -1,0 +1,24 @@
+Giovanne Ribeiro Mika - 2°EM2
+
+1)O que é visibilidade?
+Refere-se a capacidade de um método de referenciar uma característica de outra classe e tem os seguintes valores possiveis: publico, protegido, privado e pacote.
+
+2)Qual é a semântica de um atributo com visibilidade publica? Qual é a notação utilizada?
+R.A semântica desse sinal é que um atributo público é visto pelos membros internos e por qualquer membro externo à classe em que é declarado. A notação para este tipo de visibilidade de atributo  ́e um sinal de adição (+) logo à frente nome do atributo.
+
+3)Qual a semântica de um atributo com visibilidade privada? Qual a notação utilizada?	
+R. A semantica para esse simbolo informa que apenas a classe em que ele est ́a declarado pode acess ́a-lo. A nota ̧c ̃ao para este tipo de visibilidade de atributo  ́e um sinal de
+subtração (-) logo à frente do nome do atributo.
+
+4)Qual é a semântica de um atributo com visibilidade protegida? Qual é a notação utilizada?
+R. A semântica nos informa que o atributo, com esse tipo de símbolo, precedendo-o, somente é acessivel por meio de classes que estejam participando de sua estrutura de herança. A notação para este tipo de visibilidade de atributo é um sinal de
+cerquilha (#) logo à frente do nome do atributo.
+
+5)Qual é a semântica de um atributo com visibilidade pacote? Qual é a notação utilizada?
+R.A semântica nos informa que o atributo, com esse tipo de simbolo
+precedendo-o, somente  ́e acessível por meio de classes que estejam
+no mesmo pacote onde a classe que o declarou está.
+
+6)Qual visibilidade é a mais comum na orientação a objetos?
+R. A visibilidade privada.
+

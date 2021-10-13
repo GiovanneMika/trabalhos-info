@@ -1,0 +1,9 @@
+Giovanne Ribeiro Mika - 2°INFO
+Uma lista encadeada é uma forma de estrutura de dados. É composta por várias células interligadas por ponteiros que apontam a localização da próxima célula na memória, atingindo um dinamismo linear, visto que possibilita as células estarem dispostas de maneira não adjacente, beirando uma abstrusidade que pode ser explorada pelo programador. 
+
+Existem dois tipos de listas encadeadas:
+-Lista singularmente encadeada: Cada célula é composta pelo dado e um ponteiro que se dirige ao elemento seguinte.
+
+-Lista duplamente encadeada: Cada célula é composta pelo dado, um ponteiro para o elemento posterior e um ponteiro para o elemento anterior.
+
+Inserção e exclusão de célula numa lista encadeada: o único fator requisitado para realizar estas duas operações-chave no processo de manuseio desta estrutura é a existência de um ponteiro que aponta para a primeira célula da lista, comumente chamado de head. Dessa forma, a partir deste primeiro ponteiro é possível acessar as células restantes.

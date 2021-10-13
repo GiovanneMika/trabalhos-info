@@ -1,0 +1,3 @@
+Giovanne Ribeiro Mika - 2°INFO
+
+São estruturas de dados do tipo LIFO (last-in first-out), onde o último elemento a ser inserido, será o primeiro a ser retirado. Elas armazenam os elementos em um formato sequencial, empilhando um item acima do outro, permitindo “empilhar” os itens que serão armazenados e “desempilhar” estes elementos da pilha quando precisarmos removê-lo. Entre suas utilidades, podemos citar a navegação entre páginas web ou até mesmo o mecanismo de desfazer/refazer dos editores de texto.
