@@ -34,6 +34,8 @@ public class Campo extends JPanel implements ActionListener {
     int pontoJ = 0, pontoPc = 0;
     String msg = "";
     int velocidade = 5;
+    int imagemJ = 2;
+    int imagemPc = 0;
 
     public Campo(int largura, final int altura) {
         setFocusable(true);
@@ -47,11 +49,13 @@ public class Campo extends JPanel implements ActionListener {
             public void keyPressed(KeyEvent e) {
                 int tecla = e.getKeyCode();
                 if (tecla == KeyEvent.VK_UP) {
-                    raqueteJ.setDy(-3);
+                    raqueteJ.setDy(-5);
+                    imagemJ = 3;
                     System.out.println(bola.getDx());
                 }
                 if (tecla == KeyEvent.VK_DOWN) {
-                    raqueteJ.setDy(3);
+                    raqueteJ.setDy(5);
+                    imagemJ = 3;
                     System.out.println(bola.getDx());
                 }
                 if (tecla == 'P' || tecla == 'p') {
@@ -76,6 +80,7 @@ public class Campo extends JPanel implements ActionListener {
 
             public void keyReleased(KeyEvent e) {
                 raqueteJ.setDy(0);
+                imagemJ = 2;
             }
         });
     }
@@ -93,6 +98,7 @@ public class Campo extends JPanel implements ActionListener {
         }
         if (verificaColisao(bola, raqueteJ)) {
             bola.setDx(-velocidade);
+            SetImage(getClass().getResource("/imagens/balrug.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
             if (velocidade <= 20) {
                 velocidade += 2;
@@ -122,7 +128,6 @@ public class Campo extends JPanel implements ActionListener {
         pontoJ = 0;
         pontoPc = 0;
         msg = "";
-        raqueteJ.setImagem(new ImageIcon(getClass().getResource("/imagens/balrug.gif")).getImage().getScaledInstance(raqueteJ.getLargura(), raqueteJ.getAltura(), 1));
     }
 
     private void verificaPonto() {
@@ -160,9 +165,11 @@ public class Campo extends JPanel implements ActionListener {
 
     private void mexerPc() {
         if (bola.getX() < this.getWidth() / 2 && bola.getDx() < 0) {
-            raquetePc.setDy((5 * Math.signum((int) (bola.getY() - raquetePc.getY()))));
+            raquetePc.setDy((10 * Math.signum((int) (bola.getY() - raquetePc.getY()))));
+            imagemPc = 1;
         } else {
             raquetePc.setDy(0);
+            imagemPc = 0;
         }
     }
 
@@ -180,8 +187,8 @@ public class Campo extends JPanel implements ActionListener {
         g.setColor(Color.WHITE);
         g.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
         g.drawImage(bola.getImagem(), (int) bola.getX(), (int) bola.getY(), this);
-        g.drawImage(raquetePc.getImagem(), (int) raquetePc.getX(), (int) raquetePc.getY(), this);
-        g.drawImage(raqueteJ.getImagem(), (int) raqueteJ.getX(), (int) raqueteJ.getY(), this);
+        g.drawImage(raquetePc.getImagem()[imagemPc], (int) raquetePc.getX(), (int) raquetePc.getY(), this);
+        g.drawImage(raqueteJ.getImagem()[imagemJ], (int) raqueteJ.getX(), (int) raqueteJ.getY(), this);
         g.setFont(new Font("Arial", 0, 18));
         g.drawString(pontoPc + " ", this.getWidth() / 4, 50);
         g.drawString(pontoJ + " ", 3 * (this.getWidth() / 4), 50);

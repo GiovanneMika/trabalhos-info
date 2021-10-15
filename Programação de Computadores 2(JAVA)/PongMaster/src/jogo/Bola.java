@@ -16,10 +16,9 @@ import javax.swing.ImageIcon;
  */
 public class Bola {
 
-    private int altura = 20;
-    private int largura = 20;
-    private Image imagem = new ImageIcon(getClass().getResource("/imagens/bola.gif")).getImage().getScaledInstance(getLargura(),
-            getAltura(), 1);
+    private int altura = 70;
+    private int largura = 70;
+    private Image imagem = new ImageIcon(getClass().getResource("/imagens/bola.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
     private double x;
     private double y;
     private double dx = 5;

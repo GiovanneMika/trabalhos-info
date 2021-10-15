@@ -17,7 +17,7 @@ public class Raquete {
 
     private int altura = 150;
     private int largura = 100;
-    private Image imagem = new ImageIcon(getClass().getResource("/imagens/balrug.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+    private Image[] imagem = new Image[4];
     private double x;
     private double y;
     private double dy = 0;
@@ -29,6 +29,10 @@ public class Raquete {
     public Raquete(double x, double y) {
         this.x = x;
         this.y = y;
+        imagem[0] = new ImageIcon(getClass().getResource("/imagens/balrug.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[1] = new ImageIcon(getClass().getResource("/imagens/balrug4.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[2] = new ImageIcon(getClass().getResource("/imagens/balrug3.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[3] = new ImageIcon(getClass().getResource("/imagens/balrug5.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
     }
 
     public void mexer() {
@@ -59,14 +63,6 @@ public class Raquete {
         this.dy = dy;
     }
 
-    public Image getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(Image imagem) {
-        this.imagem = imagem;
-    }
-
     public int getAltura() {
         return altura;
     }
@@ -81,5 +77,19 @@ public class Raquete {
 
     public void setLargura(int largura) {
         this.largura = largura;
+    }
+
+    /**
+     * @return the imagem
+     */
+    public Image[] getImagem() {
+        return imagem;
+    }
+
+    /**
+     * @param imagem the imagem to set
+     */
+    public void setImagem(Image[] imagem) {
+        this.imagem = imagem;
     }
 }
