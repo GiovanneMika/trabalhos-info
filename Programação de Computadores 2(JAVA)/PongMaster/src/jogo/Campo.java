@@ -122,7 +122,7 @@ public class Campo extends JPanel implements ActionListener {
         pontoJ = 0;
         pontoPc = 0;
         msg = "";
-        raqueteJ.setImagem(new ImageIcon(getClass().getResource("/imagens/raquete2.gif")).getImage().getScaledInstance(raqueteJ.getLargura(), raqueteJ.getAltura(), 1));
+        raqueteJ.setImagem(new ImageIcon(getClass().getResource("/imagens/balrug.gif")).getImage().getScaledInstance(raqueteJ.getLargura(), raqueteJ.getAltura(), 1));
     }
 
     private void verificaPonto() {
