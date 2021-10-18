@@ -41,7 +41,7 @@ public class Campo extends JPanel implements ActionListener {
         setFocusable(true);
         setDoubleBuffered(true);
         setSize(largura, altura);
-        fundo = new ImageIcon(this.getClass().getResource("/imagens/campo2.jpg")).getImage().getScaledInstance(largura, altura, 1);
+        fundo = new ImageIcon(this.getClass().getResource("/imagens/bilete.gif")).getImage().getScaledInstance(largura, altura, 1);
         inicializa();
         t = new Timer(10, this);
         t.start();
@@ -57,6 +57,14 @@ public class Campo extends JPanel implements ActionListener {
                     raqueteJ.setDy(5);
                     imagemJ = 3;
                     System.out.println(bola.getDx());
+                }
+                if (tecla == KeyEvent.VK_SPACE) {
+                    raqueteJ.setLargura(500);
+                    raqueteJ.setAltura(109);
+                    imagemJ = 10;
+                } else {
+                    raqueteJ.setLargura(100);
+                    raqueteJ.setAltura(150);
                 }
                 if (tecla == 'P' || tecla == 'p') {
                     if (t.isRunning()) {
@@ -97,19 +105,23 @@ public class Campo extends JPanel implements ActionListener {
             raqueteJ.setY(0);
         }
         if (verificaColisao(bola, raqueteJ)) {
-            bola.setDx(-velocidade);
-            bola.setImagem(new ImageIcon(getClass().getResource("/imagens/bola3.gif")).getImage().getScaledInstance(bola.getLargura(), bola.getAltura(), 1));
-            bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 10);
-            if (velocidade <= 25) {
-                velocidade += 2;
+            if (bola.getDx() > 0) {
+                bola.setDx(-velocidade);
+                bola.setImagem(new ImageIcon(getClass().getResource("/imagens/bola3.gif")).getImage().getScaledInstance(bola.getLargura(), bola.getAltura(), 1));
+                bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 10);
+                if (velocidade <= 25) {
+                    velocidade += 2;
+                }
             }
         }
         if (verificaColisao(bola, raquetePc)) {
-            bola.setDx(velocidade);
-            bola.setImagem(new ImageIcon(getClass().getResource("/imagens/bola.gif")).getImage().getScaledInstance(bola.getLargura(), bola.getAltura(), 1));
-            bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
-            if (velocidade <= 25) {
-                velocidade += 2;
+            if (bola.getDx() < 0) {
+                bola.setDx(velocidade);
+                bola.setImagem(new ImageIcon(getClass().getResource("/imagens/bola.gif")).getImage().getScaledInstance(bola.getLargura(), bola.getAltura(), 1));
+                bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
+                if (velocidade <= 25) {
+                    velocidade += 2;
+                }
             }
         }
         if (bola.getY() < 10 || bola.getY() > this.getHeight() - bola.getAltura()) {

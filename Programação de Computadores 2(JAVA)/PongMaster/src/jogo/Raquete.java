@@ -17,7 +17,7 @@ public class Raquete {
 
     private int altura = 150;
     private int largura = 100;
-    private Image[] imagem = new Image[10];
+    private Image[] imagem = new Image[11];
     private double x;
     private double y;
     private double dy = 0;
@@ -39,6 +39,7 @@ public class Raquete {
         imagem[7] = new ImageIcon(getClass().getResource("/imagens/balrugwin2.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
         imagem[8] = new ImageIcon(getClass().getResource("/imagens/balruglose.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
         imagem[9] = new ImageIcon(getClass().getResource("/imagens/balruglose2.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[10] = new ImageIcon(getClass().getResource("/imagens/balrugsocoesq.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
     }
     
 
