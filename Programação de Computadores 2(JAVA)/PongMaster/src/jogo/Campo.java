@@ -41,7 +41,7 @@ public class Campo extends JPanel implements ActionListener {
         setFocusable(true);
         setDoubleBuffered(true);
         setSize(largura, altura);
-        fundo = new ImageIcon(this.getClass().getResource("/imagens/campo.gif")).getImage().getScaledInstance(largura, altura, 1);
+        fundo = new ImageIcon(this.getClass().getResource("/imagens/campo2.jpg")).getImage().getScaledInstance(largura, altura, 1);
         inicializa();
         t = new Timer(10, this);
         t.start();
@@ -99,8 +99,8 @@ public class Campo extends JPanel implements ActionListener {
         if (verificaColisao(bola, raqueteJ)) {
             bola.setDx(-velocidade);
             bola.setImagem(new ImageIcon(getClass().getResource("/imagens/bola3.gif")).getImage().getScaledInstance(bola.getLargura(), bola.getAltura(), 1));
-            bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
-            if (velocidade <= 20) {
+            bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 10);
+            if (velocidade <= 25) {
                 velocidade += 2;
             }
         }
@@ -108,7 +108,7 @@ public class Campo extends JPanel implements ActionListener {
             bola.setDx(velocidade);
             bola.setImagem(new ImageIcon(getClass().getResource("/imagens/bola.gif")).getImage().getScaledInstance(bola.getLargura(), bola.getAltura(), 1));
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
-            if (velocidade <= 20) {
+            if (velocidade <= 25) {
                 velocidade += 2;
             }
         }
@@ -140,6 +140,8 @@ public class Campo extends JPanel implements ActionListener {
             bola.setDx(-velocidade);
             pontoJ++;
             t.stop();
+            imagemJ = 5;
+            imagemPc = 4;
             msg = "Ponto para Jogador - Espaço para continuar";
         }
         if (bola.getX() > this.getWidth()) {
@@ -150,23 +152,29 @@ public class Campo extends JPanel implements ActionListener {
             pontoPc++;
             velocidade = 5;
             t.stop();
+            imagemJ = 5;
+            imagemPc = 4;
             msg = "Ponto para PC - Espaço para continuar";
         }
         if (pontoJ > 4) {
             msg = "Jogador Ganhou! 'R' - Reinicia o Jogo";
             t.stop();
+            imagemJ = 7;
+            imagemPc = 8;
             repaint();
         }
         if (pontoPc > 4) {
             msg = "Pc Ganhou! 'R' - Reinicia o Jogo";
             t.stop();
+            imagemJ = 9;
+            imagemPc = 6;
             repaint();
         }
     }
 
     private void mexerPc() {
         if (bola.getX() < this.getWidth() / 2 && bola.getDx() < 0) {
-            raquetePc.setDy((10 * Math.signum((int) (bola.getY() - raquetePc.getY()))));
+            raquetePc.setDy((3 * Math.signum((int) (bola.getY() - raquetePc.getY()))));
             imagemPc = 1;
         } else {
             raquetePc.setDy(0);

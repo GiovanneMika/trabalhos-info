@@ -17,7 +17,7 @@ public class Raquete {
 
     private int altura = 150;
     private int largura = 100;
-    private Image[] imagem = new Image[4];
+    private Image[] imagem = new Image[10];
     private double x;
     private double y;
     private double dy = 0;
@@ -33,7 +33,14 @@ public class Raquete {
         imagem[1] = new ImageIcon(getClass().getResource("/imagens/balrug4.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
         imagem[2] = new ImageIcon(getClass().getResource("/imagens/balrug3.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
         imagem[3] = new ImageIcon(getClass().getResource("/imagens/balrug5.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[4] = new ImageIcon(getClass().getResource("/imagens/balrugcom.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[5] = new ImageIcon(getClass().getResource("/imagens/balrugcom2.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[6] = new ImageIcon(getClass().getResource("/imagens/balrugwin.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[7] = new ImageIcon(getClass().getResource("/imagens/balrugwin2.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[8] = new ImageIcon(getClass().getResource("/imagens/balruglose.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+        imagem[9] = new ImageIcon(getClass().getResource("/imagens/balruglose2.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
     }
+    
 
     public void mexer() {
         setY(getY() + getDy());
