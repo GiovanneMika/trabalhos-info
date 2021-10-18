@@ -98,7 +98,7 @@ public class Campo extends JPanel implements ActionListener {
         }
         if (verificaColisao(bola, raqueteJ)) {
             bola.setDx(-velocidade);
-            SetImage(getClass().getResource("/imagens/balrug.gif")).getImage().getScaledInstance(getLargura(),getAltura(), 1);
+            bola.setImagem(new ImageIcon(getClass().getResource("/imagens/bola3.gif")).getImage().getScaledInstance(bola.getLargura(), bola.getAltura(), 1));
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
             if (velocidade <= 20) {
                 velocidade += 2;
@@ -106,6 +106,7 @@ public class Campo extends JPanel implements ActionListener {
         }
         if (verificaColisao(bola, raquetePc)) {
             bola.setDx(velocidade);
+            bola.setImagem(new ImageIcon(getClass().getResource("/imagens/bola.gif")).getImage().getScaledInstance(bola.getLargura(), bola.getAltura(), 1));
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
             if (velocidade <= 20) {
                 velocidade += 2;
