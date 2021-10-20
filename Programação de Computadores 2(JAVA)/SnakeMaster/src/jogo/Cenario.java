@@ -100,14 +100,14 @@ public class Cenario {
     /**
      * @return the fundo
      */
-    public Image getFundo() {
+    public Image getImagem() {
         return fundo;
     }
 
     /**
      * @param fundo the fundo to set
      */
-    public void setFundo(Image fundo) {
+    public void setImagem(Image fundo) {
         this.fundo = fundo;
     }
 }
