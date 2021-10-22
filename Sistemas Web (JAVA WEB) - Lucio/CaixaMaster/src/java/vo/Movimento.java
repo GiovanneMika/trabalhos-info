@@ -5,49 +5,33 @@
  */
 package vo;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-@Entity
-public class Movimentos implements Serializable {
-    private static long serialVersionUID = 1L;
+public class Movimento {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id = 0;
+    @Temporal(TemporalType.DATE)
     private Date data;
     private String descricao;
     private String tipo;
-    private Double valor;
-
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
+    private double valor;
 
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -96,15 +80,14 @@ public class Movimentos implements Serializable {
     /**
      * @return the valor
      */
-    public Double getValor() {
+    public double getValor() {
         return valor;
     }
 
     /**
      * @param valor the valor to set
      */
-    public void setValor(Double valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
-
 }
