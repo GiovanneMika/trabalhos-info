@@ -16,36 +16,33 @@ public class MovimentoDAO {
         em = EntityManagerProvider.getEM();
     }
 
-    public void salva(Movimento p) {
+    public void salva(Movimento m) {
         em.getTransaction().begin();
-        if (p.getId() == 0) {
-            em.persist(p);
+        if (m.getId() == 0) {
+            em.persist(m);
         } else {
-            em.merge(p);
+            em.merge(m);
         }
         em.getTransaction().commit();
     }
 
-    public Movimento localiza(int codigo) {
-        Movimento p = em.find(Movimento.class, codigo);
-        return p;
-    }
-
-    public void exclui(Movimento p) {
-        em.getTransaction().begin();
-        em.remove(p);
-        em.getTransaction().commit();
+    public Movimento localiza(int id) {
+        Movimento m = em.find(Movimento.class, id);
+        return m;
     }
 
     public List<Movimento> pesquisa() {
-        Query q = em.createQuery("select p from Movimento p order by p.nome");
+        Query q = em.createQuery("select m from Movimento m order by m.data");
         List<Movimento> lista = q.getResultList();
         return lista;
     }
-
-    public List<Movimento> pesquisa(String nome) {
-        Query q = em.createNativeQuery("select * from movimento where nome like :nome order by nome", Movimento.class);
-        q.setParameter("nome", '%' + nome + '%');
+    public List<Movimento> pesquisaSaida() {
+        Query q = em.createQuery("select m from Movimento m order by p.data");
+        List<Movimento> lista = q.getResultList();
+        return lista;
+    }
+    public List<Movimento> pesquisaEntrada() {
+        Query q = em.createQuery("select m from Movimento m order by p.data");
         List<Movimento> lista = q.getResultList();
         return lista;
     }
