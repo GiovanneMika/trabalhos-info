@@ -36,14 +36,48 @@ public class MovimentoDAO {
         List<Movimento> lista = q.getResultList();
         return lista;
     }
+
     public List<Movimento> pesquisaSaida() {
-        Query q = em.createQuery("select m from Movimento m order by p.data");
+        Query q = em.createQuery("select m from Movimento m where m.tipo = 'saida' order by m.data");
         List<Movimento> lista = q.getResultList();
         return lista;
     }
+
     public List<Movimento> pesquisaEntrada() {
-        Query q = em.createQuery("select m from Movimento m order by p.data");
+        Query q = em.createQuery("select m from Movimento m where m.tipo = 'entrada' order by m.data");
         List<Movimento> lista = q.getResultList();
         return lista;
+
+    }
+
+    public Double calcularSaldo() {
+        Double entradas = calcularSaldoEntradas();
+        Double saidas = calcularSaldoSaidas();
+        Double saldo = entradas - saidas;
+        return saldo;
+    }
+
+    public Double calcularSaldoEntradas() {
+        Query q = em.createNativeQuery("select SUM(valor) from movimento where tipo = 'Entrada'");
+        List<Double> lista = q.getResultList();
+        Double saldo;
+        if (lista.get(0) != null) {
+            saldo = lista.get(0);
+        } else {
+            saldo = 0.0;
+        }
+        return saldo;
+    }
+
+    public Double calcularSaldoSaidas() {
+        Query q = em.createNativeQuery("select SUM(valor) from movimento where tipo = 'Saida'");
+        List<Double> lista = q.getResultList();
+        Double saldo;
+        if (lista.get(0) != null) {
+            saldo = lista.get(0);
+        } else {
+            saldo = 0.0;
+        }
+        return saldo;
     }
 }

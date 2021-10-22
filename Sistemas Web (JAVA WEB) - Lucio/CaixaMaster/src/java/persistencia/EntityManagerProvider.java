@@ -18,7 +18,7 @@ public class EntityManagerProvider {
     public static EntityManagerFactory getEMF() {
 
         if (emf == null) {
-            emf = Persistence.createEntityManagerFactory("PU");
+            emf = Persistence.createEntityManagerFactory("PUM");
         }
         return emf;
     }
