@@ -19,8 +19,7 @@ public class Cenario {
     private Image fundo;
 
     public Cenario() {
-        fundo = new ImageIcon(this.getClass().getResource("/imagens/cenario")).getImage().getScaledInstance(largura,
-                altura, 1);
+        fundo = new ImageIcon(this.getClass().getResource("/imagens/cenario")).getImage().getScaledInstance(largura,altura, 1);
         x = 0;
         y = 0;
         largura = 0;
