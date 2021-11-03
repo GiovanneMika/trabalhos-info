@@ -3,7 +3,8 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
     <persistence-unit name="PU" transaction-type="JTA">
-        <jta-data-source>jdbc/professor</jta-data-source>
-        <class>vo.aLUNO</class>
+        <jta-data-source>jdbc/aluno</jta-data-source>
+        <class>vo.Aluno</class>
+        <class>vo.Responsavel</class>
     </persistence-unit>
 </persistence>
