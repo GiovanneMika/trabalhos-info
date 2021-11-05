@@ -14,6 +14,8 @@ import javax.faces.model.ListDataModel;
 import persistencia.ResponsavelDAO;
 import vo.Responsavel;
 import vo.Aluno;
+import persistencia.AlunoDAO;
+
 
 
 @ManagedBean
@@ -30,13 +32,17 @@ public class TelaLocalizaBean implements Serializable {
     private Responsavel professor = new Responsavel();
     
     private DataModel<Aluno> listaaluno;
-    ResponsavelDAO rd = new ResponsavelDAO();
-    private Responsavel professor = new Responsavel();
+    AlunoDAO ad = new AlunoDAO();
+    private Aluno aluno = new Aluno();
 
     public TelaLocalizaBean() {
     }
 
     public String atualizaLista() {
+        lista = new ListDataModel(rd.pesquisa());
+        return "index";
+    }
+    public String atualizaListaAluno() {
         lista = new ListDataModel(rd.pesquisa());
         return "index";
     }
