@@ -208,6 +208,7 @@ public class Campo extends JPanel implements ActionListener {
         cenario[3] = new Cenario(970, 0, 25, 700);
         cenario[4] = new Cenario(200, 100, 25, 500);
         cenario[5] = new Cenario(770, 100, 25, 500);
-        tamanhocenario = 6;
+        cenario[6] = new Cenario(100, 123, 90, 50);
+        tamanhocenario = 7;
     }
 }
