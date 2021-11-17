@@ -203,12 +203,15 @@ public class Campo extends JPanel implements ActionListener {
 
     private void cenario1() {
         cenario[0] = new Cenario(0, 0, 25, 700);
+        cenario[0].setImagem(new  ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[0].getLargura(),  cenario[0].getAltura(), 1) );
         cenario[1] = new Cenario(0, 0, 1000, 25);
         cenario[2] = new Cenario(0, 680, 1000, 25);
         cenario[3] = new Cenario(970, 0, 25, 700);
         cenario[4] = new Cenario(200, 100, 25, 500);
         cenario[5] = new Cenario(770, 100, 25, 500);
-        cenario[6] = new Cenario(100, 123, 90, 50);
-        tamanhocenario = 7;
+        cenario[6] = new Cenario(100, 123, 96, 96);
+        cenario[7] = new Cenario(500, 150, 96, 96);
+        cenario[8] = new Cenario(750, 120, 96, 96);
+        tamanhocenario = 9;
     }
 }
