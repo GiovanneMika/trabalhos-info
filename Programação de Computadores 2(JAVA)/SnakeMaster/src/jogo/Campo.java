@@ -23,9 +23,10 @@ import javax.swing.Timer;
 public class Campo extends JPanel implements ActionListener {
 
     Fruta fruta;
+    int velocidade = 20;
     Cobra cobra;
     Cobra corpo[] = new Cobra[1000];
-    Cenario cenario[] = new Cenario[10];
+    Cenario cenario[] = new Cenario[40];
     int tamanhocenario = 4;
     int tamanho = 3;
     Timer t;
@@ -48,20 +49,29 @@ public class Campo extends JPanel implements ActionListener {
             public void keyPressed(KeyEvent e) {
                 int tecla = e.getKeyCode();
                 if (tecla == KeyEvent.VK_UP) {
-                    cobra.setDy(-20);
+                    cobra.setDy(-velocidade);
+                    
                     cobra.setDx(0);
                 }
                 if (tecla == KeyEvent.VK_DOWN) {
-                    cobra.setDy(20);
+                    cobra.setDy(velocidade);
                     cobra.setDx(0);
                 }
                 if (tecla == KeyEvent.VK_LEFT) {
-                    cobra.setDx(-20);
+                    cobra.setDx(-velocidade);
                     cobra.setDy(0);
                 }
                 if (tecla == KeyEvent.VK_RIGHT) {
-                    cobra.setDx(20);
+                    cobra.setDx(velocidade);
                     cobra.setDy(0);
+                }
+                while (tecla == KeyEvent.VK_SPACE) {
+                    if (velocidade == 20) {
+                        velocidade = 30;
+
+                    } else {
+                        velocidade = 20;
+                    }
                 }
                 if (tecla == 'P' || tecla == 'p') {
                     if (t.isRunning()) {
@@ -95,7 +105,8 @@ public class Campo extends JPanel implements ActionListener {
         corpo[0].setY(cobra.getY());
         cobra.mexer();
         if (verificaColisaoFruta(fruta, cobra)) {
-            corpo[tamanho++] = new Cobra();
+            corpo[tamanho] = new Cobra();
+            corpo[tamanho++].setImagem(new ImageIcon(this.getClass().getResource("/imagens/corpo.png")).getImage().getScaledInstance(20, 20, 1));
             posicionaFruta();
         }
         if (verificaColisaoCorpo()) {
@@ -135,10 +146,13 @@ public class Campo extends JPanel implements ActionListener {
 
     private void inicializa() {
         cobra = new Cobra(500, 400);
-        cobra.setDx(-20);
+        cobra.setDx(-velocidade);
         corpo[0] = new Cobra(520, 400);
+        corpo[0].setImagem(new ImageIcon(this.getClass().getResource("/imagens/corpo.png")).getImage().getScaledInstance(corpo[0].getLargura(), corpo[0].getAltura(), 1));
         corpo[1] = new Cobra(540, 400);
+        corpo[1].setImagem(new ImageIcon(this.getClass().getResource("/imagens/corpo.png")).getImage().getScaledInstance(corpo[1].getLargura(), corpo[1].getAltura(), 1));
         corpo[2] = new Cobra(560, 400);
+        corpo[2].setImagem(new ImageIcon(this.getClass().getResource("/imagens/corpo.png")).getImage().getScaledInstance(corpo[2].getLargura(), corpo[2].getAltura(), 1));
         msg = "";
         tamanho = 3;
         cenario1();
@@ -202,16 +216,70 @@ public class Campo extends JPanel implements ActionListener {
     }
 
     private void cenario1() {
-        cenario[0] = new Cenario(0, 0, 25, 700);
-        cenario[0].setImagem(new  ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[0].getLargura(),  cenario[0].getAltura(), 1) );
-        cenario[1] = new Cenario(0, 0, 1000, 25);
-        cenario[2] = new Cenario(0, 680, 1000, 25);
-        cenario[3] = new Cenario(970, 0, 25, 700);
-        cenario[4] = new Cenario(200, 100, 25, 500);
-        cenario[5] = new Cenario(770, 100, 25, 500);
+        cenario[0] = new Cenario(0, 0, 25, 150); //cerca esquerda primeira vertical
+        cenario[0].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[0].getLargura(), cenario[0].getAltura(), 1));
+        cenario[1] = new Cenario(0, 0, 150, 42); // cerca de cima primeira horizontal
+        cenario[1].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[1].getLargura(), cenario[1].getAltura(), 1));
+        cenario[2] = new Cenario(0, 650, 150, 50);
+        cenario[2].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[2].getLargura(), cenario[2].getAltura(), 1));
+        cenario[3] = new Cenario(970, 0, 25, 150); //cerca da direita primeira
+        cenario[3].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[3].getLargura(), cenario[3].getAltura(), 1));
+        cenario[4] = new Cenario(43453, 100, 25, 500);
+        cenario[5] = new Cenario(77534530, 100, 25, 500);
         cenario[6] = new Cenario(100, 123, 96, 96);
         cenario[7] = new Cenario(500, 150, 96, 96);
         cenario[8] = new Cenario(750, 120, 96, 96);
-        tamanhocenario = 9;
+        cenario[9] = new Cenario(0, 150, 25, 150);//cerca esquerda segunda vertical
+        cenario[9].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[9].getLargura(), cenario[9].getAltura(), 1));
+        cenario[10] = new Cenario(0, 300, 25, 150);//cerca esquerda terceira vertical
+        cenario[10].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[9].getLargura(), cenario[9].getAltura(), 1));
+        cenario[11] = new Cenario(0, 450, 25, 150);//cerca esquerda quarta vertical
+        cenario[11].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[9].getLargura(), cenario[9].getAltura(), 1));
+        cenario[12] = new Cenario(0, 600, 25, 150);//cerca esquerda quinta vertical
+        cenario[12].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[9].getLargura(), cenario[9].getAltura(), 1));
+        cenario[13] = new Cenario(125, 0, 150, 42); // cerca de cima primeira horizontal
+        cenario[13].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[1].getLargura(), cenario[1].getAltura(), 1));
+        cenario[14] = new Cenario(250, 0, 150, 42); // cerca de cima primeira horizontal
+        cenario[14].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[1].getLargura(), cenario[1].getAltura(), 1));
+        cenario[15] = new Cenario(375, 0, 150, 42); // cerca de cima primeira horizontal
+        cenario[15].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[1].getLargura(), cenario[1].getAltura(), 1));
+        cenario[16] = new Cenario(500, 0, 150, 42); // cerca de cima primeira horizontal
+        cenario[16].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[1].getLargura(), cenario[1].getAltura(), 1));
+        cenario[17] = new Cenario(625, 0, 150, 42); // cerca de cima primeira horizontal
+        cenario[17].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[1].getLargura(), cenario[1].getAltura(), 1));
+        cenario[18] = new Cenario(750, 0, 150, 42); // cerca de cima primeira horizontal
+        cenario[18].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[1].getLargura(), cenario[1].getAltura(), 1));
+        cenario[19] = new Cenario(875, 0, 150, 42); // cerca de cima primeira horizontal
+        cenario[19].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[1].getLargura(), cenario[1].getAltura(), 1));
+        cenario[20] = new Cenario(125, 650, 150, 50);
+        cenario[20].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[2].getLargura(), cenario[2].getAltura(), 1));
+        cenario[21] = new Cenario(250, 650, 150, 50);
+        cenario[21].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[2].getLargura(), cenario[2].getAltura(), 1));
+        cenario[22] = new Cenario(375, 650, 150, 50);
+        cenario[22].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[2].getLargura(), cenario[2].getAltura(), 1));
+        cenario[23] = new Cenario(500, 650, 150, 50);
+        cenario[23].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[2].getLargura(), cenario[2].getAltura(), 1));
+        cenario[24] = new Cenario(625, 650, 150, 50);
+        cenario[24].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[2].getLargura(), cenario[2].getAltura(), 1));
+        cenario[25] = new Cenario(750, 650, 150, 50);
+        cenario[25].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[2].getLargura(), cenario[2].getAltura(), 1));
+        cenario[26] = new Cenario(875, 650, 150, 50);
+        cenario[26].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca2.png")).getImage().getScaledInstance(cenario[2].getLargura(), cenario[2].getAltura(), 1));
+        cenario[27] = new Cenario(970, 105, 25, 150); //cerca da direita primeira
+        cenario[27].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[3].getLargura(), cenario[3].getAltura(), 1));
+        cenario[28] = new Cenario(970, 210, 25, 150); //cerca da direita primeira
+        cenario[28].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[3].getLargura(), cenario[3].getAltura(), 1));
+        cenario[29] = new Cenario(970, 315, 25, 150); //cerca da direita primeira
+        cenario[29].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[3].getLargura(), cenario[3].getAltura(), 1));
+        cenario[30] = new Cenario(970, 420, 25, 150); //cerca da direita primeira
+        cenario[30].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[3].getLargura(), cenario[3].getAltura(), 1));
+        cenario[31] = new Cenario(970, 525, 25, 200); //cerca da direita primeira
+        cenario[31].setImagem(new ImageIcon(this.getClass().getResource("/imagens/cerca1.png")).getImage().getScaledInstance(cenario[3].getLargura(), cenario[3].getAltura(), 1));
+        cenario[32] = new Cenario(750, 500, 96, 96);
+        cenario[33] = new Cenario(500, 470, 96, 96);
+        cenario[34] = new Cenario(300, 470, 96, 96);
+        cenario[35] = new Cenario(250, 300, 96, 96);
+        cenario[36] = new Cenario(400, 500, 96, 96);
+        tamanhocenario = 37;
     }
 }
