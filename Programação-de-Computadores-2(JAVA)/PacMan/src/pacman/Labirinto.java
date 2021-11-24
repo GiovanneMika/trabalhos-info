@@ -221,7 +221,7 @@ public class Labirinto extends JPanel implements ActionListener {
         }
     }
 
-    private void mexerFantasmas() {
+    private void mexerFantasmas() { 
         int i = 0;
         for (i = 0; i < 4; i++) {
             int sorteio = new Random().nextInt(100);
@@ -322,8 +322,8 @@ public class Labirinto extends JPanel implements ActionListener {
                 }
             }
             if (ghost[i].getStatus() == 2) {
-                ghost[i].setDx((int) Math.signum(90 - ghost[i].getX()));
-                ghost[i].setDy((int) Math.signum(100 - ghost[i].getY()));
+                ghost[i].setDx((int) Math.signum(9 - ghost[i].getX()));
+                ghost[i].setDy((int) Math.signum(10 - ghost[i].getY()));
                 ghost[i].move();
                 if (ghost[i].getX() == 9 && ghost[i].getY() == 10) {
                     ghost[i].setStatus(0);

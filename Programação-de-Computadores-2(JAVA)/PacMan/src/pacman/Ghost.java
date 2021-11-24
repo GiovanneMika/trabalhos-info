@@ -38,6 +38,8 @@ public class Ghost extends Thread {
                 break;
             case 2:
                 dx = -1;
+            case 3:
+                dy = -1;
         }
         start();
     }

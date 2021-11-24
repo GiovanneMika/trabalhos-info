@@ -21,6 +21,7 @@ public class Responsavel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id = 0;
+    private String nome;
     private String cpf;
     private String endereco;
     private String telefone;
@@ -115,6 +116,20 @@ public class Responsavel implements Serializable {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

@@ -15,7 +15,7 @@ import vo.Aluno;
  * @author 2info2021
  */
 public class AlunoDAO {
-    
+
     EntityManager em;
 
     public AlunoDAO() {
@@ -43,9 +43,17 @@ public class AlunoDAO {
         em.getTransaction().commit();
     }
 
-    public List<Aluno> pesquisa() {
-        Query q = em.createQuery("select p from Aluno p order by p.nome");
-        List<Aluno> lista = q.getResultList();
-        return lista;
+    public List<Aluno> pesquisaAluno() {
+        Query q = em.createQuery("select a from Aluno a order by a.nome");
+        List<Aluno> listaAluno = q.getResultList();
+        return listaAluno;
+    }
+
+    public List<Aluno> pesquisaAluno(Integer idFiliacao) {
+        Query q = em.createQuery("select a from Aluno a where a.codigo = :codigo order by a.nome");
+        q.setParameter("idFiliacao", idFiliacao);
+        System.out.println(idFiliacao);
+        List<Aluno> listaAluno = q.getResultList();
+        return listaAluno;
     }
 }

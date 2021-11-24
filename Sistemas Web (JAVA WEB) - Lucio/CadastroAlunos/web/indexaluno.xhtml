@@ -5,75 +5,85 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Responsavel</title>
+        <title>Alunos</title>
     </h:head>
     <h:body style="background-color: #cccccc;">
 
         <div class="geral">
-            <p:fieldset legend="Responsavel" style="margin-bottom:20px">
+            <p:fieldset legend="Alunos" style="margin-bottom:20px">
                 <h:form>
-                    <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" />
-                    <p:tooltip id="ttNovo" for="bNovo" value="Novo responsavel" trackMouse="true" />
-                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
+                    <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novoAluno}" />
+                    <p:tooltip id="ttNovo" for="bNovo" value="Novo aluno" trackMouse="true" />
+                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaAluno}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
-                    <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="responsavel" >
+                    <p:dataTable id="tabela" value="#{telaLocalizaBean.listaAluno}" var="aluno" >
                         <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="ID" />
+                                <h:outputText value="Codigo" />
                             </f:facet>
-                            <h:outputText value="#{responsavel.id}"/>
+                            <h:outputText value="#{aluno.codigo}"/>
                         </p:column>
-                        <p:column style="width:50%">
+                        <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Nome" />
                             </f:facet>
-                            <h:outputText value="#{responsavel.nome}"/>
+                            <h:outputText value="#{aluno.nome}"/>
                         </p:column>
-                        <p:column style="width:20%; text-align: center;" >
+                        <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="CPF" />
+                                <h:outputText value="Serie" />
                             </f:facet>
-                            <h:outputText value="#{responsavel.cpf}"/>
+                            <h:outputText value="#{aluno.serie}"/>
                         </p:column>
-                        <p:column style="width:20%; text-align: center;" >
+                        <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Endereço" />
+                                <h:outputText value="Turma" />
                             </f:facet>
-                            <h:outputText value="#{responsavel.endereco}"/>
+                            <h:outputText value="#{aluno.turma}"/>
                         </p:column>
-                        <p:column style="width:20%; text-align: center;" >
+                        <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Telefone" />
+                                <h:outputText value="Data de Nascimento" />
                             </f:facet>
-                            <h:outputText value="#{responsavel.telefone}"/>
+                            <h:outputText value="#{aluno.datanasc}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
                         </p:column>
-                        <p:column style="width:20%; text-align: center;" >
+                        <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Email" />
+                                <h:outputText value="Filiação" />
                             </f:facet>
-                            <h:outputText value="#{responsavel.email}"/>
+                            <h:outputText value="#{aluno.filiacao}"/>
+                        </p:column>
+                        <p:column style="width:10%; text-align: center;">
+                            <f:facet name="header">
+                                <h:outputText value="ID Responsável" />
+                            </f:facet>
+                            <h:outputText value="#{aluno.idresponsavel}"/>
                         </p:column>
                         <p:column style="width:20%">
                             <f:facet name="header">
                                 <h:outputText value="Ações" />
                             </f:facet>
                             <p:commandButton id="bEdita" icon="ui-icon-pencil" action="#{telaLocalizaBean.editar}" />
-                            <p:tooltip for="bEdita" value="Alterar responsavel" trackMouse="true" />
+                            <p:tooltip for="bEdita" value="Alterar aluno" trackMouse="true" />
                             <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{telaLocalizaBean.excluir}" update="tabela" >
-                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir #{responsavel.nome}?" icon="ui-icon-alert" />
+                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir #{aluno.nome}?" icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
                                 <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
-                            <p:tooltip for="bExclui" value="Exclui responsavel #{responsavel.nome}" trackMouse="true" />
+                            <p:tooltip for="bExclui" value="Exclui aluno #{aluno.nome}" trackMouse="true" />
                             <p:commandButton id="bAluno" icon="ui-icon-pencil" ajax="false" action="indexaluno.xhtml" />
                             <p:tooltip for="bAluno" value="Ver Alunos" trackMouse="true" />
                         </p:column>
                     </p:dataTable>
                 </h:form>
+                <h:form>
+                    <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
+                </h:form>
             </p:fieldset>
         </div>
     </h:body>
 </html>
-
