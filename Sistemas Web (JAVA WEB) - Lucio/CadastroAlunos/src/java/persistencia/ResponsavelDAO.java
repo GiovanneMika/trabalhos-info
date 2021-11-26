@@ -22,29 +22,29 @@ public class ResponsavelDAO {
         em = EntityManagerProvider.getEM();
     }
 
-    public void salva(Responsavel p) {
+    public void salva(Responsavel r) {
         em.getTransaction().begin();
-        if (p.getId() == 0) {
-            em.persist(p);
+        if (r.getId() == 0) {
+            em.persist(r);
         } else {
-            em.merge(p);
+            em.merge(r);
         }
         em.getTransaction().commit();
     }
 
-    public Responsavel localiza(int codigo) {
-        Responsavel p = em.find(Responsavel.class, codigo);
-        return p;
+    public Responsavel localiza(int id) {
+        Responsavel r = em.find(Responsavel.class, id);
+        return r;
     }
 
-    public void exclui(Responsavel p) {
+    public void exclui(Responsavel r) {
         em.getTransaction().begin();
-        em.remove(p);
+        em.remove(r);
         em.getTransaction().commit();
     }
 
     public List<Responsavel> pesquisa() {
-        Query q = em.createQuery("select p from Responsavel p order by p.nome");
+        Query q = em.createQuery("select r from Responsavel r order by r.id");
         List<Responsavel> lista = q.getResultList();
         return lista;
     }

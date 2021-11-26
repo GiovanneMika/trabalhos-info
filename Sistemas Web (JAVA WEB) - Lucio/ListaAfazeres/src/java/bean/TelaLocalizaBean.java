@@ -7,7 +7,7 @@ package bean;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 
 import javax.faces.model.ListDataModel;
@@ -15,18 +15,18 @@ import persistencia.AfazeresDAO;
 import vo.Afazeres;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class TelaLocalizaBean implements Serializable {
 
     private DataModel<Afazeres> lista;
-    AfazeresDAO pd = new AfazeresDAO();
+    AfazeresDAO fd = new AfazeresDAO();
     private Afazeres afazeres = new Afazeres();
 
     public TelaLocalizaBean() {
     }
 
     public String atualizaLista() {
-        lista = new ListDataModel(pd.pesquisa());
+        lista = new ListDataModel(fd.pesquisa());
         return "index";
     }
 
@@ -42,7 +42,7 @@ public class TelaLocalizaBean implements Serializable {
 
     public String excluir() {
         Afazeres a = afazeresSelecionado();
-        pd.exclui(a);
+        fd.exclui(a);
         return "index";
     }
 
@@ -58,7 +58,7 @@ public class TelaLocalizaBean implements Serializable {
     }
 
     public String salva() {
-        pd.salva(getAfazeres());
+        fd.salva(getAfazeres());
         return "index";
     }
 

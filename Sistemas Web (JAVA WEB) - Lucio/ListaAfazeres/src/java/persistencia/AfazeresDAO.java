@@ -28,9 +28,9 @@ public class AfazeresDAO {
         em.getTransaction().commit();
     }
 
-    public Afazeres localiza(int codigo) {
-        Afazeres p = em.find(Afazeres.class, codigo);
-        return p;
+    public Afazeres localiza(int id) {
+        Afazeres a = em.find(Afazeres.class, id);
+        return a;
     }
 
     public void exclui(Afazeres a) {
@@ -40,14 +40,20 @@ public class AfazeresDAO {
     }
 
     public List<Afazeres> pesquisa() {
-        Query q = em.createQuery("select p from Afazeres p order by p.nome");
+        Query q = em.createQuery("select a from Afazeres a order by a.id");
         List<Afazeres> lista = q.getResultList();
         return lista;
     }
 
-    public List<Afazeres> pesquisa(String nome) {
-        Query q = em.createNativeQuery("select * from Afazeres where nome like :nome order by nome", Afazeres.class);
-        q.setParameter("nome", '%' + nome + '%');
+    public List<Afazeres> pesquisaPrimeiro() {
+        Query q = em.createQuery("select a from Afazeres a order by a.id");
+        List<Afazeres> lista = q.getResultList();
+        return lista;
+    }
+
+    public List<Afazeres> pesquisa(String descricao) {
+        Query q = em.createNativeQuery("select * from Afazeres where descricao like :descricao order by id", Afazeres.class);
+        q.setParameter("descricao", '%' + descricao + '%');
         List<Afazeres> lista = q.getResultList();
         return lista;
     }

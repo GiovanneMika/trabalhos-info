@@ -68,9 +68,11 @@ public class TelaLocalizaBean implements Serializable {
 
     public String excluir() {
         Responsavel r = responsavelSelecionado();
-        if (ad.pesquisaAluno(r.getId()).size() <= 0) {
+        System.out.println(r.getId());
+        if (ad.pesquisaAluno(r.getId()).isEmpty()) {
             rd.exclui(r);
         }
+        System.out.println(ad.pesquisaAluno(r.getId()).size());
         return "index";
     }
 

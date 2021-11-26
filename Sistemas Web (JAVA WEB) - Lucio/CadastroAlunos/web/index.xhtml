@@ -67,8 +67,8 @@
                                 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                             <p:tooltip for="bExclui" value="Exclui responsavel #{responsavel.nome}" trackMouse="true" />
-                            <p:commandButton id="bAluno" icon="ui-icon-person" ajax="false" action="indexaluno.xhtml" />
-                            <p:tooltip for="bAluno" value="Ver Alunos" trackMouse="true" />
+                            <p:commandButton id="bAluno" icon="ui-icon-person" ajax="false" action="#{telaLocalizaBean.novoAluno()}"/>
+                            <p:tooltip for="bAluno" value="Cadastrar aluno" trackMouse="true" />
                         </p:column>
                     </p:dataTable>
                 </h:form>

@@ -5,44 +5,44 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Professor</title>
+        <title>Afazeres</title>
     </h:head>
     <h:body style="background-color: #cccccc;">
 
         <div class="geral">
-            <p:fieldset legend="Professor" style="margin-bottom:20px">
+            <p:fieldset legend="Afazeres" style="margin-bottom:20px">
                 <h:form>
                     <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" />
-                    <p:tooltip id="ttNovo" for="bNovo" value="Novo professor" trackMouse="true" />
+                    <p:tooltip id="ttNovo" for="bNovo" value="Novo afazer" trackMouse="true" />
                     <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
-                    <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="professor" >
+                    <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="afazeres" >
                         <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Código" />
+                                <h:outputText value="ID" />
                             </f:facet>
-                            <h:outputText value="#{professor.codigo}"/>
+                            <h:outputText value="#{afazeres.id}"/>
                         </p:column>
                         <p:column style="width:50%">
                             <f:facet name="header">
-                                <h:outputText value="Nome" />
+                                <h:outputText value="Descrição" />
                             </f:facet>
-                            <h:outputText value="#{professor.nome}"/>
+                            <h:outputText value="#{afazeres.descricao}"/>
                         </p:column>
                         <p:column style="width:20%">
                             <f:facet name="header">
                                 <h:outputText value="Ações" />
                             </f:facet>
                             <p:commandButton id="bEdita" icon="ui-icon-pencil" action="#{telaLocalizaBean.editar}" />
-                            <p:tooltip for="bEdita" value="Alterar professor" trackMouse="true" />
+                            <p:tooltip for="bEdita" value="Alterar afazer" trackMouse="true" />
                             <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{telaLocalizaBean.excluir}" update="tabela" >
-                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir #{professor.nome}?" icon="ui-icon-alert" />
+                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir o afazer #{afazeres.id}?" icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
                                 <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
-                            <p:tooltip for="bExclui" value="Exclui professor #{professor.nome}" trackMouse="true" />
+                            <p:tooltip for="bExclui" value="Exclui afazer #{afazeres.id}" trackMouse="true" />
                         </p:column>
                     </p:dataTable>
                 </h:form>

@@ -1,13 +1,10 @@
 package vo;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Aluno implements Serializable {
@@ -19,8 +16,7 @@ public class Aluno implements Serializable {
     private String nome;
     private String serie;
     private String turma;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date datanasc;
+    private String datanasc;
     private String filiacao;
     private int idresponsavel;
 
@@ -101,14 +97,14 @@ public class Aluno implements Serializable {
     /**
      * @return the datanasc
      */
-    public Date getDatanasc() {
+    public String getDatanasc() {
         return datanasc;
     }
 
     /**
      * @param datanasc the datanasc to set
      */
-    public void setDatanasc(Date datanasc) {
+    public void setDatanasc(String datanasc) {
         this.datanasc = datanasc;
     }
 

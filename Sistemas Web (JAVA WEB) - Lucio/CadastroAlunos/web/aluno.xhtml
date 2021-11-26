@@ -7,41 +7,13 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Cadastro de Aluno</title>
-        <script type="text/javascript">PrimeFaces.locales['pt'] = {
-                closeText: 'Fechar',
-                prevText: 'Anterior',
-                nextText: 'Próximo',
-                currentText: 'Começo',
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-                weekHeader: 'Semana',
-                firstDay: 1,
-                isRTL: false,
-                showMonthAfterYear: false,
-                yearSuffix: '',
-                timeOnlyTitle: 'Só Horas',
-
-                timeText: 'Tempo',
-                hourText: 'Hora',
-                minuteText: 'Minuto',
-                secondText: 'Segundo',
-                currentText: 'Data Atual',
-                ampm: false,
-                month: 'Mês',
-                week: 'Semana',
-                day: 'Dia',
-                allDayText: 'Todo Dia'
-            };</script>
     </h:head>
     <h:body>
         <h:form>
             <p:outputLabel for="itCodigo" value="Código"/>
             <p:inputText id="itCodigo" value="#{telaLocalizaBean.aluno.codigo}" readonly="true"/><br/>
             <p:outputLabel for="itIdresponsavel" value="ID Responsável"/>
-            <p:inputText id="itIdresponsavel" value="#{telaLocalizaBean.aluno.idresponsavel}"/><br/>
+            <p:inputText id="itIdresponsavel" value="#{telaLocalizaBean.aluno.idresponsavel}" readonly="true"/><br/>
             <p:outputLabel for="itNome" value="Nome"/>
             <p:inputText id="itNome" value="#{telaLocalizaBean.aluno.nome}" /><br/>
             <p:outputLabel for="itTurma" value="Turma"/>
@@ -49,8 +21,8 @@
             <p:outputLabel for="itSerie" value="Série"/>
             <p:inputText id="itSerie" value="#{telaLocalizaBean.aluno.serie}" /><br/>
             <p:outputLabel value="Data de Nascimento:" for="itData"/>
-            <p:calendar id="itData" locale="pt" value="#{telaLocalizaBean.aluno.datanasc}" pattern="dd/MM/yyyy" mask="true"
-                        required="true" requiredMessage="É obrigatório uma data de nascimento!" showOn="button"/><br/>
+            <p:inputText id="itData" value="#{telaLocalizaBean.aluno.datanasc}"
+                        required="true" requiredMessage="É obrigatório uma data de nascimento!" /><br/>
             <p:outputLabel for="itFiliacao" value="Filiação"/>
             <p:inputText id="itFiliacao" value="#{telaLocalizaBean.aluno.filiacao}"/><br/>
             <p:commandButton icon="ui-icon-disk" ajax="false" action="#{telaLocalizaBean.salvaAluno()}"/>
