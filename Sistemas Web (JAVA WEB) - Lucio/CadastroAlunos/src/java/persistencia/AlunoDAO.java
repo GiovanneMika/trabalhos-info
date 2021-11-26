@@ -43,16 +43,16 @@ public class AlunoDAO {
         em.getTransaction().commit();
     }
 
-    public List<Aluno> pesquisaAluno() {
+    public List<Aluno> pesquisa() {
         Query q = em.createQuery("select a from Aluno a order by a.nome");
         List<Aluno> listaAluno = q.getResultList();
         return listaAluno;
     }
 
-    public List<Aluno> pesquisaAluno(Integer idFiliacao) {
-        Query q = em.createQuery("select a from Aluno a where a.codigo = :codigo order by a.nome");
-        q.setParameter("idFiliacao", idFiliacao);
-        System.out.println(idFiliacao);
+    public List<Aluno> pesquisaAluno(Integer idResponsavel) {
+        Query q = em.createQuery("select a from Aluno a where a.idResponsavel = :idResponsavel order by a.nome");
+        q.setParameter("idResponsavel", idResponsavel);
+        System.out.println(idResponsavel);
         List<Aluno> listaAluno = q.getResultList();
         return listaAluno;
     }

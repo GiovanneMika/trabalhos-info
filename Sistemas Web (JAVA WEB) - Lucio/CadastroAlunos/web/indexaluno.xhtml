@@ -65,9 +65,9 @@
                             <f:facet name="header">
                                 <h:outputText value="Ações" />
                             </f:facet>
-                            <p:commandButton id="bEdita" icon="ui-icon-pencil" action="#{telaLocalizaBean.editar}" />
+                            <p:commandButton id="bEdita" icon="ui-icon-pencil" action="#{telaLocalizaBean.editarAluno}" />
                             <p:tooltip for="bEdita" value="Alterar aluno" trackMouse="true" />
-                            <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{telaLocalizaBean.excluir}" update="tabela" >
+                            <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{telaLocalizaBean.excluirAluno}" update="tabela" >
                                 <p:confirm header="Confirmação" message="Tem certeza que deseja excluir #{aluno.nome}?" icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
@@ -75,8 +75,6 @@
                                 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                             <p:tooltip for="bExclui" value="Exclui aluno #{aluno.nome}" trackMouse="true" />
-                            <p:commandButton id="bAluno" icon="ui-icon-pencil" ajax="false" action="indexaluno.xhtml" />
-                            <p:tooltip for="bAluno" value="Ver Alunos" trackMouse="true" />
                         </p:column>
                     </p:dataTable>
                 </h:form>
