@@ -73,6 +73,13 @@ public class Desenho {
         }
     }
 
+    public void arco(double centroX, double centroY, double raio, double inicio, double fim) {
+        desenho.add(new Ponto(centroX + raio * Math.cos(inicio), centroY + raio * Math.sin(inicio), true));
+        for (double z = inicio; z <= fim; z += .1) {
+            desenho.add(new Ponto(centroX + raio * Math.cos(z), centroY + raio * Math.sin(z), false));
+        }
+    }
+
     public void desenha(Graphics g) {
         Ponto p;
         for (int i = 0; i < desenho.size(); i++) {
@@ -173,11 +180,11 @@ public class Desenho {
         desenho.addElement(new Ponto(24, 11, false));
         desenho.addElement(new Ponto(24, 11, false));
         //triângulo no meio do A:5
-        desenho.addElement(new Ponto(26, 7, true)); 
-        desenho.addElement(new Ponto(26, 7, false)); 
-        desenho.addElement(new Ponto(25, 7, false)); 
-        desenho.addElement(new Ponto(25.5, 5, false)); 
-        desenho.addElement(new Ponto(26, 7, false)); 
+        desenho.addElement(new Ponto(26, 7, true));
+        desenho.addElement(new Ponto(26, 7, false));
+        desenho.addElement(new Ponto(25, 7, false));
+        desenho.addElement(new Ponto(25.5, 5, false));
+        desenho.addElement(new Ponto(26, 7, false));
         //N:13
         desenho.addElement(new Ponto(28, 11, true));
         desenho.addElement(new Ponto(28, 11, false));
@@ -222,6 +229,52 @@ public class Desenho {
         desenho.addElement(new Ponto(39, 9.6, false));
         desenho.addElement(new Ponto(39, 11, false));
         desenho.addElement(new Ponto(36, 11, false));
+    }
+
+    public void raposa() {
+        //Circulo
+        arco(8,8,2.1,0,6.3);
+        arco(8,8,1.3,0,6.3);
+        //Triângulo
+        desenho.addElement(new Ponto(10, 10, true));;
+        desenho.addElement(new Ponto(10, 10, false));
+        desenho.addElement(new Ponto(14, 10, false));
+        desenho.addElement(new Ponto(12, 6, false));
+        desenho.addElement(new Ponto(10, 10, false));
+        //Triângulo dentro
+        desenho.addElement(new Ponto(11, 9.5, true));;
+        desenho.addElement(new Ponto(11, 9.5, false));
+        desenho.addElement(new Ponto(13, 9.5, false));
+        desenho.addElement(new Ponto(12, 7.2, false));
+        desenho.addElement(new Ponto(11, 9.5, false));
+        //Quadrado
+        desenho.addElement(new Ponto(14.5, 10, true));
+        desenho.addElement(new Ponto(14.5, 10, false));
+        desenho.addElement(new Ponto(18.5, 10, false));
+        desenho.addElement(new Ponto(18.5, 6, false));
+        desenho.addElement(new Ponto(14.5, 6, false));
+        desenho.addElement(new Ponto(14.5, 10, false));
+        //Quadrado dentro
+        desenho.addElement(new Ponto(15.2, 9.5, true));
+        desenho.addElement(new Ponto(15.2, 9.5, false));
+        desenho.addElement(new Ponto(17.8, 9.5, false));
+        desenho.addElement(new Ponto(17.8, 6.5, false));
+        desenho.addElement(new Ponto(15.2, 6.5, false));
+        desenho.addElement(new Ponto(15.2, 9.5, false));
+        //X
+        desenho.addElement(new Ponto(19, 10, true));
+        desenho.addElement(new Ponto(20, 10, false));
+        desenho.addElement(new Ponto(20.5, 8.5, false));
+        desenho.addElement(new Ponto(21, 10, false));
+        desenho.addElement(new Ponto(22, 10, false));
+        desenho.addElement(new Ponto(21.5, 8, false));
+        desenho.addElement(new Ponto(22, 6, false));
+        desenho.addElement(new Ponto(21, 6, false));
+        desenho.addElement(new Ponto(20.5, 7.5, false));
+        desenho.addElement(new Ponto(20, 6, false));
+        desenho.addElement(new Ponto(19, 6, false));
+        desenho.addElement(new Ponto(19.5, 8, false));
+        desenho.addElement(new Ponto(19, 10, false));
     }
 
     public void translada(double dx, double dy) {
