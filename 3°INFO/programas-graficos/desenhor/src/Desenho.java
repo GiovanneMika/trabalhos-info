@@ -233,8 +233,8 @@ public class Desenho {
 
     public void raposa() {
         //Circulo
-        arco(8,8,2.1,0,6.3);
-        arco(8,8,1.3,0,6.3);
+        arco(8, 8, 2.1, 0, 6.3);
+        arco(8, 8, 1.3, 0, 6.3);
         //Triângulo
         desenho.addElement(new Ponto(10, 10, true));;
         desenho.addElement(new Ponto(10, 10, false));
@@ -276,6 +276,15 @@ public class Desenho {
         desenho.addElement(new Ponto(19.5, 8, false));
         desenho.addElement(new Ponto(19, 10, false));
     }
+
+    public void cenario() {
+        desenho.addElement(new Ponto(10, 10, true));;
+        desenho.addElement(new Ponto(10, 11, false));;
+        
+        
+    }
+
+    
 
     public void translada(double dx, double dy) {
         Ponto p;

@@ -217,7 +217,7 @@ public class TelaMovimento extends javax.swing.JFrame {
         if (telaToProfessor()) {
           //  sd.verificaData(m);
             if (sd.verificaData(m)){
-                sd.somaSaldoExistente(s, m);
+                sd.somaSubtraiSaldo(s, m);
             }
             md.salva(m);
           //  sd.somaSaldoExistente(s, m);
