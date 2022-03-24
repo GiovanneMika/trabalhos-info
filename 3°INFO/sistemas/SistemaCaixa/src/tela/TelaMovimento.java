@@ -215,10 +215,10 @@ public class TelaMovimento extends javax.swing.JFrame {
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
 
         if (telaToProfessor()) {
-            sd.verificaData();
-          //  if (sd.verificaData()){
-           //     sd.somaSaldoExistente(s, m);
-           // }
+          //  sd.verificaData(m);
+            if (sd.verificaData(m)){
+                sd.somaSaldoExistente(s, m);
+            }
             md.salva(m);
           //  sd.somaSaldoExistente(s, m);
 
