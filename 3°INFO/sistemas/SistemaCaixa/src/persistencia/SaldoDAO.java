@@ -5,10 +5,7 @@
  */
 package persistencia;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -50,24 +47,6 @@ public class SaldoDAO {
         }
     }
 
-    public void somaSaldoExistente(Saldo s, Movimento m) {
-        double valor = m.getValor(); //precisa de uma variavel que receba a data pra conseguir jogar o valor no saldo certo
-        s.setDataSaldo(m.getDataMov());
-        //Query q = em.createNativeQuery("select valor from saldo where data = ?", Saldo.class);
-        //q.setParameter(1, daters3);
-        //List valorSaldo = q.getResultList();
-        //System.out.println(valorSaldo);
-        double quantidadeInicial = 0;
-        double quantidadeFinal;
-        if (m.getTipo() == "S") {
-            quantidadeFinal = quantidadeInicial - valor;
-        } else {
-            quantidadeFinal = quantidadeInicial + valor;
-        }
-        s.setValor(quantidadeFinal);
-        em.createNativeQuery("select valor from saldo where data = ?", Saldo.class);
-    }
-
     public void somaSubtraiSaldo(Saldo s, Movimento m) {
         em.getTransaction().begin();
         double valor = m.getValor();
@@ -88,13 +67,42 @@ public class SaldoDAO {
         em.getTransaction().commit();
     }
 
-    /* public void criaSaldo(Movimento m) {
+    public void somaSubtraiSaldo2(Saldo s, Movimento m) {
         em.getTransaction().begin();
-        if (m.getDataMov() == 0) {
-            em.persist(m);
-        }else{
-            em.merge(m);
+        s.setDataSaldo(m.getDataMov()); // acho que não precisa dessa linha
+        if (m.getTipo().equals("S")) {
+            m.setValor(-m.getValor());
         }
+        Query q = em.createNativeQuery("update saldo set valor = valor+? where datasaldo>=?");
+        q.setParameter(1, m.getValor());
+        q.setParameter(2, m.getDataMov());
+        q.executeUpdate();
+
         em.getTransaction().commit();
-    }*/
+    }
+
+    public void somaSaldoAusente(Saldo s, Movimento m) {
+        em.getTransaction().begin();
+        if (m.getTipo().equals("S")) { //verifica se é saida ou entrada
+            m.setValor(-m.getValor());
+        }
+        //pegador de valor da ultima data
+        Query saldo = em.createNativeQuery("select valor from saldo where datasaldo<? order by datasaldo desc limit 1");
+        saldo.setParameter(1, m.getDataMov());
+        Object valorSaldo = saldo.getSingleResult();
+        System.out.println(valorSaldo + "é o ultimo saldo");
+
+        //criador de saldo
+        s.setDataSaldo(m.getDataMov());
+        s.setValor(m.getValor() + Double.parseDouble(valorSaldo.toString()));
+        em.persist(s);
+
+        //soma todas as datas maiores com a que esta sendo criada
+        Query q = em.createNativeQuery("update saldo set valor = valor+? where datasaldo>?");
+        q.setParameter(1, m.getValor());
+        q.setParameter(2, m.getDataMov());
+        q.executeUpdate();
+
+        em.getTransaction().commit();
+    }
 }

@@ -218,6 +218,8 @@ public class TelaMovimento extends javax.swing.JFrame {
           //  sd.verificaData(m);
             if (sd.verificaData(m)){
                 sd.somaSubtraiSaldo(s, m);
+            }else{
+                sd.somaSaldoAusente(s, m);
             }
             md.salva(m);
           //  sd.somaSaldoExistente(s, m);
