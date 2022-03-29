@@ -102,7 +102,16 @@ public class SaldoDAO {
         q.setParameter(1, m.getValor());
         q.setParameter(2, m.getDataMov());
         q.executeUpdate();
-
+        em.flush();
         em.getTransaction().commit();
+    }
+
+    public List<Saldo> pesquisa() {
+        em = EntityManagerProvider.getEM();
+        em.getTransaction().begin();
+        Query q = em.createQuery("select s from Saldo as s order by s.dataSaldo");
+        List<Saldo> lista = q.getResultList();
+        em.getTransaction().commit();
+        return lista;
     }
 }

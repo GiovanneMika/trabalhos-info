@@ -59,6 +59,7 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
         bOk = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tLocaliza = new javax.swing.JTable();
+        tVersaldos = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArquivo = new javax.swing.JMenu();
         mNovo = new javax.swing.JMenuItem();
@@ -110,6 +111,13 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
             tLocaliza.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        tVersaldos.setText("Ver Saldos");
+        tVersaldos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tVersaldosActionPerformed(evt);
+            }
+        });
+
         mArquivo.setText("Arquivo");
 
         mNovo.setText("Novo");
@@ -132,12 +140,14 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(bOk)))
+                        .addComponent(bOk)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tVersaldos)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -147,7 +157,8 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bOk))
+                    .addComponent(bOk)
+                    .addComponent(tVersaldos))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -171,6 +182,11 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
         TelaMovimento t = new TelaMovimento();
         t.setVisible(true);
     }//GEN-LAST:event_mNovoActionPerformed
+
+    private void tVersaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tVersaldosActionPerformed
+        TelaSaldo ts = new TelaSaldo();
+        ts.setVisible(true);
+    }//GEN-LAST:event_tVersaldosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,5 +233,6 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
     private javax.swing.JMenuItem mNovo;
     private javax.swing.JTextField tFiltro;
     private javax.swing.JTable tLocaliza;
+    private javax.swing.JButton tVersaldos;
     // End of variables declaration//GEN-END:variables
 }
