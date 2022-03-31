@@ -7,7 +7,6 @@ package tela;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import vo.Saldo;
 import persistencia.SaldoDAO;
@@ -101,7 +100,6 @@ public class TelaSaldo extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
     private void preencheTabelaSaldo() {
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaSaldo.getModel();
-        TableModelEvent e = new TableModelEvent(); // perguntar pro lucio como funciona esse negocio aqui
         int i = modelo.getRowCount();
         while (i-- > 0) {
             modelo.removeRow(i);
@@ -113,8 +111,6 @@ public class TelaSaldo extends javax.swing.JFrame {
         for (Saldo s : lista) {
             modelo.addRow(new Object[]{s.getId(), s.getValor(), sdf.format(s.getDataSaldo().getTime())});
         }
-        modelo.fireTableChanged(e);
-        tLocalizaSaldo.repaint(); // perguntar se o repaint faz alguma coisa nesse caso
     }
 
     /**

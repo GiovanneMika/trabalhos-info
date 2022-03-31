@@ -278,8 +278,35 @@ public class Desenho {
     }
 
     public void cenario() {
-        desenho.addElement(new Ponto(10, 10, true));;
-        desenho.addElement(new Ponto(10, 11, false));;
+        //mesa
+        desenho.addElement(new Ponto(10, 8, true));;
+        desenho.addElement(new Ponto(10, 8.5, false));;
+        desenho.addElement(new Ponto(20, 8.5, false));;
+        desenho.addElement(new Ponto(20, 8, false));;
+        desenho.addElement(new Ponto(10, 8, false));;
+        desenho.addElement(new Ponto(15, 8.5, true));;
+        desenho.addElement(new Ponto(15, 12, false));;
+        desenho.addElement(new Ponto(10, 13, false));;
+        desenho.addElement(new Ponto(15, 12, true));;
+        desenho.addElement(new Ponto(20, 13, false));;
+        desenho.addElement(new Ponto(22, 13, true));;
+        //cadeira da direita
+        desenho.addElement(new Ponto(22, 10, false));;
+        desenho.addElement(new Ponto(24, 10, false));;
+        desenho.addElement(new Ponto(24, 13, false));;
+        desenho.addElement(new Ponto(24.5, 13, false));;
+        desenho.addElement(new Ponto(24.5, 6, false));;
+        desenho.addElement(new Ponto(24, 6, false));;
+        desenho.addElement(new Ponto(24, 9.5, false));;
+        desenho.addElement(new Ponto(21.5, 9.5, false));;
+        desenho.addElement(new Ponto(21.5, 13, false));;
+        desenho.addElement(new Ponto(22, 13, false));;
+        desenho.addElement(new Ponto(22, 13, true));;
+        //cadeira da esquerda
+        desenho.addElement(new Ponto(8, 13, true));;
+        desenho.addElement(new Ponto(7.5, 13, false));;
+        desenho.addElement(new Ponto(7.5, 10, false));;
+        desenho.addElement(new Ponto(7.5, 10, false));;
         
         
     }
