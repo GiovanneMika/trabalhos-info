@@ -9,7 +9,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import vo.Movimento;
-import vo.Saldo;
 
 /**
  *
@@ -37,7 +36,7 @@ public class MovimentoDAO {
     }
 
     public List<Movimento> pesquisa() {
-        Query q = em.createQuery("select m from Movimento as m");
+        Query q = em.createQuery("select m from Movimento as m order by m.dataMov");
         List<Movimento> lista = q.getResultList();
         return lista;
     }
