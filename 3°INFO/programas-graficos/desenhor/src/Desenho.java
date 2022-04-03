@@ -96,7 +96,7 @@ public class Desenho {
     }
 
     public void quadrado() {
-        desenho.addElement(new Ponto(11, 9, true));;
+        desenho.addElement(new Ponto(11, 9, true));
         desenho.addElement(new Ponto(9, 9, false));
         desenho.addElement(new Ponto(9, 11, false));
         desenho.addElement(new Ponto(11, 11, false));
@@ -104,7 +104,7 @@ public class Desenho {
     }
 
     public void ge() {
-        desenho.addElement(new Ponto(11, 11, true));;
+        desenho.addElement(new Ponto(11, 11, true));
         desenho.addElement(new Ponto(11, 11, false));
         desenho.addElement(new Ponto(11, 4, false));
         desenho.addElement(new Ponto(15, 4, false));
@@ -123,7 +123,7 @@ public class Desenho {
 
     public void giovanne() {
         //G:14
-        desenho.addElement(new Ponto(11, 11, true));;
+        desenho.addElement(new Ponto(11, 11, true));
         desenho.addElement(new Ponto(11, 11, false));
         desenho.addElement(new Ponto(11, 4, false));
         desenho.addElement(new Ponto(15, 4, false));
@@ -236,13 +236,13 @@ public class Desenho {
         arco(8, 8, 2.1, 0, 6.3);
         arco(8, 8, 1.3, 0, 6.3);
         //Triângulo
-        desenho.addElement(new Ponto(10, 10, true));;
+        desenho.addElement(new Ponto(10, 10, true));
         desenho.addElement(new Ponto(10, 10, false));
         desenho.addElement(new Ponto(14, 10, false));
         desenho.addElement(new Ponto(12, 6, false));
         desenho.addElement(new Ponto(10, 10, false));
         //Triângulo dentro
-        desenho.addElement(new Ponto(11, 9.5, true));;
+        desenho.addElement(new Ponto(11, 9.5, true));
         desenho.addElement(new Ponto(11, 9.5, false));
         desenho.addElement(new Ponto(13, 9.5, false));
         desenho.addElement(new Ponto(12, 7.2, false));
@@ -278,40 +278,112 @@ public class Desenho {
     }
 
     public void cenario() {
+        //chão
+        desenho.addElement(new Ponto(0, 13, true));
+        desenho.addElement(new Ponto(30, 13, false));
         //mesa
-        desenho.addElement(new Ponto(10, 8, true));;
-        desenho.addElement(new Ponto(10, 8.5, false));;
-        desenho.addElement(new Ponto(20, 8.5, false));;
-        desenho.addElement(new Ponto(20, 8, false));;
-        desenho.addElement(new Ponto(10, 8, false));;
-        desenho.addElement(new Ponto(15, 8.5, true));;
-        desenho.addElement(new Ponto(15, 12, false));;
-        desenho.addElement(new Ponto(10, 13, false));;
-        desenho.addElement(new Ponto(15, 12, true));;
-        desenho.addElement(new Ponto(20, 13, false));;
-        desenho.addElement(new Ponto(22, 13, true));;
+        desenho.addElement(new Ponto(10, 8, true));
+        desenho.addElement(new Ponto(10, 8.5, false));
+        desenho.addElement(new Ponto(20, 8.5, false));
+        desenho.addElement(new Ponto(20, 8, false));
+        desenho.addElement(new Ponto(10, 8, false));
+        desenho.addElement(new Ponto(15, 8.5, true));
+        desenho.addElement(new Ponto(15, 12, false));
+        desenho.addElement(new Ponto(10, 13, false));
+        desenho.addElement(new Ponto(15, 12, true));
+        desenho.addElement(new Ponto(20, 13, false));
+        desenho.addElement(new Ponto(22, 13, true));
         //cadeira da direita
-        desenho.addElement(new Ponto(22, 10, false));;
-        desenho.addElement(new Ponto(24, 10, false));;
-        desenho.addElement(new Ponto(24, 13, false));;
-        desenho.addElement(new Ponto(24.5, 13, false));;
-        desenho.addElement(new Ponto(24.5, 6, false));;
-        desenho.addElement(new Ponto(24, 6, false));;
-        desenho.addElement(new Ponto(24, 9.5, false));;
-        desenho.addElement(new Ponto(21.5, 9.5, false));;
-        desenho.addElement(new Ponto(21.5, 13, false));;
-        desenho.addElement(new Ponto(22, 13, false));;
-        desenho.addElement(new Ponto(22, 13, true));;
+        desenho.addElement(new Ponto(22, 10, false));
+        desenho.addElement(new Ponto(24, 10, false));
+        desenho.addElement(new Ponto(24, 13, false));
+        desenho.addElement(new Ponto(24.5, 13, false));
+        desenho.addElement(new Ponto(24.5, 6, false));
+        desenho.addElement(new Ponto(24, 6, false));
+        desenho.addElement(new Ponto(24, 9.5, false));
+        desenho.addElement(new Ponto(21.5, 9.5, false));
+        desenho.addElement(new Ponto(21.5, 13, false));
+        desenho.addElement(new Ponto(22, 13, false));
+        desenho.addElement(new Ponto(22, 13, true));
         //cadeira da esquerda
-        desenho.addElement(new Ponto(8, 13, true));;
-        desenho.addElement(new Ponto(7.5, 13, false));;
-        desenho.addElement(new Ponto(7.5, 10, false));;
-        desenho.addElement(new Ponto(7.5, 10, false));;
-        
-        
-    }
+        desenho.addElement(new Ponto(8, 13, true));
+        desenho.addElement(new Ponto(7.5, 13, false));
+        desenho.addElement(new Ponto(7.5, 10, false));
+        desenho.addElement(new Ponto(5.5, 10, false));
+        desenho.addElement(new Ponto(5.5, 13, false));
+        desenho.addElement(new Ponto(5, 13, false));
+        desenho.addElement(new Ponto(5, 6, false));
+        desenho.addElement(new Ponto(5.5, 6, false));
+        desenho.addElement(new Ponto(5.5, 9.5, false));
+        desenho.addElement(new Ponto(8, 9.5, false));
+        desenho.addElement(new Ponto(8, 13, false));
+        //lampada
+        desenho.addElement(new Ponto(15, 0, true));
+        desenho.addElement(new Ponto(15, 1, false));
+        desenho.addElement(new Ponto(13, 3, false));
+        desenho.addElement(new Ponto(17, 3, false));
+        desenho.addElement(new Ponto(15, 1, false));
+        //luz da lampada
 
-    
+        //prato da esquerda
+        desenho.addElement(new Ponto(11, 8, true));
+        desenho.addElement(new Ponto(11, 8, false));
+        desenho.addElement(new Ponto(12, 8, false));
+        desenho.addElement(new Ponto(12.5, 7.5, false));
+        desenho.addElement(new Ponto(10.5, 7.5, false));
+        desenho.addElement(new Ponto(11, 8, false));
+        
+        //prato da direita
+        desenho.addElement(new Ponto(19, 8, true));
+        desenho.addElement(new Ponto(19, 8, false));
+        desenho.addElement(new Ponto(18, 8, false));
+        desenho.addElement(new Ponto(17.5, 7.5, false));
+        desenho.addElement(new Ponto(19.5, 7.5, false));
+        desenho.addElement(new Ponto(19, 8, false));
+        
+        //vinho
+        desenho.addElement(new Ponto(14.5, 8, true));
+        desenho.addElement(new Ponto(14.5, 8, false));
+        desenho.addElement(new Ponto(15.5, 8, false));
+        desenho.addElement(new Ponto(15.5, 6.5, false));
+        desenho.addElement(new Ponto(15.25, 6.25, false));
+        desenho.addElement(new Ponto(15.25, 5.75, false));
+        desenho.addElement(new Ponto(15, 5.75, false));
+        desenho.addElement(new Ponto(15, 6.25, false));
+        desenho.addElement(new Ponto(14.75, 6.5, false));
+        desenho.addElement(new Ponto(14.75, 8, false));
+        
+        //taça da esquerda
+        desenho.addElement(new Ponto(12.5, 8, true));
+        desenho.addElement(new Ponto(12.5, 8, false));
+        desenho.addElement(new Ponto(13, 7.75, false));
+        desenho.addElement(new Ponto(13.5, 8, false));
+        desenho.addElement(new Ponto(13, 7.75, true));
+        desenho.addElement(new Ponto(13, 7.4, false)); //meio da taça
+        desenho.addElement(new Ponto(12.6, 7.2, false)); //subida do lado esquerdo da taça
+        desenho.addElement(new Ponto(12.6, 6.8, false));
+        desenho.addElement(new Ponto(13, 7.4, true));
+        desenho.addElement(new Ponto(13.4, 7.2, false));
+        desenho.addElement(new Ponto(13.4, 6.8, false));
+        desenho.addElement(new Ponto(13.4, 6.9, true)); //vinho na taça
+        desenho.addElement(new Ponto(12.6, 6.9, false)); //vinho na taça
+        
+        //taça da direita
+        desenho.addElement(new Ponto(17.5, 8, true));
+        desenho.addElement(new Ponto(17.5, 8, false));
+        desenho.addElement(new Ponto(17, 7.75, false));
+        desenho.addElement(new Ponto(16.5, 8, false));
+        desenho.addElement(new Ponto(16.5, 8, false));
+         desenho.addElement(new Ponto(17, 7.75, true));
+         desenho.addElement(new Ponto(17, 7.4, false)); // meio da taça
+         desenho.addElement(new Ponto(16.6, 7.2, false)); // subida do lado esquerdo da taça
+         desenho.addElement(new Ponto(16.6, 6.8, false));
+         desenho.addElement(new Ponto(17, 7.4, true));
+         desenho.addElement(new Ponto(17.4, 7.2, false));
+         desenho.addElement(new Ponto(17.4, 6.8, false));
+         desenho.addElement(new Ponto(17.4, 6.9, true)); //vinho na taça
+         desenho.addElement(new Ponto(16.6, 6.9, false)); //vinho na taça
+    }
 
     public void translada(double dx, double dy) {
         Ponto p;
