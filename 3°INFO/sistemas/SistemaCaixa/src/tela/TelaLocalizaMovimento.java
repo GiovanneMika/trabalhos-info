@@ -40,8 +40,8 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
             lista = md.pesquisa(tFiltro.getText());
         }
         SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
-        for (Movimento p : lista) {
-            modelo.addRow(new Object[]{p.getId(), p.getDescricao(), s.format(p.getDataMov().getTime()), p.getValor(), p.getTipo()});
+        for (Movimento m : lista) {
+            modelo.addRow(new Object[]{m.getId(), m.getDescricao(), s.format(m.getDataMov().getTime()), m.getValor(), m.getTipo()});
         }
     }
 
@@ -60,6 +60,7 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tLocaliza = new javax.swing.JTable();
         tVersaldos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArquivo = new javax.swing.JMenu();
         mNovo = new javax.swing.JMenuItem();
@@ -118,6 +119,13 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Filtro de Movimento");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         mArquivo.setText("Arquivo");
 
         mNovo.setText("Novo");
@@ -147,6 +155,8 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(bOk)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tVersaldos)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -158,7 +168,8 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bOk)
-                    .addComponent(tVersaldos))
+                    .addComponent(tVersaldos)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -187,6 +198,11 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
         TelaSaldo ts = new TelaSaldo();
         ts.setVisible(true);
     }//GEN-LAST:event_tVersaldosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TelaFiltroMovimento tfm = new TelaFiltroMovimento();
+        tfm.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +242,7 @@ public class TelaLocalizaMovimento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bOk;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;

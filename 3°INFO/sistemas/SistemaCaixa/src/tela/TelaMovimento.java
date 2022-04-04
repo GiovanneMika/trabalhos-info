@@ -34,7 +34,7 @@ public class TelaMovimento extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void pessoaToTela() {
+    private void movimentoToTela() {
         tId.setText(Integer.toString(m.getId()));
         tDescricao.setText(m.getDescricao());
         SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
@@ -47,7 +47,7 @@ public class TelaMovimento extends javax.swing.JFrame {
         tValor.setValue(m.getValor());
     }
 
-    private boolean telaToProfessor() {
+    private boolean telaToMovimento() {
         m.setId(Integer.parseInt(tId.getText()));
         m.setDescricao(tDescricao.getText());
         try {
@@ -214,7 +214,7 @@ public class TelaMovimento extends javax.swing.JFrame {
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
 
-        if (telaToProfessor()) {
+        if (telaToMovimento()) {
           //  sd.verificaData(m);
             if (sd.verificaData(m)){
                 sd.somaSubtraiSaldo(s, m);
@@ -234,7 +234,7 @@ public class TelaMovimento extends javax.swing.JFrame {
 
     public void setProfessor(Movimento m) {
         this.m = m;
-        pessoaToTela();
+        movimentoToTela();
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 package persistencia;
 
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -44,6 +45,13 @@ public class MovimentoDAO {
     public List<Movimento> pesquisa(String descricao) {
         Query q = em.createNativeQuery("select * from movimento where descricao like ? order by descricao", Movimento.class);
         q.setParameter(1, '%' + descricao + '%');
+        List<Movimento> lista = q.getResultList();
+        return lista;
+    }
+    public List<Movimento> filtroMovimento(Calendar dataM1, Calendar dataM2){
+        Query q = em.createNativeQuery("select * from movimento where datamov between ? and ? order by datamov ", Movimento.class);
+        q.setParameter(1, dataM1);
+        q.setParameter(2, dataM2);
         List<Movimento> lista = q.getResultList();
         return lista;
     }
