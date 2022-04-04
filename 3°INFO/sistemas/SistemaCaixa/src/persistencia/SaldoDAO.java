@@ -114,4 +114,25 @@ public class SaldoDAO {
         em.getTransaction().commit();
         return lista;
     }
+
+    public double pegadorSaldoInicial(Calendar dataM1) {
+        double saldoInicial;
+        Query selecionaSaldoInicial = em.createNativeQuery("select valor from saldo where datasaldo<? order by datasaldo desc limit 1", Saldo.class);
+        selecionaSaldoInicial.setParameter(1, dataM1);
+        if ((selecionaSaldoInicial.getResultList().isEmpty())) {
+            saldoInicial = 0;
+        } else {
+            saldoInicial = Double.parseDouble(selecionaSaldoInicial.getSingleResult().toString());
+            System.out.println(saldoInicial);
+        }
+        return saldoInicial;
+    }
+
+    public String pegadorSaldoFinal(Calendar dataM2) {
+        Query selecionaSaldoFinal = em.createNativeQuery("select valor from saldo where datasaldo<=? order by datasaldo desc limit 1", Saldo.class);
+        selecionaSaldoFinal.setParameter(1, dataM2);
+        Object valorSaldo = selecionaSaldoFinal.getSingleResult();
+        return valorSaldo.toString();
+    }
 }
+//eclipselink.jpa.uppercase-column-names
