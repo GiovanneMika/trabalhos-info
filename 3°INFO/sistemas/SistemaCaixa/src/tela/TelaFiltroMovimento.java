@@ -57,7 +57,7 @@ public class TelaFiltroMovimento extends javax.swing.JFrame {
                 modelo.addRow(new Object[]{m.getId(), m.getDescricao(), s.format(m.getDataMov().getTime()), m.getValor(), m.getTipo()});
             }
             //filtro de saldo
-            tSaldoInicial.setText(Double.toString(sd.pegadorSaldoInicial(dataM1)));
+            tSaldoInicial.setText(sd.pegadorSaldoInicial(dataM1));
             tSaldoFinal.setText(sd.pegadorSaldoFinal(dataM2));
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Erro de Data");

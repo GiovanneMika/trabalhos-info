@@ -42,7 +42,7 @@ public class TelaMovimento extends javax.swing.JFrame {
 
         JSpinner.NumberEditor editor = (JSpinner.NumberEditor) tValor.getEditor();
         DecimalFormat format = editor.getFormat();
-        format.setMinimumFractionDigits(3);
+        format.setMinimumFractionDigits(2);
 
         tValor.setValue(m.getValor());
     }

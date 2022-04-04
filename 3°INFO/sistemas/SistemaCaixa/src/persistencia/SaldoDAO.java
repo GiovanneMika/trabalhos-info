@@ -28,6 +28,7 @@ public class SaldoDAO {
         em.getTransaction().begin();
         if (s.getId() == 0) {
             em.persist(s);
+            em.flush();
         } else {
             em.merge(s);
         }
@@ -83,27 +84,42 @@ public class SaldoDAO {
 
     public void somaSaldoAusente(Saldo s, Movimento m) {
         em.getTransaction().begin();
+        Query saldoVazio = em.createNativeQuery("select * from saldo");
         if (m.getTipo().equals("S")) { //verifica se é saida ou entrada
             m.setValor(-m.getValor());
         }
-        //pegador de valor da ultima data
-        Query saldo = em.createNativeQuery("select valor from saldo where datasaldo<? order by datasaldo desc limit 1");
-        saldo.setParameter(1, m.getDataMov());
-        Object valorSaldo = saldo.getSingleResult();
-        System.out.println(valorSaldo + "é o ultimo saldo");
+        if (!(saldoVazio.getResultList().isEmpty())) {
+            //pegador de valor da ultima data
+            Query verificaValor = em.createNativeQuery("select * from saldo where datasaldo<?");
+            verificaValor.setParameter(1, m.getDataMov());
+            if (verificaValor.getResultList().isEmpty()) {
+                s.setDataSaldo(m.getDataMov());
+                s.setValor(m.getValor());
+                em.persist(s);
+            } else {
+                Query saldo = em.createNativeQuery("select valor from saldo where datasaldo<? order by datasaldo desc limit 1");
+                saldo.setParameter(1, m.getDataMov());
+                Object valorSaldo = saldo.getSingleResult();
+                System.out.println(valorSaldo + "é o ultimo saldo");
 
-        //criador de saldo
-        s.setDataSaldo(m.getDataMov());
-        s.setValor(m.getValor() + Double.parseDouble(valorSaldo.toString()));
-        em.persist(s);
+                //criador de saldo
+                s.setDataSaldo(m.getDataMov());
+                s.setValor(m.getValor() + Double.parseDouble(valorSaldo.toString()));
+                em.persist(s);
+            }
 
-        //soma todas as datas maiores com a que esta sendo criada
-        Query q = em.createNativeQuery("update saldo set valor = valor+? where datasaldo>?");
-        q.setParameter(1, m.getValor());
-        q.setParameter(2, m.getDataMov());
-        q.executeUpdate();
-        em.flush();
+            //soma todas as datas maiores com a que esta sendo criada
+            Query q = em.createNativeQuery("update saldo set valor = valor+? where datasaldo>?");
+            q.setParameter(1, m.getValor());
+            q.setParameter(2, m.getDataMov());
+            q.executeUpdate();
+        } else {
+            s.setDataSaldo(m.getDataMov());
+            s.setValor(m.getValor());
+            em.persist(s);
+        }
         em.getTransaction().commit();
+
     }
 
     public List<Saldo> pesquisa() {
@@ -115,24 +131,23 @@ public class SaldoDAO {
         return lista;
     }
 
-    public double pegadorSaldoInicial(Calendar dataM1) {
-        double saldoInicial;
-        Query selecionaSaldoInicial = em.createNativeQuery("select valor from saldo where datasaldo<? order by datasaldo desc limit 1", Saldo.class);
+    public String pegadorSaldoInicial(Calendar dataM1) {
+        Saldo valorSaldo = new Saldo();
+        Query selecionaSaldoInicial = em.createNativeQuery("select * from saldo where datasaldo<? order by datasaldo desc limit 1", Saldo.class);
         selecionaSaldoInicial.setParameter(1, dataM1);
         if ((selecionaSaldoInicial.getResultList().isEmpty())) {
-            saldoInicial = 0;
+            valorSaldo.setValor(0.0);
         } else {
-            saldoInicial = Double.parseDouble(selecionaSaldoInicial.getSingleResult().toString());
-            System.out.println(saldoInicial);
+            valorSaldo = (Saldo) selecionaSaldoInicial.getSingleResult();
         }
-        return saldoInicial;
+        return valorSaldo.getValor().toString();
     }
 
     public String pegadorSaldoFinal(Calendar dataM2) {
-        Query selecionaSaldoFinal = em.createNativeQuery("select valor from saldo where datasaldo<=? order by datasaldo desc limit 1", Saldo.class);
+        Query selecionaSaldoFinal = em.createNativeQuery("select * from saldo where datasaldo<=? order by datasaldo desc limit 1", Saldo.class);
         selecionaSaldoFinal.setParameter(1, dataM2);
-        Object valorSaldo = selecionaSaldoFinal.getSingleResult();
-        return valorSaldo.toString();
+        Saldo valorSaldo = (Saldo) selecionaSaldoFinal.getSingleResult();
+        return valorSaldo.getValor().toString();
     }
 }
 //eclipselink.jpa.uppercase-column-names
