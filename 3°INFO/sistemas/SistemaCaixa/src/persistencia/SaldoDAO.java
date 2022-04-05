@@ -65,7 +65,6 @@ public class SaldoDAO {
             q.executeUpdate();
 
         }
-
         em.getTransaction().commit();
     }
 
@@ -79,7 +78,7 @@ public class SaldoDAO {
         q.setParameter(1, m.getValor());
         q.setParameter(2, m.getDataMov());
         q.executeUpdate();
-
+        
         em.getTransaction().commit();
     }
 
@@ -127,7 +126,7 @@ public class SaldoDAO {
         em = EntityManagerProvider.getEM();
         em.getTransaction().begin();
         Query q = em.createQuery("select s from Saldo as s order by s.dataSaldo");
-        q.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS); //perguntar pro lucio sobre essa linnha
+        q.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         em.flush();
         List<Saldo> lista = q.getResultList();
         em.flush();
