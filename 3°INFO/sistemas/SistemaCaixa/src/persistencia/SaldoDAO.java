@@ -7,6 +7,7 @@ package persistencia;
 
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import vo.Saldo;
@@ -126,7 +127,10 @@ public class SaldoDAO {
         em = EntityManagerProvider.getEM();
         em.getTransaction().begin();
         Query q = em.createQuery("select s from Saldo as s order by s.dataSaldo");
+        q.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS); //perguntar pro lucio sobre essa linnha
+        em.flush();
         List<Saldo> lista = q.getResultList();
+        em.flush();
         em.getTransaction().commit();
         return lista;
     }

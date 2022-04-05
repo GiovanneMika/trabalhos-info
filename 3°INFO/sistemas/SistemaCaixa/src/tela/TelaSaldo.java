@@ -94,9 +94,7 @@ public class TelaSaldo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        preencheTabelaSaldo();
-        DefaultTableModel modelo = (DefaultTableModel) tLocalizaSaldo.getModel();
-        modelo.fireTableDataChanged(); // perguntar dessa função aqui tambem
+        preencheTabelaSaldo(); // perguntar dessa função aqui tambem
     }//GEN-LAST:event_formWindowGainedFocus
     private void preencheTabelaSaldo() {
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaSaldo.getModel();
