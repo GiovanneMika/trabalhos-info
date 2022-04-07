@@ -88,13 +88,13 @@ public class TelaFiltroMovimento extends javax.swing.JFrame {
         tSaldoFinal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Extrato");
 
         try {
             tDataM1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        tDataM1.setText("  /  /    ");
 
         try {
             tDataM2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -103,7 +103,8 @@ public class TelaFiltroMovimento extends javax.swing.JFrame {
         }
         tDataM2.setToolTipText("");
 
-        bFiltra.setText("Filtrar Movimentos");
+        bFiltra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bFiltra.setText("Gerar Extrato");
         bFiltra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bFiltraActionPerformed(evt);
@@ -178,7 +179,7 @@ public class TelaFiltroMovimento extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(bFiltra)
-                .addGap(159, 159, 159))
+                .addGap(164, 164, 164))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +196,9 @@ public class TelaFiltroMovimento extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(tSaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tSaldoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bFiltra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addContainerGap())
         );
