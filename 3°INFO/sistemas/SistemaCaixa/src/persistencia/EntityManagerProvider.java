@@ -41,4 +41,9 @@ public class EntityManagerProvider {
         }
         return em;
     }
+
+    public static void reset() {
+        emf = null;
+        em = null;
+    }
 }

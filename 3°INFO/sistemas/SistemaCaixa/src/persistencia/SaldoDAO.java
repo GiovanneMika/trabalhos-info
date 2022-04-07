@@ -66,6 +66,7 @@ public class SaldoDAO {
 
         }
         em.getTransaction().commit();
+        EntityManagerProvider.reset();
     }
 
     public void somaSubtraiSaldo2(Saldo s, Movimento m) {
@@ -119,7 +120,7 @@ public class SaldoDAO {
             em.persist(s);
         }
         em.getTransaction().commit();
-
+        EntityManagerProvider.reset();
     }
 
     public List<Saldo> pesquisa() {
