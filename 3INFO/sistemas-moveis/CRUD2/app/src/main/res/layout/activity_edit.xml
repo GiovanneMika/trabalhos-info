@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:text="Nome"
+        android:text="Nome da Fruta"
         app:layout_constraintBottom_toTopOf="@+id/tNome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
@@ -51,8 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="CPF"
-        app:layout_constraintBottom_toTopOf="@+id/tCPF"
+        android:text="Cor da Fruta"
+        app:layout_constraintBottom_toTopOf="@+id/tCor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,16 +64,16 @@
         android:text="ID"
         app:layout_constraintBottom_toTopOf="@+id/tId"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.217" />
 
     <EditText
-        android:id="@+id/tCPF"
+        android:id="@+id/tCor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="272dp"
+        android:layout_marginBottom="340dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,8 +86,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="84dp"
         android:text="Salva"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Produtor"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="441dp" />
+
+    <EditText
+        android:id="@+id/tProdutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Yes baby thankiu"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="505dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

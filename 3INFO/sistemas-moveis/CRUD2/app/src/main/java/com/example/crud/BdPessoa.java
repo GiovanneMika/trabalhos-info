@@ -16,8 +16,8 @@ public class BdPessoa {
         db = banco.getWritableDatabase();
         valores = new ContentValues();
         valores.put("nome", pessoa.getNome());
-        valores.put("cpf", pessoa.getCpf());
-
+        valores.put("cor", pessoa.getCor());
+        valores.put("produtor", pessoa.getProdutor());
         resultado = db.insert("pessoa", null, valores);
         db.close();
         if (resultado ==-1)
@@ -32,7 +32,8 @@ public class BdPessoa {
         where = "_id=" + pessoa.getId();
         valores = new ContentValues();
         valores.put("nome", pessoa.getNome());
-        valores.put("cpf", pessoa.getCpf());
+        valores.put("cor", pessoa.getCor());
+        valores.put("produtor", pessoa.getProdutor());
         db.update("pessoa",valores,where,null);
         db.close();
     }
@@ -45,7 +46,7 @@ public class BdPessoa {
     public Pessoa localiza(int id){
         Cursor cursor;
         Pessoa pessoa=new Pessoa();
-        String[] campos = {"_id","nome","cpf"};
+        String[] campos = {"_id","nome","cpf","produtor"};
         String where = "_id=" + id;
         db = banco.getReadableDatabase();
         cursor = db.query("pessoa",campos,where, null, null, null, null, null);
@@ -53,7 +54,8 @@ public class BdPessoa {
             cursor.moveToFirst();
             pessoa.setId(cursor.getInt(cursor.getColumnIndexOrThrow("_id")));
             pessoa.setNome(cursor.getString(cursor.getColumnIndexOrThrow("nome")));
-            pessoa.setCpf(cursor.getString(cursor.getColumnIndexOrThrow("cpf")));
+            pessoa.setCor(cursor.getString(cursor.getColumnIndexOrThrow("cor")));
+            pessoa.setProdutor(cursor.getString(cursor.getColumnIndexOrThrow("produtor")));
         }
         db.close();
         return pessoa;

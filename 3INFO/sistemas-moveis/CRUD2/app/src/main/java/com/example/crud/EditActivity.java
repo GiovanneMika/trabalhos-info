@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.os.Bundle;
 
 public class EditActivity extends AppCompatActivity {
-    EditText tId, tNome, tCpf;
+    EditText tId, tNome, tCor, tProdutor;
     Button bSalva;
     Pessoa pessoa;
     BdPessoa bd;
@@ -24,7 +24,8 @@ public class EditActivity extends AppCompatActivity {
         bd = new BdPessoa(getBaseContext());
         tId = findViewById(R.id.tId);
         tNome = findViewById(R.id.tNome);
-        tCpf = findViewById(R.id.tCPF);
+        tCor = findViewById(R.id.tCor);
+        tProdutor = findViewById(R.id.tProdutor);
         bSalva = findViewById(R.id.bSalva);
         Bundle extra = getIntent().getExtras();
         tId.setText("0"); if (extra != null) {
@@ -56,12 +57,14 @@ public class EditActivity extends AppCompatActivity {
     private void pessoaToTela(){
         tId.setText(Integer.toString(pessoa.getId()));
         tNome.setText(pessoa.getNome());
-        tCpf.setText(pessoa.getCpf());
+        tCor.setText(pessoa.getCor());
+        tProdutor.setText(pessoa.getProdutor());
     }
     private void telaToPessoa() {
         pessoa.setId(Integer.parseInt(tId.getText().toString()));
         pessoa.setNome(tNome.getText().toString());
-        pessoa.setCpf(tCpf.getText().toString());
+        pessoa.setCor(tCor.getText().toString());
+        pessoa.setProdutor(tProdutor.getText().toString());
     }
 
 }

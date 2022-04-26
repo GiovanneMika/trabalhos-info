@@ -13,7 +13,8 @@ public class Bd extends SQLiteOpenHelper {
         String sql = "CREATE TABLE pessoa ("
                 + "_id integer primary key autoincrement,"
                 + "nome text,"
-                + "cpf text"
+                + "cor text,"
+                + "produtor text"
                 + ")";
         db.execSQL(sql);
     }

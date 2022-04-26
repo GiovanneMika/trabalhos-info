@@ -3,7 +3,8 @@ package com.example.crud;
 public class Pessoa {
     private  int id=0;
     private String nome;
-    private String cpf;
+    private String cor;
+    private String produtor;
 
     public int getId() {
         return id;
@@ -21,11 +22,19 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCor() {
+        return cor;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCor(String Cor) {
+        this.cor = Cor;
+    }
+
+    public String getProdutor() {
+        return produtor;
+    }
+
+    public void setProdutor(String produtor) {
+        this.produtor = produtor;
     }
 }
