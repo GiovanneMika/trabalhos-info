@@ -14,4 +14,5 @@ public class Funcionario {
     @GeneratedValue
     int id = 0;
     boolean vt;
+    
 }
