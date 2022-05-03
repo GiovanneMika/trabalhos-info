@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("Cadastro de pessoa");
+        setTitle("Cadastro de fruta");
         lista = findViewById(R.id.listView);
         bNovo = findViewById(R.id.bNovo);
         bd = new BdPessoa(getBaseContext());

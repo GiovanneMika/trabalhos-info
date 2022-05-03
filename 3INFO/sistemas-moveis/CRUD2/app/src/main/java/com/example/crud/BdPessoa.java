@@ -18,7 +18,7 @@ public class BdPessoa {
         valores.put("nome", pessoa.getNome());
         valores.put("cor", pessoa.getCor());
         valores.put("produtor", pessoa.getProdutor());
-        resultado = db.insert("pessoa", null, valores);
+        resultado = db.insert("fruta", null, valores);
         db.close();
         if (resultado ==-1)
             return "Erro ao inserir registro";
@@ -34,22 +34,22 @@ public class BdPessoa {
         valores.put("nome", pessoa.getNome());
         valores.put("cor", pessoa.getCor());
         valores.put("produtor", pessoa.getProdutor());
-        db.update("pessoa",valores,where,null);
+        db.update("fruta",valores,where,null);
         db.close();
     }
     public void exclui(int id){
         String where = "_id=" + id;
         db = banco.getReadableDatabase();
-        db.delete("pessoa",where,null);
+        db.delete("fruta",where,null);
         db.close();
     }
     public Pessoa localiza(int id){
         Cursor cursor;
         Pessoa pessoa=new Pessoa();
-        String[] campos = {"_id","nome","cpf","produtor"};
+        String[] campos = {"_id","nome","cor","produtor"};
         String where = "_id=" + id;
         db = banco.getReadableDatabase();
-        cursor = db.query("pessoa",campos,where, null, null, null, null, null);
+        cursor = db.query("fruta",campos,where, null, null, null, null, null);
         if(cursor!=null){
             cursor.moveToFirst();
             pessoa.setId(cursor.getInt(cursor.getColumnIndexOrThrow("_id")));
@@ -64,7 +64,7 @@ public class BdPessoa {
         Cursor cursor;
         String[] campos = {"_id","nome"};
         db = banco.getReadableDatabase();
-        cursor = db.query("pessoa", campos, null, null, null, null, null, null);
+        cursor = db.query("fruta", campos, null, null, null, null, null, null);
         if(cursor!=null){
             cursor.moveToFirst();
         }

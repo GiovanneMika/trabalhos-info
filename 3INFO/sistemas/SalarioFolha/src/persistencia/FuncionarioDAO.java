@@ -15,7 +15,7 @@ public class FuncionarioDAO {
 
     public void salva(Funcionario f) {
         em.getTransaction().begin();
-        if (f.getId() == 0) {
+        if (f.getMatricula() == 0) {
             em.persist(f);
         } else {
             em.merge(f);
@@ -35,13 +35,13 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> pesquisa() {
-        Query q = em.createQuery("select p from Funcionario as p order by p.nome");
+        Query q = em.createQuery("select f from Funcionario as f order by f.nome");
         List<Funcionario> lista = q.getResultList();
         return lista;
     }
 
     public List<Funcionario> pesquisa(String nome) {
-        Query q = em.createNativeQuery("select * from professor where nome like ? order by nome ", Funcionario.class);
+        Query q = em.createNativeQuery("select * from funcionario where nome like ? order by nome ", Funcionario.class);
         q.setParameter(1, '%' + nome + '%');
         List<Funcionario> lista = q.getResultList();
         return lista;

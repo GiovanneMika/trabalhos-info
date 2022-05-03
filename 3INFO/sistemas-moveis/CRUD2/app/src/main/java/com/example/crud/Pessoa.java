@@ -26,8 +26,8 @@ public class Pessoa {
         return cor;
     }
 
-    public void setCor(String Cor) {
-        this.cor = Cor;
+    public void setCor(String cor) {
+        this.cor = cor;
     }
 
     public String getProdutor() {

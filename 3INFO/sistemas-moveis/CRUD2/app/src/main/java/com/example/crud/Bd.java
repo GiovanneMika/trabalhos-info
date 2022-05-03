@@ -4,13 +4,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 public class Bd extends SQLiteOpenHelper {
     public Bd(Context context){
-        super(context, "pessoa.db",null,1);
+        super(context, "fruta.db",null,1);
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sql = "CREATE TABLE pessoa ("
+        String sql = "CREATE TABLE fruta ("
                 + "_id integer primary key autoincrement,"
                 + "nome text,"
                 + "cor text,"

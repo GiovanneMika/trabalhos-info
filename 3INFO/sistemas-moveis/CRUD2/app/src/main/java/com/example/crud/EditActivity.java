@@ -35,7 +35,7 @@ public class EditActivity extends AppCompatActivity {
         }
         if (id == 0) {
             setTitle("Novo Cadastro");
-            bSalva.setText("Insere");
+            bSalva.setText("Salvar");
         } else {
             setTitle("Alteração");
             bSalva.setText("Altera");

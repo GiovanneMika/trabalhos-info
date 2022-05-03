@@ -8,46 +8,20 @@ package vo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+@Entity
 public class Funcionario {
 
     @Id
     @GeneratedValue
-    private int id = 0;
+    private int matricula = 0;
     private String nome;
-    private boolean vt;
+    private String vt;
     private int dep14;
     private int depir;
     private double salario;
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the vt
-     */
-    public boolean isVt() {
-        return vt;
-    }
-
-    /**
-     * @param vt the vt to set
-     */
-    public void setVt(boolean vt) {
-        this.vt = vt;
-    }
-
-    /**
+    /*
      * @return the dep14
      */
     public int getDep14() {
@@ -101,5 +75,33 @@ public class Funcionario {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    /**
+     * @return the matricula
+     */
+    public int getMatricula() {
+        return matricula;
+    }
+
+    /**
+     * @param matricula the matricula to set
+     */
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
+
+    /**
+     * @return the vt
+     */
+    public String getVt() {
+        return vt;
+    }
+
+    /**
+     * @param vt the vt to set
+     */
+    public void setVt(String vt) {
+        this.vt = vt;
     }
 }
