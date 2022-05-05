@@ -106,6 +106,34 @@ public class Desenho3D {
         desenho.addElement(new Ponto(12, 10, 1, false));
     }
 
+    public void trabuco() {
+        desenho.addElement(new Ponto(10, 10, 1, true));
+        desenho.addElement(new Ponto(12, 8, 1, false));
+        desenho.addElement(new Ponto(14, 10, 1, false));
+        desenho.addElement(new Ponto(10, 10, 1, false));
+        desenho.addElement(new Ponto(12, 10, 3, false));
+        desenho.addElement(new Ponto(14, 10, 1, false));
+        desenho.addElement(new Ponto(12, 8, 1, true));
+        desenho.addElement(new Ponto(12, 10, 3, false));
+    }
+
+    public void trabuco2() {
+        desenho.addElement(new Ponto(10, 10, 1, true));
+        desenho.addElement(new Ponto(12, 10, 3, false));
+        desenho.addElement(new Ponto(14, 10, 1, false));
+        desenho.addElement(new Ponto(10, 10, 1, false));
+        desenho.addElement(new Ponto(12, 8, 2, false));
+        desenho.addElement(new Ponto(14, 10, 1, false));
+        desenho.addElement(new Ponto(12, 8, 2, true));
+        desenho.addElement(new Ponto(12, 10 , 3, false));
+    }
+    public void parede() {
+        desenho.addElement(new Ponto(10, 10, 1, true)); 
+        desenho.addElement(new Ponto(10, 13, 1, false));
+        desenho.addElement(new Ponto(11, 10, 1, true));
+        desenho.addElement(new Ponto(11, 13, 1, false));
+    }
+
     public void translada(double dx, double dy, double dz) {
         Ponto p;
         for (int i = 0; i < desenho.size(); i++) {
