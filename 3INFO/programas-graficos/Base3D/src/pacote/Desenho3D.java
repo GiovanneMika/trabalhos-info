@@ -117,7 +117,7 @@ public class Desenho3D {
         desenho.addElement(new Ponto(12, 10, 3, false));
     }
 
-    public void trabuco2() {
+    public void piramindeBaseTriangulo() {
         desenho.addElement(new Ponto(10, 10, 1, true));
         desenho.addElement(new Ponto(12, 10, 3, false));
         desenho.addElement(new Ponto(14, 10, 1, false));
