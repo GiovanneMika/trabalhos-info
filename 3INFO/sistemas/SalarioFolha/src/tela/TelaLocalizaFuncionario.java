@@ -5,8 +5,8 @@
  */
 package tela;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vo.Funcionario;
 import persistencia.FuncionarioDAO;
@@ -18,7 +18,6 @@ import persistencia.FuncionarioDAO;
 public class TelaLocalizaFuncionario extends javax.swing.JFrame {
 
     FuncionarioDAO fd = new FuncionarioDAO();
-    Funcionario f = new Funcionario();
 
     /**
      * Creates new form TelaFuncionario
@@ -40,7 +39,7 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
             lista = fd.pesquisa(tFiltro.getText());
         }
         for (Funcionario f : lista) {
-            modelo.addRow(new Object[]{f.getMatricula(), f.getNome(), f.getDep14(), f.getDepir(), f.getVt()});
+            modelo.addRow(new Object[]{f.getMatricula(), f.getNome(), f.getDep14(), f.getDepir(), f.getVt(), f.getSalario()});
         }
     }
 
@@ -116,9 +115,19 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         jMenu2.add(mNovo);
 
         mEditar.setText("Editar");
+        mEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mEditarActionPerformed(evt);
+            }
+        });
         jMenu2.add(mEditar);
 
         mExcluir.setText("Excluir");
+        mExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mExcluirActionPerformed(evt);
+            }
+        });
         jMenu2.add(mExcluir);
 
         jMenuBar1.add(jMenu2);
@@ -172,12 +181,38 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mNovoActionPerformed
-        // TODO add your handling code here:
+        TelaFuncionario f = new TelaFuncionario();
+        f.setVisible(true);
     }//GEN-LAST:event_mNovoActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         preencheTabela();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void mEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEditarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        if (tLocaliza.getSelectedRow() != -1) {
+            int matricula = (Integer) modelo.getValueAt(tLocaliza.getSelectedRow(), 0);
+            TelaFuncionario tf = new TelaFuncionario();
+            tf.setFuncionario(fd.localiza(matricula));
+            tf.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_mEditarActionPerformed
+
+    private void mExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExcluirActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        if (tLocaliza.getSelectedRow() != -1) {
+            int matricula = (Integer) modelo.getValueAt(tLocaliza.getSelectedRow(), 0);
+            Funcionario f = fd.localiza(matricula);
+            if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + f.getNome() + "?") == JOptionPane.YES_OPTION) {
+                fd.exclui(f);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_mExcluirActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,17 +5,61 @@
  */
 package tela;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import vo.Funcionario;
+import persistencia.FuncionarioDAO;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaFuncionario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaFuncionario
-     */
+    Funcionario f = new Funcionario();
+    FuncionarioDAO fd = new FuncionarioDAO();
+
     public TelaFuncionario() {
         initComponents();
+    }
+
+    private void funcionarioToTela() {
+        tMatricula.setText(Integer.toString(f.getMatricula()));
+        tNome.setText(f.getNome());
+        tVt.setSelectedItem(f.getVt());
+        tDep14.setValue(f.getDep14());
+        tDepir.setValue(f.getDepir());
+
+        JSpinner.NumberEditor editor = (JSpinner.NumberEditor) tSalario.getEditor();
+        DecimalFormat format = editor.getFormat();
+        format.setMinimumFractionDigits(2);
+
+        tSalario.setValue(f.getSalario());
+    }
+
+    private boolean telaToFuncionario() {
+        f.setMatricula(Integer.parseInt(tMatricula.getText()));
+        f.setNome(tNome.getText());
+        if (tVt.getSelectedItem() == "Sim") {
+            f.setVt("Sim");
+        } else {
+            f.setVt("Não");
+        }
+        f.setDep14((int) tDep14.getValue());
+        f.setDepir((int) tDepir.getValue());
+        f.setSalario((double) tSalario.getValue());
+
+        return true;
+    }
+
+    public void setFuncionario(Funcionario f) {
+        this.f = f;
+        funcionarioToTela();
+
     }
 
     /**
@@ -36,12 +80,12 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         tMatricula = new javax.swing.JTextField();
         tNome = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
+        tSalario = new javax.swing.JSpinner();
+        bSalva = new javax.swing.JButton();
+        bCancela = new javax.swing.JButton();
+        tVt = new javax.swing.JComboBox<>();
+        tDep14 = new javax.swing.JSpinner();
+        tDepir = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,15 +101,31 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         jLabel6.setText("Salario");
 
-        jButton1.setText("Salvar");
+        tMatricula.setEditable(false);
+        tMatricula.setText("0");
+        tMatricula.setToolTipText("");
 
-        jButton2.setText("Cancelar");
+        tSalario.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
+        bSalva.setText("Salvar");
+        bSalva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvaActionPerformed(evt);
+            }
+        });
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 25, 1));
+        bCancela.setText("Cancelar");
+        bCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelaActionPerformed(evt);
+            }
+        });
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
+        tVt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
+
+        tDep14.setModel(new javax.swing.SpinnerNumberModel(0, 0, 25, 1));
+
+        tDepir.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,17 +135,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(bSalva)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(bCancela))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jSpinner1))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -93,7 +149,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tVt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(26, 26, 26)
@@ -104,10 +160,14 @@ public class TelaFuncionario extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(91, 91, Short.MAX_VALUE))
+                                        .addComponent(tDepir, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tSalario)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tDep14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(97, 97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,28 +183,47 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tVt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tDep14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(tDepir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(tSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(bSalva)
+                    .addComponent(bCancela))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
+        if (telaToFuncionario()) {
+            fd.salva(f);
+            this.dispose();
+        }
+        /*        if ((Integer.parseInt(tDep14.toString())) > (Integer.parseInt(tDepir.toString()))) {
+            JOptionPane.showMessageDialog(this, "O número de dependentes menores de 14 não pode ser maior que os declarados no imposto de renda!");
+        } else {
+            if (telaToFuncionario()) {
+                fd.salva(f);
+                this.dispose();
+            }
+        }*/
+    }//GEN-LAST:event_bSalvaActionPerformed
+
+    private void bCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelaActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bCancelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,20 +261,20 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCancela;
+    private javax.swing.JButton bSalva;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
+    private javax.swing.JSpinner tDep14;
+    private javax.swing.JSpinner tDepir;
     private javax.swing.JTextField tMatricula;
     private javax.swing.JTextField tNome;
+    private javax.swing.JSpinner tSalario;
+    private javax.swing.JComboBox<String> tVt;
     // End of variables declaration//GEN-END:variables
 }
