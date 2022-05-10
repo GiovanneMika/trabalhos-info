@@ -358,6 +358,12 @@ public class TelaINSS extends javax.swing.JFrame {
         });
     }
 
+    public boolean verificadora() {
+        if ((Double.parseDouble(tTinss1.getValue().toString())) > (Double.parseDouble(tTinss2.getValue().toString())) || (Double.parseDouble(tTinss1.getValue().toString())) > (Double.parseDouble(tTinss3.getValue().toString()))) {
+            
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCancela;
     private javax.swing.JButton bSalva;

@@ -57,10 +57,5 @@ public class FuncionarioDAO {
         return lista;
     }
 
-    public Object preencheINSS(Tabela t) {
-        //setador de teto INSS
 
-        Query preenchedor = em.createQuery("select t.tinss1, t.tinss2, t.tinss3, t.tinss4, t.ainss1, t.ainss2, t.ainss3, t.ainss4  from Tabela as t");
-        return preenchedor;
-    }
 }
