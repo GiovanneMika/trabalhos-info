@@ -5,12 +5,19 @@
  */
 package vo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author 2info2021
  */
-public class Tabela {
+@Entity
+public class Tabela implements Serializable {
 
+    @Id
+    private int id;
     private double tinss1;
     private double tinss2;
     private double tinss3;
@@ -355,6 +362,20 @@ public class Tabela {
      */
     public void setDedpdep(double dedpdep) {
         this.dedpdep = dedpdep;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

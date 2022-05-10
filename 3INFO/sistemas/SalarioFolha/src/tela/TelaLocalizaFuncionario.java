@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vo.Funcionario;
 import persistencia.FuncionarioDAO;
+import vo.Tabela;
 
 /**
  *
@@ -18,6 +19,7 @@ import persistencia.FuncionarioDAO;
 public class TelaLocalizaFuncionario extends javax.swing.JFrame {
 
     FuncionarioDAO fd = new FuncionarioDAO();
+    Tabela t = new Tabela();
 
     /**
      * Creates new form TelaFuncionario
@@ -230,6 +232,7 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
 
     private void mInssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mInssActionPerformed
         TelaINSS ti = new TelaINSS();
+        ti.setTabela(fd.localizaTabela(1));
         ti.setVisible(true);
     }//GEN-LAST:event_mInssActionPerformed
 

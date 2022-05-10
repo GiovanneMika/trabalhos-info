@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import vo.Funcionario;
 import persistencia.FuncionarioDAO;
+import vo.Tabela;
 
 /**
  *
@@ -22,6 +23,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     Funcionario f = new Funcionario();
     FuncionarioDAO fd = new FuncionarioDAO();
+    Tabela t = new Tabela();
 
     public TelaFuncionario() {
         initComponents();
