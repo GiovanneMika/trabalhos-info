@@ -57,16 +57,16 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         tLocaliza = new javax.swing.JTable();
         tFiltro = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bOk = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         mNovo = new javax.swing.JMenuItem();
         mEditar = new javax.swing.JMenuItem();
         mExcluir = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        mInss = new javax.swing.JMenuItem();
+        mSf = new javax.swing.JMenuItem();
+        mIrrf = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -102,7 +102,12 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
 
         jLabel1.setText("Filtro");
 
-        jButton1.setText("Ok");
+        bOk.setText("Ok");
+        bOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOkActionPerformed(evt);
+            }
+        });
 
         jMenu2.setText("Ações");
 
@@ -134,14 +139,19 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
 
         jMenu3.setText("Tabelas");
 
-        jMenuItem4.setText("INSS");
-        jMenu3.add(jMenuItem4);
+        mInss.setText("INSS");
+        mInss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mInssActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mInss);
 
-        jMenuItem5.setText("Salário Família");
-        jMenu3.add(jMenuItem5);
+        mSf.setText("Salário Família");
+        jMenu3.add(mSf);
 
-        jMenuItem6.setText("IRRF");
-        jMenu3.add(jMenuItem6);
+        mIrrf.setText("IRRF");
+        jMenu3.add(mIrrf);
 
         jMenuBar1.add(jMenu3);
 
@@ -160,7 +170,7 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(bOk)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -171,7 +181,7 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(bOk))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
                 .addContainerGap())
@@ -214,6 +224,15 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mExcluirActionPerformed
 
+    private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
+        preencheTabela();
+    }//GEN-LAST:event_bOkActionPerformed
+
+    private void mInssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mInssActionPerformed
+        TelaINSS ti = new TelaINSS();
+        ti.setVisible(true);
+    }//GEN-LAST:event_mInssActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,19 +270,19 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bOk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem mEditar;
     private javax.swing.JMenuItem mExcluir;
+    private javax.swing.JMenuItem mInss;
+    private javax.swing.JMenuItem mIrrf;
     private javax.swing.JMenuItem mNovo;
+    private javax.swing.JMenuItem mSf;
     private javax.swing.JTextField tFiltro;
     private javax.swing.JTable tLocaliza;
     // End of variables declaration//GEN-END:variables

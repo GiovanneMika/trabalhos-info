@@ -207,18 +207,14 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
-        if (telaToFuncionario()) {
-            fd.salva(f);
-            this.dispose();
-        }
-        /*        if ((Integer.parseInt(tDep14.toString())) > (Integer.parseInt(tDepir.toString()))) {
+        if ((Integer.parseInt(tDep14.getValue().toString())) > (Integer.parseInt(tDepir.getValue().toString()))) {
             JOptionPane.showMessageDialog(this, "O número de dependentes menores de 14 não pode ser maior que os declarados no imposto de renda!");
         } else {
             if (telaToFuncionario()) {
                 fd.salva(f);
                 this.dispose();
             }
-        }*/
+        }
     }//GEN-LAST:event_bSalvaActionPerformed
 
     private void bCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelaActionPerformed

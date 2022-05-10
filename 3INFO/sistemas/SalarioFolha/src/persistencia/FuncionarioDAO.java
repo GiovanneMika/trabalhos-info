@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import vo.Funcionario;
+import vo.Tabela;
 
 public class FuncionarioDAO {
 
@@ -21,6 +22,9 @@ public class FuncionarioDAO {
             em.merge(f);
         }
         em.getTransaction().commit();
+    }
+    public void salvaINSS(Tabela t){
+        em.getTransaction().begin(); //talvez compense criar um objeto para o inss, irrf e salario familia, em classes separadas
     }
 
     public Funcionario localiza(int codigo) {

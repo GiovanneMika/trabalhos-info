@@ -49,17 +49,20 @@
             <Property name="text" type="java.lang.String" value="Tabelas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="mInss">
               <Properties>
                 <Property name="text" type="java.lang.String" value="INSS"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mInssActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="mSf">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sal&#xe1;rio Fam&#xed;lia"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+            <MenuItem class="javax.swing.JMenuItem" name="mIrrf">
               <Properties>
                 <Property name="text" type="java.lang.String" value="IRRF"/>
               </Properties>
@@ -104,7 +107,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tFiltro" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="bOk" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -119,7 +122,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="tFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bOk" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="654" max="32767" attributes="0"/>
@@ -226,10 +229,13 @@
         <Property name="text" type="java.lang.String" value="Filtro"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="bOk">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ok"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bOkActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
