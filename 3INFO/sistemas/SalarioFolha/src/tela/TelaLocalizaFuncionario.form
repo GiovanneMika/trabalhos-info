@@ -61,11 +61,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sal&#xe1;rio Fam&#xed;lia"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mSfActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mIrrf">
               <Properties>
                 <Property name="text" type="java.lang.String" value="IRRF"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mIrrfActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

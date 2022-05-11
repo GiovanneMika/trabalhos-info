@@ -150,9 +150,19 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         jMenu3.add(mInss);
 
         mSf.setText("Salário Família");
+        mSf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mSfActionPerformed(evt);
+            }
+        });
         jMenu3.add(mSf);
 
         mIrrf.setText("IRRF");
+        mIrrf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mIrrfActionPerformed(evt);
+            }
+        });
         jMenu3.add(mIrrf);
 
         jMenuBar1.add(jMenu3);
@@ -235,6 +245,18 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         ti.setTabela(fd.localizaTabela(1));
         ti.setVisible(true);
     }//GEN-LAST:event_mInssActionPerformed
+
+    private void mIrrfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mIrrfActionPerformed
+        TelaIRRF tr = new TelaIRRF();
+        tr.setTabela(fd.localizaTabela(1));
+        tr.setVisible(true);
+    }//GEN-LAST:event_mIrrfActionPerformed
+
+    private void mSfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSfActionPerformed
+        TelaSF tsf = new TelaSF();
+        tsf.setTabela(fd.localizaTabela(1));
+        tsf.setVisible(true);
+    }//GEN-LAST:event_mSfActionPerformed
 
     /**
      * @param args the command line arguments

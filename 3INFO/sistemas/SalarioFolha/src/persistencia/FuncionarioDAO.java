@@ -24,8 +24,14 @@ public class FuncionarioDAO {
         em.getTransaction().commit();
     }
 
-    public void salvaINSS(Tabela t) {
-        em.getTransaction().begin(); //talvez compense criar um objeto para o inss, irrf e salario familia, em classes separadas
+    public void salvaTabela(Tabela t) {
+        em.getTransaction().begin();
+        if (t.getId() == 0) {
+            em.persist(t);
+        } else {
+            em.merge(t);
+        }
+        em.getTransaction().commit();
     }
 
     public Funcionario localiza(int codigo) {
@@ -56,6 +62,5 @@ public class FuncionarioDAO {
         List<Funcionario> lista = q.getResultList();
         return lista;
     }
-
 
 }

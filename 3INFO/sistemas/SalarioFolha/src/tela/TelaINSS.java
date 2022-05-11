@@ -39,6 +39,27 @@ public class TelaINSS extends javax.swing.JFrame {
         tAinss2.setValue(t.getAinss2());
         tAinss3.setValue(t.getAinss3());
         tAinss4.setValue(t.getAinss4());
+
+        //formatador
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+
+        //salarios da esquerda
+        //tem que somar 0,10 pq o tiago falou que tem
+        tTeto1.setText(numberFormat.format(Double.sum(t.getTinss1(), 0.1)));
+        tTeto2.setText(numberFormat.format(Double.sum(t.getTinss2(), 0.1)));
+        tTeto3.setText(numberFormat.format(Double.sum(t.getTinss3(), 0.1)));
+    }
+
+    private boolean telaToINSS() {
+        t.setTinss1(Double.parseDouble(tTinss1.getValue().toString()));
+        t.setTinss2(Double.parseDouble(tTinss2.getValue().toString()));
+        t.setTinss3(Double.parseDouble(tTinss3.getValue().toString()));
+        t.setTinss4(Double.parseDouble(tTinss4.getValue().toString()));
+        t.setAinss1(Double.parseDouble(tAinss1.getValue().toString()));
+        t.setAinss2(Double.parseDouble(tAinss2.getValue().toString()));
+        t.setAinss3(Double.parseDouble(tAinss3.getValue().toString()));
+        t.setAinss4(Double.parseDouble(tAinss4.getValue().toString()));
+        return true;
     }
 
     public void setTabela(Tabela t) {
@@ -93,9 +114,9 @@ public class TelaINSS extends javax.swing.JFrame {
         tTinss4 = new javax.swing.JSpinner();
         tAinss3 = new javax.swing.JSpinner();
         tAinss4 = new javax.swing.JSpinner();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        tTeto1 = new javax.swing.JTextField();
+        tTeto2 = new javax.swing.JTextField();
+        tTeto3 = new javax.swing.JTextField();
 
         jLabel6.setText("De");
 
@@ -114,8 +135,10 @@ public class TelaINSS extends javax.swing.JFrame {
         jLabel22.setText("jLabel22");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tabela do INSS");
         setBackground(new java.awt.Color(187, 165, 165));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
         jLabel1.setText("Até");
 
@@ -173,14 +196,28 @@ public class TelaINSS extends javax.swing.JFrame {
 
         tTinss1.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 100.0d));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(java.awt.Color.lightGray);
+        tAinss2.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 0.5d));
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(java.awt.Color.lightGray);
+        tTinss2.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 100.0d));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(java.awt.Color.lightGray);
+        tAinss1.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 0.5d));
+
+        tTinss3.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 100.0d));
+
+        tTinss4.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 100.0d));
+
+        tAinss3.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 0.5d));
+
+        tAinss4.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 0.5d));
+
+        tTeto1.setEditable(false);
+        tTeto1.setBackground(java.awt.Color.lightGray);
+
+        tTeto2.setEditable(false);
+        tTeto2.setBackground(java.awt.Color.lightGray);
+
+        tTeto3.setEditable(false);
+        tTeto3.setBackground(java.awt.Color.lightGray);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,49 +228,49 @@ public class TelaINSS extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tTinss3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel9))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tTinss4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel12))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addGap(22, 22, 22))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel15))
+                                        .addGap(111, 111, 111)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(jLabel4)
-                                        .addGap(0, 1, Short.MAX_VALUE)))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tTinss1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tTinss2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tTinss2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tTinss1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel2))))
+                                    .addComponent(jLabel2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tTeto3))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tTeto2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tTinss3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel9))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tTinss4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel12)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tAinss2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,9 +294,16 @@ public class TelaINSS extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(bSalva)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bCancela)))))
+                                .addComponent(bCancela))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(tTeto1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tTeto1, tTeto2, tTeto3});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -279,7 +323,7 @@ public class TelaINSS extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(tAinss2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tTinss2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tTeto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -288,7 +332,7 @@ public class TelaINSS extends javax.swing.JFrame {
                     .addComponent(jLabel20)
                     .addComponent(tTinss3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tAinss3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tTeto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -297,7 +341,7 @@ public class TelaINSS extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(tTinss4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tAinss4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tTeto3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -316,7 +360,14 @@ public class TelaINSS extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
-
+        if (verificadora()) {
+            if (telaToINSS()) {
+                fd.salvaTabela(t);
+                this.dispose();
+            };
+        } else {
+            JOptionPane.showMessageDialog(this, "O valor de um teto não pode ser maior que seu próximo ou menor que o anterior!");
+        }
     }//GEN-LAST:event_bSalvaActionPerformed
 
     private void bCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelaActionPerformed
@@ -359,8 +410,11 @@ public class TelaINSS extends javax.swing.JFrame {
     }
 
     public boolean verificadora() {
-        if ((Double.parseDouble(tTinss1.getValue().toString())) > (Double.parseDouble(tTinss2.getValue().toString())) || (Double.parseDouble(tTinss1.getValue().toString())) > (Double.parseDouble(tTinss3.getValue().toString()))) {
-            
+        if ((Double.parseDouble(tTinss1.getValue().toString())) > (Double.parseDouble(tTinss2.getValue().toString())) || (Double.parseDouble(tTinss1.getValue().toString())) > (Double.parseDouble(tTinss3.getValue().toString())) || (Double.parseDouble(tTinss1.getValue().toString())) > (Double.parseDouble(tTinss4.getValue().toString())) || (Double.parseDouble(tTinss2.getValue().toString())) > (Double.parseDouble(tTinss3.getValue().toString())) || (Double.parseDouble(tTinss2.getValue().toString())) > (Double.parseDouble(tTinss4.getValue().toString())) || (Double.parseDouble(tTinss3.getValue().toString())) > (Double.parseDouble(tTinss4.getValue().toString())) || (Double.parseDouble(tAinss1.getValue().toString())) > (Double.parseDouble(tAinss2.getValue().toString())) || (Double.parseDouble(tAinss1.getValue().toString())) > (Double.parseDouble(tAinss3.getValue().toString())) || (Double.parseDouble(tAinss1.getValue().toString())) > (Double.parseDouble(tAinss4.getValue().toString())) || (Double.parseDouble(tAinss2.getValue().toString())) > (Double.parseDouble(tAinss3.getValue().toString())) || (Double.parseDouble(tAinss2.getValue().toString())) > (Double.parseDouble(tAinss4.getValue().toString())) || (Double.parseDouble(tAinss3.getValue().toString())) > (Double.parseDouble(tAinss4.getValue().toString()))) {
+
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -391,9 +445,6 @@ public class TelaINSS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
@@ -401,6 +452,9 @@ public class TelaINSS extends javax.swing.JFrame {
     private javax.swing.JSpinner tAinss2;
     private javax.swing.JSpinner tAinss3;
     private javax.swing.JSpinner tAinss4;
+    private javax.swing.JTextField tTeto1;
+    private javax.swing.JTextField tTeto2;
+    private javax.swing.JTextField tTeto3;
     private javax.swing.JSpinner tTinss1;
     private javax.swing.JSpinner tTinss2;
     private javax.swing.JSpinner tTinss3;
