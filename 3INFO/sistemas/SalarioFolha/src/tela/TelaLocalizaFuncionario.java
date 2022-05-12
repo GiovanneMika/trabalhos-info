@@ -5,6 +5,7 @@
  */
 package tela;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,12 +31,11 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
     public TelaLocalizaFuncionario() {
         initComponents();
     }
+    DecimalFormat numberFormat = new DecimalFormat("#0.00");
 
     private void preencheTabela() {
         DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
         int i = modelo.getRowCount();
-        cf.setTabela(fd.localizaTabela(1));
-        cf.setFuncionario(fd.localiza(1));
         while (i-- > 0) {
             modelo.removeRow(i);
         }
@@ -46,12 +46,20 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
             lista = fd.pesquisa(tFiltro.getText());
         }
         for (Funcionario f : lista) {
-            modelo.addRow(new Object[]{f.getMatricula(), f.getNome(), f.getDep14(), f.getDepir(), f.getVt(), f.getSalario(), cf.getInss()});
+            cf.setTabela(fd.localizaTabela(1));
+            cf.setFuncionario(fd.localiza(f.getMatricula()));
+            cf.calcula();
+            modelo.addRow(new Object[]{f.getMatricula(), f.getNome(), f.getDep14(), f.getDepir(), f.getVt(), f.getSalario(), numberFormat.format(cf.getInss()), numberFormat.format(cf.getSf()), numberFormat.format(cf.getVt()), numberFormat.format(cf.getIrrf()), numberFormat.format(cf.getSalliq())});
         }
     }
 
     public void setFuncionario(Funcionario f) {
         this.fun = f;
+
+    }
+
+    public void setTabela(Tabela t) {
+        this.t = t;
 
     }
 
@@ -70,6 +78,7 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         tFiltro = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         bOk = new javax.swing.JButton();
+        bHolerite = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         mNovo = new javax.swing.JMenuItem();
@@ -104,7 +113,7 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,6 +128,13 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         bOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bOkActionPerformed(evt);
+            }
+        });
+
+        bHolerite.setText("Gerar Holerite");
+        bHolerite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bHoleriteActionPerformed(evt);
             }
         });
 
@@ -194,7 +210,8 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
                         .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bOk)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bHolerite)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -204,7 +221,8 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(bOk))
+                    .addComponent(bOk)
+                    .addComponent(bHolerite))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
                 .addContainerGap())
@@ -269,6 +287,18 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         tsf.setVisible(true);
     }//GEN-LAST:event_mSfActionPerformed
 
+    private void bHoleriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHoleriteActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        if (tLocaliza.getSelectedRow() != -1) {
+            int matricula = (Integer) modelo.getValueAt(tLocaliza.getSelectedRow(), 0);
+            TelaHolerite th = new TelaHolerite();
+            th.setFuncionario(fd.localiza(matricula));
+            th.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bHoleriteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +336,7 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bHolerite;
     private javax.swing.JButton bOk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;

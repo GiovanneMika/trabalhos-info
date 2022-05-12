@@ -94,6 +94,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         jLabel1.setText("Matrícula");
 
+        jLabel2.setBackground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Nome");
 
         jLabel3.setText("Vale Transporte");

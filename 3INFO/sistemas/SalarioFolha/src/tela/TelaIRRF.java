@@ -67,7 +67,7 @@ public class TelaIRRF extends javax.swing.JFrame {
         t.setDirrf3(Double.parseDouble(tDirrf3.getValue().toString()));
         t.setDirrf4(Double.parseDouble(tDirrf4.getValue().toString()));
         t.setDirrf5(Double.parseDouble(tDirrf5.getValue().toString()));
-        t.setDedpdep(Double.parseDouble(tDirrf5.getValue().toString()));
+        t.setDedpdep(Double.parseDouble(tDedpdep.getValue().toString()));
         return true;
     }
 

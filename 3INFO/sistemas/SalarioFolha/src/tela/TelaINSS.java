@@ -45,9 +45,9 @@ public class TelaINSS extends javax.swing.JFrame {
 
         //salarios da esquerda
         //tem que somar 0,10 pq o tiago falou que tem
-        tTeto1.setText(numberFormat.format(Double.sum(t.getTinss1(), 0.1)));
-        tTeto2.setText(numberFormat.format(Double.sum(t.getTinss2(), 0.1)));
-        tTeto3.setText(numberFormat.format(Double.sum(t.getTinss3(), 0.1)));
+        tTeto1.setText(numberFormat.format(Double.sum(t.getTinss1(), 0.01)));
+        tTeto2.setText(numberFormat.format(Double.sum(t.getTinss2(), 0.01)));
+        tTeto3.setText(numberFormat.format(Double.sum(t.getTinss3(), 0.01)));
     }
 
     private boolean telaToINSS() {
