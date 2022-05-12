@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import vo.Funcionario;
 import persistencia.FuncionarioDAO;
 import vo.Tabela;
+import vo.CalculaFolha;
 
 /**
  *
@@ -20,6 +21,8 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
 
     FuncionarioDAO fd = new FuncionarioDAO();
     Tabela t = new Tabela();
+    CalculaFolha cf = new CalculaFolha();
+    Funcionario fun = new Funcionario();
 
     /**
      * Creates new form TelaFuncionario
@@ -31,6 +34,8 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
     private void preencheTabela() {
         DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
         int i = modelo.getRowCount();
+        cf.setTabela(fd.localizaTabela(1));
+        cf.setFuncionario(fd.localiza(1));
         while (i-- > 0) {
             modelo.removeRow(i);
         }
@@ -41,8 +46,13 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
             lista = fd.pesquisa(tFiltro.getText());
         }
         for (Funcionario f : lista) {
-            modelo.addRow(new Object[]{f.getMatricula(), f.getNome(), f.getDep14(), f.getDepir(), f.getVt(), f.getSalario()});
+            modelo.addRow(new Object[]{f.getMatricula(), f.getNome(), f.getDep14(), f.getDepir(), f.getVt(), f.getSalario(), cf.getInss()});
         }
+    }
+
+    public void setFuncionario(Funcionario f) {
+        this.fun = f;
+
     }
 
     /**
@@ -73,6 +83,7 @@ public class TelaLocalizaFuncionario extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Inicial");
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);

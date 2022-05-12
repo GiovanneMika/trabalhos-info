@@ -90,6 +90,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         tDepir = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Funcionário");
 
         jLabel1.setText("Matrícula");
 
@@ -101,7 +102,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         jLabel5.setText("Dependentes no IR");
 
-        jLabel6.setText("Salario");
+        jLabel6.setText("Salário");
 
         tMatricula.setEditable(false);
         tMatricula.setText("0");
