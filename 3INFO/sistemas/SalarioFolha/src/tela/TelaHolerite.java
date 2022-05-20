@@ -117,7 +117,7 @@ public class TelaHolerite extends javax.swing.JFrame {
 
         tNome2.setText("jLabel1");
         getContentPane().add(tNome2);
-        tNome2.setBounds(190, 80, 110, 14);
+        tNome2.setBounds(190, 80, 370, 14);
 
         tVt.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tVt.setText("drfg");
