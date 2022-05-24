@@ -38,6 +38,7 @@ public class TelaIRRF extends javax.swing.JFrame {
         tAirrf2.setValue(t.getAirrf2());
         tAirrf3.setValue(t.getAirrf3());
         tAirrf4.setValue(t.getAirrf4());
+        tAirrf5.setValue(t.getAirrf5());
         tDirrf2.setValue(t.getDirrf2());
         tDirrf3.setValue(t.getDirrf3());
         tDirrf4.setValue(t.getDirrf4());
@@ -63,6 +64,7 @@ public class TelaIRRF extends javax.swing.JFrame {
         t.setAirrf2(Double.parseDouble(tAirrf2.getValue().toString()));
         t.setAirrf3(Double.parseDouble(tAirrf3.getValue().toString()));
         t.setAirrf4(Double.parseDouble(tAirrf4.getValue().toString()));
+        t.setAirrf5(Double.parseDouble(tAirrf5.getValue().toString()));
         t.setDirrf2(Double.parseDouble(tDirrf2.getValue().toString()));
         t.setDirrf3(Double.parseDouble(tDirrf3.getValue().toString()));
         t.setDirrf4(Double.parseDouble(tDirrf4.getValue().toString()));
