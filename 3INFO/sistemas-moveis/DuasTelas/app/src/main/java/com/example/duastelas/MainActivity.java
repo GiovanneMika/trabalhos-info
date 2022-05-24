@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -30,7 +29,22 @@ public class MainActivity extends AppCompatActivity {
         tLogin = findViewById(R.id.tLogin);
         tSenha = findViewById(R.id.tSenha);
         bLogin = findViewById(R.id.bLogin);
-        bLembrar = findViewById(R.id.bLembrar)
+        bLembrar = findViewById(R.id.bLembrar);
+        try {
+            InputStream arq = openFileInput("senhas.txt");
+            if (arq != null) {
+                String[] i = lerTexto();
+                System.out.println("uuuu"+i[1]);
+                tLogin.setText(i[0]);
+                tSenha.setText(i[1]);
+                arq.close();
+            }else{
+                tLogin.setText("");
+                tSenha.setText("");
+            }
+        } catch (IOException e) {
+            Log.v("MainActivity", e.getMessage());
+        }
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private void gravarTexto(String user, String senha) {
         try {
             OutputStreamWriter osw = new OutputStreamWriter(openFileOutput("senhas.txt", Context.MODE_PRIVATE));
-            osw.write(user);
+            osw.write(user+"\n");
             osw.write(senha);
             osw.close();
         } catch (IOException e) {
@@ -63,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String lerTexto() {
+    private String[] lerTexto() {
         String user = "";
+        String[] coisas;
+        coisas = new String[2];
+        Integer contador=0;
         try {
             InputStream arq = openFileInput("senhas.txt");
             if (arq != null) {
@@ -72,13 +89,14 @@ public class MainActivity extends AppCompatActivity {
                 BufferedReader bis = new BufferedReader(isr);
                 String linhalida = "";
                 while ((linhalida = bis.readLine()) != null) {
-                    user += linhalida + "\n";
+                    coisas[contador]=linhalida;
+                    contador++;
                 }
                 arq.close();
             }
         } catch (IOException e) {
             Log.v("MainActivity", e.getMessage());
         }
-        return user;
+        return coisas;
     }
 }
