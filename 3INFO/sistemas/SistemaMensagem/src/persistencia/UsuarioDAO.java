@@ -5,10 +5,53 @@
  */
 package persistencia;
 
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import vo.Usuario;
+
 /**
  *
  * @author 2info2021
  */
 public class UsuarioDAO {
+    EntityManager em;
+
+    public UsuarioDAO() {
+        em = EntityManagerProvider.getEM();
+    }
+
+    public void salva(Usuario u) {
+        em.getTransaction().begin();
+        if (u.getUsuario() == null) {
+            em.persist(u);
+        } else {
+            em.merge(u);
+        }
+        em.getTransaction().commit();
+    }
     
+    public Usuario localiza(int id) {
+        Usuario m = em.find(Usuario.class, id);
+        return m;
+    }
+
+    public void excluiUsuario(Usuario u) {
+        em.getTransaction().begin();
+        em.remove(u);
+        em.getTransaction().commit();
+    }
+
+    public List<Usuario> pesquisa() {
+        Query q = em.createQuery("select f from Usuario as f order by f.nome");
+        List<Usuario> lista = q.getResultList();
+        return lista;
+    }
+
+    public List<Usuario> pesquisa(String mensagem) {
+        Query q = em.createNativeQuery("select * from mensagem where mensagem like ? order by nome ", Usuario.class);
+        q.setParameter(1, '%' + usuario + '%');
+        List<Usuario> lista = q.getResultList();
+        return lista; 
+    }
 }
