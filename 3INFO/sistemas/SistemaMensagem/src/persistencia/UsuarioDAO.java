@@ -50,7 +50,7 @@ public class UsuarioDAO {
 
     public List<Usuario> pesquisa(String mensagem) {
         Query q = em.createNativeQuery("select * from mensagem where mensagem like ? order by nome ", Usuario.class);
-        q.setParameter(1, '%' + usuario + '%');
+        q.setParameter(1, '%' + mensagem + '%');
         List<Usuario> lista = q.getResultList();
         return lista; 
     }
