@@ -89,7 +89,7 @@ public class FlappyBird extends ApplicationAdapter {
 				estadoJogo=1;
 			}
 		}else {
-			velocidadeQueda++;
+			velocidadeQueda+=1;
 			if (estadoJogo == 1) {
 				posicaoMovimentoCanoHorizontal -= Gdx.graphics.getDeltaTime() * 200;
 				if (Gdx.input.justTouched()) {
