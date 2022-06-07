@@ -28,14 +28,19 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tMensagem = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tNome = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tMensagem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -43,10 +48,28 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Remetente", "Assunto", "Mensagem", "Data"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tMensagem);
+        if (tMensagem.getColumnModel().getColumnCount() > 0) {
+            tMensagem.getColumnModel().getColumn(0).setResizable(false);
+            tMensagem.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tMensagem.getColumnModel().getColumn(1).setResizable(false);
+            tMensagem.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tMensagem.getColumnModel().getColumn(2).setResizable(false);
+            tMensagem.getColumnModel().getColumn(2).setPreferredWidth(140);
+            tMensagem.getColumnModel().getColumn(3).setResizable(false);
+            tMensagem.getColumnModel().getColumn(3).setPreferredWidth(5);
+        }
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Bem Vindo");
@@ -56,6 +79,21 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
         jButton1.setText("Sair");
 
+        jMenu1.setText("Opções");
+
+        jMenuItem1.setText("Nova Mensagem");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Ler Mensagem");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Excluir Mensagem");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,7 +101,7 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -82,7 +120,7 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,8 +165,13 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tMensagem;
     private javax.swing.JLabel tNome;
     // End of variables declaration//GEN-END:variables
 }

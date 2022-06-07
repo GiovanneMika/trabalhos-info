@@ -53,6 +53,8 @@ public class TelaMensagem extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
 
+        jTextField2.setEditable(false);
+
         jLabel2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel2.setText("Remetente:");
 
