@@ -48,9 +48,9 @@ public class UsuarioDAO {
         return lista;
     }
 
-    public List<Usuario> pesquisa(String mensagem) {
-        Query q = em.createNativeQuery("select * from mensagem where mensagem like ? order by nome ", Usuario.class);
-        q.setParameter(1, '%' + mensagem + '%');
+    public List<Usuario> pesquisa(String assunto) {
+        Query q = em.createNativeQuery("select * from mensagem where assunto like ? order by nome ", Usuario.class);
+        q.setParameter(1, '%' + assunto + '%');
         List<Usuario> lista = q.getResultList();
         return lista; 
     }
