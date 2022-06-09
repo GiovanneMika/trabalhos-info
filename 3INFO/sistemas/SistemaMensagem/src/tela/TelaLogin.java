@@ -4,16 +4,19 @@
  * and open the template in the editor.
  */
 package tela;
-
+import javax.swing.JOptionPane;
+import persistencia.MensagemDAO;
+import persistencia.UsuarioDAO;
 /**
  *
  * @author 2info2021
  */
 public class TelaLogin extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaLogin
-     */
+    UsuarioDAO ud = new UsuarioDAO();
+    MensagemDAO md = new MensagemDAO();
+    
+    
+    
     public TelaLogin() {
         initComponents();
     }
@@ -30,8 +33,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tUsuario = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        tSenha = new javax.swing.JPasswordField();
+        bEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,7 +42,12 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha:");
 
-        jButton1.setText("Entrar");
+        bEntrar.setText("Entrar");
+        bEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEntrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,10 +65,10 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPasswordField1))))
+                                .addComponent(tSenha))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addComponent(jButton1)))
+                        .addComponent(bEntrar)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -73,14 +81,28 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(bEntrar)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntrarActionPerformed
+        if(ud.verificaLoginAdm(tUsuario.getText(), tSenha.getText())){
+            TelaLocalizaUsuario tlu = new TelaLocalizaUsuario();
+            tlu.setVisible(true);
+        }else{
+            if(ud.verificaLoginUsuario(tUsuario.getText(), tSenha.getText())){
+                TelaLocalizaMensagem tlm = new TelaLocalizaMensagem();
+                tlm.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos");
+            }
+        }
+    }//GEN-LAST:event_bEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,10 +140,10 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField tSenha;
     private javax.swing.JTextField tUsuario;
     // End of variables declaration//GEN-END:variables
 }

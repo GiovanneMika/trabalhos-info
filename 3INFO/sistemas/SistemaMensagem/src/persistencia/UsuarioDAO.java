@@ -15,6 +15,7 @@ import vo.Usuario;
  * @author 2info2021
  */
 public class UsuarioDAO {
+
     EntityManager em;
 
     public UsuarioDAO() {
@@ -30,7 +31,7 @@ public class UsuarioDAO {
         }
         em.getTransaction().commit();
     }
-    
+
     public Usuario localiza(int id) {
         Usuario m = em.find(Usuario.class, id);
         return m;
@@ -42,16 +43,51 @@ public class UsuarioDAO {
         em.getTransaction().commit();
     }
 
+    public boolean verificaLoginUsuario(String usuario, String senha) {
+        em.getTransaction().begin();
+        Query q = em.createQuery("select u from Usuario as u where u.usuario like ? ", Usuario.class);
+        q.setParameter(1, usuario);
+        Query q1 = em.createQuery("select u from Usuario as u where u.senha like ? ", Usuario.class);
+        q1.setParameter(1, senha);
+        if (!q.getResultList().isEmpty() && !q1.getResultList().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificaLoginAdm(String usuario, String senha) {
+        if (usuario.equalsIgnoreCase("Admin") && senha.equals("Admin")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public List<Usuario> pesquisa() {
-        Query q = em.createQuery("select f from Usuario as f order by f.nome");
+        Query q = em.createQuery("select u from Usuario as u order by u.usuario");
         List<Usuario> lista = q.getResultList();
         return lista;
     }
 
-    public List<Usuario> pesquisa(String assunto) {
-        Query q = em.createNativeQuery("select * from mensagem where assunto like ? order by nome ", Usuario.class);
-        q.setParameter(1, '%' + assunto + '%');
+    public List<Usuario> pesquisa(String nome) {
+        Query q = em.createNativeQuery("select * from Usuario where nome like ? order by nome ", Usuario.class);
+        q.setParameter(1, '%' + nome + '%');
         List<Usuario> lista = q.getResultList();
-        return lista; 
+        return lista;
+    }
+
+    public void setUsuario(String usuario, String senha) {
+        em.getTransaction().begin();
+        Query q = em.createQuery("select u from Usuario as u where u.usuario like ? ", Usuario.class);
+        q.setParameter(1, usuario);
+        Query q1 = em.createQuery("select u from Usuario as u where u.senha like ? ", Usuario.class);
+        q1.setParameter(1, senha);
+        q.getSingleResult();
+        q1.getSingleResult();
+            return true;
+        } else {
+            return false;
+        }
     }
 }
