@@ -77,17 +77,4 @@ public class UsuarioDAO {
         return lista;
     }
 
-    public void setUsuario(String usuario, String senha) {
-        em.getTransaction().begin();
-        Query q = em.createQuery("select u from Usuario as u where u.usuario like ? ", Usuario.class);
-        q.setParameter(1, usuario);
-        Query q1 = em.createQuery("select u from Usuario as u where u.senha like ? ", Usuario.class);
-        q1.setParameter(1, senha);
-        q.getSingleResult();
-        q1.getSingleResult();
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
