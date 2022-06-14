@@ -29,7 +29,7 @@ public class EntityManagerProvider {
             prop.setProperty("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
             prop.setProperty("javax.persistence.jdbc.password", "msg2022");
             prop.setProperty("javax.persistence.jdbc.user", "mensagem");
-            emf = Persistence.createEntityManagerFactory("SalarioFolhaPU", prop);
+            emf = Persistence.createEntityManagerFactory("SistemaMensagemPU", prop);
         }
         return emf;
     }

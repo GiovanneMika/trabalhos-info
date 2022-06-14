@@ -11,6 +11,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 
@@ -26,6 +28,7 @@ public class Mensagem implements Serializable {
     private String remetente;
     private String destinatario;
     private String assunto;
+    @Temporal(TemporalType.DATE)
     private Date data;
     private String mensagem;
 
