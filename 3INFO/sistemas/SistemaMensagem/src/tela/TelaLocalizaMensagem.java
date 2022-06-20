@@ -5,12 +5,23 @@
  */
 package tela;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import vo.Usuario;
+import vo.Mensagem;
+import persistencia.MensagemDAO;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
+    Usuario u = new Usuario();
+    Mensagem m = new Mensagem();
+    MensagemDAO md = new MensagemDAO();
+    
+    
     /**
      * Creates new form TelaMensagem
      */
@@ -32,6 +43,9 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tNome = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        tFiltro = new javax.swing.JTextField();
+        bOk = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -79,6 +93,15 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
         jButton1.setText("Sair");
 
+        jLabel2.setText("Filtro");
+
+        bOk.setText("Ok");
+        bOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOkActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Opções");
 
         jMenuItem1.setText("Nova Mensagem");
@@ -107,24 +130,40 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bOk)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(bOk))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tNome)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
+        usuarioToTela();
+    }//GEN-LAST:event_bOkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,15 +201,41 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         });
     }
 
+    public void setUsuario(Usuario u) {
+        this.u = u;
+        usuarioToTela();
+
+    }
+
+    private void usuarioToTela() {
+        DefaultTableModel modelo = (DefaultTableModel) tMensagem.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Mensagem> lista;
+        if (tFiltro.getText().equals("")) {
+            lista = md.pesquisa();
+        } else {
+            lista = md.pesquisa(tFiltro.getText());
+        }
+        for (Mensagem m : lista) {
+            modelo.addRow(new Object[]{m.getRemetente(), m.getAssunto(), m.getMensagem(), m.getData()});
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bOk;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField tFiltro;
     private javax.swing.JTable tMensagem;
     private javax.swing.JLabel tNome;
     // End of variables declaration//GEN-END:variables

@@ -4,18 +4,21 @@
  * and open the template in the editor.
  */
 package tela;
+
 import javax.swing.JOptionPane;
 import persistencia.MensagemDAO;
 import persistencia.UsuarioDAO;
+import vo.Usuario;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaLogin extends javax.swing.JFrame {
+    
     UsuarioDAO ud = new UsuarioDAO();
     MensagemDAO md = new MensagemDAO();
-    
-    
+    Usuario u = new Usuario();
     
     public TelaLogin() {
         initComponents();
@@ -91,14 +94,15 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntrarActionPerformed
-        if(ud.verificaLoginAdm(tUsuario.getText(), tSenha.getText())){
+        if (ud.verificaLoginAdm(tUsuario.getText(), tSenha.getText())) {
             TelaLocalizaUsuario tlu = new TelaLocalizaUsuario();
             tlu.setVisible(true);
-        }else{
-            if(ud.verificaLoginUsuario(tUsuario.getText(), tSenha.getText())){
+        } else {
+            if (ud.verificaLoginUsuario(tUsuario.getText(), tSenha.getText())) {
                 TelaLocalizaMensagem tlm = new TelaLocalizaMensagem();
                 tlm.setVisible(true);
-            }else{
+                tlm.setUsuario(u);
+            } else {
                 JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos");
             }
         }

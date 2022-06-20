@@ -45,9 +45,9 @@ public class UsuarioDAO {
 
     public boolean verificaLoginUsuario(String usuario, String senha) {
         em.getTransaction().begin();
-        Query q = em.createQuery("select u from Usuario as u where u.usuario like ? ", Usuario.class);
+        Query q = em.createNativeQuery("select * from Usuario where usuario like ? ");
         q.setParameter(1, usuario);
-        Query q1 = em.createQuery("select u from Usuario as u where u.senha like ? ", Usuario.class);
+        Query q1 = em.createQuery("select * from Usuario where senha like ? ");
         q1.setParameter(1, senha);
         if (!q.getResultList().isEmpty() && !q1.getResultList().isEmpty()) {
             return true;
@@ -69,6 +69,12 @@ public class UsuarioDAO {
         List<Usuario> lista = q.getResultList();
         return lista;
     }
+    public Object pesquisaUsuario(String usuario, String senha){
+        Query q = em.createNativeQuery("select * from Usuario where usuario = ? and senha = ? ");
+        q.setParameter(1,usuario);
+        q.setParameter(2,senha);
+        return q.getSingleResult();
+    }
 
     public List<Usuario> pesquisa(String nome) {
         Query q = em.createNativeQuery("select * from Usuario where nome like ? order by nome ", Usuario.class);
@@ -77,17 +83,4 @@ public class UsuarioDAO {
         return lista;
     }
 
-    public void setUsuario(String usuario, String senha) {
-        em.getTransaction().begin();
-        Query q = em.createQuery("select u from Usuario as u where u.usuario like ? ", Usuario.class);
-        q.setParameter(1, usuario);
-        Query q1 = em.createQuery("select u from Usuario as u where u.senha like ? ", Usuario.class);
-        q1.setParameter(1, senha);
-        q.getSingleResult();
-        q1.getSingleResult();
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

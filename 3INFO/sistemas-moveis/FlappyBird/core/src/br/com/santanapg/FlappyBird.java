@@ -56,7 +56,7 @@ public class FlappyBird extends ApplicationAdapter {
 		larguraDispositivo=LARGURAVIRTUAL;
 		posicaoInicialVertical=alturaDispositivo/2;
 		posicaoMovimentoCanoHorizontal=larguraDispositivo-100;
-		espacoEntreCanos=300;
+		espacoEntreCanos=50;
 		batch = new SpriteBatch();
 		passaros= new Texture[3];
 		passaros[0]=new Texture("passaro1.png");

@@ -16,7 +16,7 @@ import vo.Mensagem;
 public class MensagemDAO {
 
     EntityManager em;
-
+    Usuario u = new Usuario();
     public MensagemDAO() {
         em = EntityManagerProvider.getEM();
     }
@@ -43,15 +43,16 @@ public class MensagemDAO {
     }
 
     public List<Mensagem> pesquisa() {
-        Query q = em.createQuery("select f from Mensagem as f order by f.nome");
+        Query q = em.createQuery("select m from Mensagem m where m.destinatario = ?  order by m.data");
+        q.setParameter(1, u.getUsuario());
         List<Mensagem> lista = q.getResultList();
         return lista;
     }
 
-    public List<Usuario> pesquisa(String assunto) {
-        Query q = em.createNativeQuery("select * from mensagem where assunto like ? order by id", Usuario.class);
+    public List<Mensagem> pesquisa(String assunto) {
+        Query q = em.createNativeQuery("select * from mensagem where assunto like ? order by id", Mensagem.class);
         q.setParameter(1, '%' + assunto + '%');
-        List<Usuario> lista = q.getResultList();
+        List<Mensagem> lista = q.getResultList();
         return lista; 
     }
 }
