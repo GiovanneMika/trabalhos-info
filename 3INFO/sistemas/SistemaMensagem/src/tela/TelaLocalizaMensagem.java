@@ -6,6 +6,8 @@
 package tela;
 
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.swing.table.DefaultTableModel;
 import vo.Usuario;
 import vo.Mensagem;
@@ -17,11 +19,11 @@ import persistencia.MensagemDAO;
  */
 public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
+    EntityManager em;
     Usuario u = new Usuario();
     Mensagem m = new Mensagem();
     MensagemDAO md = new MensagemDAO();
-    
-    
+
     /**
      * Creates new form TelaMensagem
      */
@@ -205,6 +207,16 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         this.u = u;
         usuarioToTela();
 
+    }
+
+    public void getUsuario(String usuario, String senha) {
+        Query q = em.createNativeQuery("select * from Usuario where usuario like ? ");
+        q.setParameter(1, usuario);
+        Query q1 = em.createQuery("select * from Usuario where senha like ? ");
+        q1.setParameter(1, senha);
+        if(!q.getResultList().isEmpty() && !q1.getResultList().isEmpty()){
+            setUsuario(q1.getResultList().get(1).getClass(Usuario));
+        }
     }
 
     private void usuarioToTela() {
