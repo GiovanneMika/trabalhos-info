@@ -56,7 +56,6 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mNovo = new javax.swing.JMenuItem();
-        mEditar = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,15 +127,12 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         jMenu1.setText("Opções");
 
         mNovo.setText("Nova Mensagem");
-        jMenu1.add(mNovo);
-
-        mEditar.setText("Ler Mensagem");
-        mEditar.addActionListener(new java.awt.event.ActionListener() {
+        mNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mEditarActionPerformed(evt);
+                mNovoActionPerformed(evt);
             }
         });
-        jMenu1.add(mEditar);
+        jMenu1.add(mNovo);
 
         jMenuItem3.setText("Excluir Mensagem");
         jMenu1.add(jMenuItem3);
@@ -200,18 +196,6 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         usuarioToTela();
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private void mEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEditarActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tMensagem.getModel();
-        if (tMensagem.getSelectedRow() != -1) {
-            int id = (Integer) modelo.getValueAt(tMensagem.getSelectedRow(), 0);
-            TelaVerMensagem tvm = new TelaVerMensagem();
-            tvm.setMensagem(md.localiza(id));
-            tvm.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
-        }
-    }//GEN-LAST:event_mEditarActionPerformed
-
     private void tLerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tLerActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tMensagem.getModel();
         if (tMensagem.getSelectedRow() != -1) {
@@ -223,6 +207,10 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
         }
     }//GEN-LAST:event_tLerActionPerformed
+
+    private void mNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mNovoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mNovoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,7 +284,6 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenuItem mEditar;
     private javax.swing.JMenuItem mNovo;
     private javax.swing.JTextField tFiltro;
     private javax.swing.JButton tLer;
