@@ -209,7 +209,8 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
     }//GEN-LAST:event_tLerActionPerformed
 
     private void mNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mNovoActionPerformed
-        // TODO add your handling code here:
+        TelaMensagem tm = new TelaMensagem();
+        tm.setVisible(true);
     }//GEN-LAST:event_mNovoActionPerformed
 
     /**
