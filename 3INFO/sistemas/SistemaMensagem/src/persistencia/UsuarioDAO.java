@@ -32,9 +32,9 @@ public class UsuarioDAO {
         em.getTransaction().commit();
     }
 
-    public Usuario localiza(int id) {
-        Usuario m = em.find(Usuario.class, id);
-        return m;
+    public Usuario localiza(String usuario) {
+        Usuario u = em.find(Usuario.class, usuario);
+        return u;
     }
 
     public void excluiUsuario(Usuario u) {
@@ -47,7 +47,7 @@ public class UsuarioDAO {
         em.getTransaction().begin();
         Query q = em.createNativeQuery("select * from Usuario where usuario like ? ");
         q.setParameter(1, usuario);
-        Query q1 = em.createQuery("select * from Usuario where senha like ? ");
+        Query q1 = em.createNativeQuery("select * from Usuario where senha like ? ");
         q1.setParameter(1, senha);
         if (!q.getResultList().isEmpty() && !q1.getResultList().isEmpty()) {
             return true;
@@ -68,12 +68,6 @@ public class UsuarioDAO {
         Query q = em.createQuery("select u from Usuario as u order by u.usuario");
         List<Usuario> lista = q.getResultList();
         return lista;
-    }
-    public Object pesquisaUsuario(String usuario, String senha){
-        Query q = em.createNativeQuery("select * from Usuario where usuario = ? and senha = ? ");
-        q.setParameter(1,usuario);
-        q.setParameter(2,senha);
-        return q.getSingleResult();
     }
 
     public List<Usuario> pesquisa(String nome) {

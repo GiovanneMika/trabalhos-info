@@ -36,8 +36,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tUsuario = new javax.swing.JTextField();
-        tSenha = new javax.swing.JPasswordField();
         bEntrar = new javax.swing.JButton();
+        tSenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,7 +101,7 @@ public class TelaLogin extends javax.swing.JFrame {
             if (ud.verificaLoginUsuario(tUsuario.getText(), tSenha.getText())) {
                 TelaLocalizaMensagem tlm = new TelaLocalizaMensagem();
                 tlm.setVisible(true);
-                tlm.setUsuario(u);
+                tlm.setUsuario(ud.localiza(tUsuario.getText()));
             } else {
                 JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos");
             }
@@ -147,7 +147,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton bEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField tSenha;
+    private javax.swing.JTextField tSenha;
     private javax.swing.JTextField tUsuario;
     // End of variables declaration//GEN-END:variables
 }

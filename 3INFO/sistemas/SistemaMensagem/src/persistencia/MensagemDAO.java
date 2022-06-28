@@ -42,9 +42,9 @@ public class MensagemDAO {
         em.getTransaction().commit();
     }
 
-    public List<Mensagem> pesquisa() {
-        Query q = em.createQuery("select m from Mensagem m where m.destinatario = ?  order by m.data");
-        q.setParameter(1, u.getUsuario());
+    public List<Mensagem> pesquisa1(String dest) {
+        Query q = em.createNativeQuery("select * from mensagem where destinatario = ?  order by data", Mensagem.class);
+        q.setParameter(1, dest);
         List<Mensagem> lista = q.getResultList();
         return lista;
     }

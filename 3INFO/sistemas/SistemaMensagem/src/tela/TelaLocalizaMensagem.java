@@ -5,9 +5,13 @@
  */
 package tela;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vo.Usuario;
 import vo.Mensagem;
@@ -48,13 +52,21 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tFiltro = new javax.swing.JTextField();
         bOk = new javax.swing.JButton();
+        tLer = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mNovo = new javax.swing.JMenuItem();
+        mEditar = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         tMensagem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,6 +105,7 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         tNome.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         tNome.setText("NOME");
 
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setText("Sair");
 
         jLabel2.setText("Filtro");
@@ -104,13 +117,26 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
             }
         });
 
+        tLer.setBackground(new java.awt.Color(30, 170, 239));
+        tLer.setText("Ler");
+        tLer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tLerActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Opções");
 
-        jMenuItem1.setText("Nova Mensagem");
-        jMenu1.add(jMenuItem1);
+        mNovo.setText("Nova Mensagem");
+        jMenu1.add(mNovo);
 
-        jMenuItem2.setText("Ler Mensagem");
-        jMenu1.add(jMenuItem2);
+        mEditar.setText("Ler Mensagem");
+        mEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mEditarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mEditar);
 
         jMenuItem3.setText("Excluir Mensagem");
         jMenu1.add(jMenuItem3);
@@ -132,6 +158,8 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tLer)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -154,7 +182,8 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tNome)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(tLer))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -166,6 +195,34 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
     private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
         usuarioToTela();
     }//GEN-LAST:event_bOkActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        usuarioToTela();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void mEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEditarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tMensagem.getModel();
+        if (tMensagem.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tMensagem.getSelectedRow(), 0);
+            TelaVerMensagem tvm = new TelaVerMensagem();
+            tvm.setMensagem(md.localiza(id));
+            tvm.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_mEditarActionPerformed
+
+    private void tLerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tLerActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tMensagem.getModel();
+        if (tMensagem.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tMensagem.getSelectedRow(), 0);
+            TelaVerMensagem tvm = new TelaVerMensagem();
+            tvm.setMensagem(md.localiza(id));
+            tvm.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_tLerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,17 +266,8 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
     }
 
-    public void getUsuario(String usuario, String senha) {
-        Query q = em.createNativeQuery("select * from Usuario where usuario like ? ");
-        q.setParameter(1, usuario);
-        Query q1 = em.createQuery("select * from Usuario where senha like ? ");
-        q1.setParameter(1, senha);
-        if(!q.getResultList().isEmpty() && !q1.getResultList().isEmpty()){
-            setUsuario(q1.getResultList().get(1).getClass(Usuario));
-        }
-    }
-
     private void usuarioToTela() {
+        tNome.setText(u.getNome());
         DefaultTableModel modelo = (DefaultTableModel) tMensagem.getModel();
         int i = modelo.getRowCount();
         while (i-- > 0) {
@@ -227,12 +275,15 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         }
         List<Mensagem> lista;
         if (tFiltro.getText().equals("")) {
-            lista = md.pesquisa();
+            lista = md.pesquisa1(u.getUsuario());
         } else {
             lista = md.pesquisa(tFiltro.getText());
         }
+        SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        //       Locale loc = new Locale("pt", "BR");
+        //       DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, loc);
         for (Mensagem m : lista) {
-            modelo.addRow(new Object[]{m.getRemetente(), m.getAssunto(), m.getMensagem(), m.getData()});
+            modelo.addRow(new Object[]{m.getId(), m.getRemetente(), m.getAssunto(), m.getMensagem(), s.format(m.getData().getTime())});
         }
     }
 
@@ -243,11 +294,12 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem mEditar;
+    private javax.swing.JMenuItem mNovo;
     private javax.swing.JTextField tFiltro;
+    private javax.swing.JButton tLer;
     private javax.swing.JTable tMensagem;
     private javax.swing.JLabel tNome;
     // End of variables declaration//GEN-END:variables

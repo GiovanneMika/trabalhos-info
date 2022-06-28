@@ -5,11 +5,16 @@
  */
 package vo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author 2info2021
  */
+@Entity
 public class Usuario {
+    @Id
     private String usuario;
     private String nome;
     private String senha;
