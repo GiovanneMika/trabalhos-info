@@ -5,15 +5,14 @@
  */
 package tela;
 
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 import vo.Usuario;
 import vo.Mensagem;
 import persistencia.MensagemDAO;
+import persistencia.UsuarioDAO;
 
 /**
  *
@@ -24,21 +23,29 @@ public class TelaMensagem extends javax.swing.JFrame {
     Usuario u = new Usuario();
     Mensagem m = new Mensagem();
     MensagemDAO md = new MensagemDAO();
+    UsuarioDAO ud = new UsuarioDAO();
+    TelaLocalizaMensagem tm = new TelaLocalizaMensagem();
 
     public TelaMensagem() {
         initComponents();
     }
 
     private boolean telaToMensagem() {
+        tRemetente.setText(u.getUsuario());
         m.setId(Integer.parseInt(tId.getText()));
-        m.setRemetente(tRemetente.getText());
         SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
         m.setData(Calendar.getInstance());
-        m.setRemetente(u.getUsuario());
+        m.setRemetente(tRemetente.getText());
         m.setDestinatario(tDestinatario.getText());
         m.setAssunto(tAssunto.getText());
         m.setMensagem(tMensagem.getText());
         return true;
+    }
+
+    public void setUsuario(Usuario u) {
+        this.u = u;
+        telaToMensagem();
+
     }
 
     /**
@@ -69,12 +76,14 @@ public class TelaMensagem extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel5.setText("Assunto:");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Nova Mensagem");
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel1.setText("ID:");
 
         tId.setEditable(false);
+        tId.setText("0");
 
         tRemetente.setEditable(false);
 
@@ -96,6 +105,11 @@ public class TelaMensagem extends javax.swing.JFrame {
 
         bCancelar.setBackground(new java.awt.Color(255, 0, 0));
         bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
 
         bSalvar.setBackground(new java.awt.Color(51, 255, 51));
         bSalvar.setText("Enviar");
@@ -175,8 +189,19 @@ public class TelaMensagem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
-        // TODO add your handling code here:
+        if (ud.verificaUsuarioExistente(tDestinatario.getText())) {
+            if (telaToMensagem()) {
+                md.salva(m);
+                this.dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Destinatário inexistente!");
+        }
     }//GEN-LAST:event_bSalvarActionPerformed
+
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import vo.Usuario;
 import vo.Mensagem;
 import persistencia.MensagemDAO;
+import persistencia.UsuarioDAO;
 
 /**
  *
@@ -25,6 +26,7 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
     EntityManager em;
     Usuario u = new Usuario();
+    UsuarioDAO ud = new UsuarioDAO();
     Mensagem m = new Mensagem();
     MensagemDAO md = new MensagemDAO();
 
@@ -48,7 +50,7 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         tMensagem = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tNome = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bSair = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         tFiltro = new javax.swing.JTextField();
         bOk = new javax.swing.JButton();
@@ -56,9 +58,10 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mNovo = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mExcluir = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Home");
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -69,17 +72,17 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
         tMensagem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Remetente", "Assunto", "Mensagem", "Data"
+                "Id", "Remetente", "Assunto", "Mensagem", "Data"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -89,13 +92,14 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tMensagem);
         if (tMensagem.getColumnModel().getColumnCount() > 0) {
             tMensagem.getColumnModel().getColumn(0).setResizable(false);
-            tMensagem.getColumnModel().getColumn(0).setPreferredWidth(50);
             tMensagem.getColumnModel().getColumn(1).setResizable(false);
-            tMensagem.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tMensagem.getColumnModel().getColumn(1).setPreferredWidth(50);
             tMensagem.getColumnModel().getColumn(2).setResizable(false);
-            tMensagem.getColumnModel().getColumn(2).setPreferredWidth(140);
+            tMensagem.getColumnModel().getColumn(2).setPreferredWidth(70);
             tMensagem.getColumnModel().getColumn(3).setResizable(false);
-            tMensagem.getColumnModel().getColumn(3).setPreferredWidth(5);
+            tMensagem.getColumnModel().getColumn(3).setPreferredWidth(140);
+            tMensagem.getColumnModel().getColumn(4).setResizable(false);
+            tMensagem.getColumnModel().getColumn(4).setPreferredWidth(5);
         }
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -104,8 +108,13 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         tNome.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         tNome.setText("NOME");
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setText("Sair");
+        bSair.setBackground(new java.awt.Color(255, 51, 51));
+        bSair.setText("Sair");
+        bSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSairActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Filtro");
 
@@ -134,8 +143,13 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
         });
         jMenu1.add(mNovo);
 
-        jMenuItem3.setText("Excluir Mensagem");
-        jMenu1.add(jMenuItem3);
+        mExcluir.setText("Excluir Mensagem");
+        mExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mExcluirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mExcluir);
 
         jMenuBar1.add(jMenu1);
 
@@ -156,7 +170,7 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tLer)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(bSair))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,7 +192,7 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tNome)
-                    .addComponent(jButton1)
+                    .addComponent(bSair)
                     .addComponent(tLer))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,8 +224,26 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
     private void mNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mNovoActionPerformed
         TelaMensagem tm = new TelaMensagem();
+        tm.setUsuario(ud.localiza(u.getUsuario()));
         tm.setVisible(true);
     }//GEN-LAST:event_mNovoActionPerformed
+
+    private void bSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bSairActionPerformed
+
+    private void mExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExcluirActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tMensagem.getModel();
+        if (tMensagem.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tMensagem.getSelectedRow(), 0);
+            Mensagem m = md.localiza(id);
+            if (JOptionPane.showConfirmDialog(this, "Confirma exclusão da mensagem sobre  '" + m.getAssunto() + "'?") == JOptionPane.YES_OPTION) {
+                md.excluiMensagem(m);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_mExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,13 +310,13 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bOk;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem mExcluir;
     private javax.swing.JMenuItem mNovo;
     private javax.swing.JTextField tFiltro;
     private javax.swing.JButton tLer;

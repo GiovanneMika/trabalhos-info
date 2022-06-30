@@ -50,14 +50,26 @@ public class UsuarioDAO {
         Query q1 = em.createNativeQuery("select * from Usuario where senha like ? ");
         q1.setParameter(1, senha);
         if (!q.getResultList().isEmpty() && !q1.getResultList().isEmpty()) {
+            em.getTransaction().commit();
             return true;
         } else {
+            em.getTransaction().commit();
             return false;
         }
     }
 
     public boolean verificaLoginAdm(String usuario, String senha) {
         if (usuario.equalsIgnoreCase("Admin") && senha.equals("Admin")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificaUsuarioExistente(String usuario) {
+        Query q = em.createNativeQuery("select * from Usuario where usuario like ? ");
+        q.setParameter(1, usuario);
+        if (!q.getResultList().isEmpty()) {
             return true;
         } else {
             return false;

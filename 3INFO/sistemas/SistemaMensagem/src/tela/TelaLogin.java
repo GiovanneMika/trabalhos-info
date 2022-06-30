@@ -40,6 +40,7 @@ public class TelaLogin extends javax.swing.JFrame {
         tSenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Inicial");
 
         jLabel1.setText("Usuário:");
 
