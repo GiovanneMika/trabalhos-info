@@ -106,7 +106,9 @@ public class TelaMensagem extends javax.swing.JFrame {
         jLabel6.setText("Mensagem:");
 
         tMensagem.setColumns(20);
+        tMensagem.setLineWrap(true);
         tMensagem.setRows(5);
+        tMensagem.setWrapStyleWord(true);
         jScrollPane1.setViewportView(tMensagem);
 
         bCancelar.setBackground(new java.awt.Color(255, 0, 0));

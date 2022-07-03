@@ -44,10 +44,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tUsuario = new javax.swing.JTextField();
         bEntrar = new javax.swing.JButton();
-        tSenha = new javax.swing.JTextField();
+        tSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tela Inicial");
+        setTitle("Login");
 
         jLabel1.setText("Usuário:");
 
@@ -155,7 +155,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton bEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField tSenha;
+    private javax.swing.JPasswordField tSenha;
     private javax.swing.JTextField tUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -78,7 +78,7 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -88,6 +88,7 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tUsuario);
         if (tUsuario.getColumnModel().getColumnCount() > 0) {
             tUsuario.getColumnModel().getColumn(0).setResizable(false);
+            tUsuario.getColumnModel().getColumn(1).setResizable(false);
             tUsuario.getColumnModel().getColumn(2).setResizable(false);
         }
 
@@ -110,7 +111,7 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
 
         jMenu1.setText("Opções");
 
-        mNovo.setText("Novo");
+        mNovo.setText("Novo Usuário");
         mNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mNovoActionPerformed(evt);
@@ -118,7 +119,7 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
         });
         jMenu1.add(mNovo);
 
-        mEditar.setText("Editar");
+        mEditar.setText("Editar Usuário");
         mEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mEditarActionPerformed(evt);
@@ -126,7 +127,7 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
         });
         jMenu1.add(mEditar);
 
-        mExcluir.setText("Excluir");
+        mExcluir.setText("Excluir Usuário");
         mExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mExcluirActionPerformed(evt);

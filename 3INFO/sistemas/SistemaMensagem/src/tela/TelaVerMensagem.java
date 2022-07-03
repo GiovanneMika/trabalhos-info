@@ -92,7 +92,9 @@ public class TelaVerMensagem extends javax.swing.JFrame {
 
         tMensagem.setEditable(false);
         tMensagem.setColumns(20);
+        tMensagem.setLineWrap(true);
         tMensagem.setRows(5);
+        tMensagem.setWrapStyleWord(true);
         jScrollPane1.setViewportView(tMensagem);
 
         bSair.setBackground(new java.awt.Color(255, 0, 0));
@@ -138,11 +140,11 @@ public class TelaVerMensagem extends javax.swing.JFrame {
                                 .addComponent(tData)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bSair))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(152, 152, 152)
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
