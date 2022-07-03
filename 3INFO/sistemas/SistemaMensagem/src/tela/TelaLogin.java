@@ -5,6 +5,8 @@
  */
 package tela;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import persistencia.MensagemDAO;
 import persistencia.UsuarioDAO;
@@ -15,11 +17,16 @@ import vo.Usuario;
  * @author 2info2021
  */
 public class TelaLogin extends javax.swing.JFrame {
-    
+    //icone de erro
+
+    ImageIcon erroIcon = new ImageIcon(this.getClass().getResource("/imagens/erro.png"));
+    Image erroImage = erroIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+    ImageIcon erroIcon2 = new ImageIcon(erroImage);
+
     UsuarioDAO ud = new UsuarioDAO();
     MensagemDAO md = new MensagemDAO();
     Usuario u = new Usuario();
-    
+
     public TelaLogin() {
         initComponents();
     }
@@ -104,7 +111,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 tlm.setVisible(true);
                 tlm.setUsuario(ud.localiza(tUsuario.getText()));
             } else {
-                JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos");
+                JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!", "Login Incorreto", JOptionPane.PLAIN_MESSAGE, erroIcon2);
             }
         }
     }//GEN-LAST:event_bEntrarActionPerformed

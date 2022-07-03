@@ -5,11 +5,28 @@
  */
 package tela;
 
+import java.awt.Image;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vo.Usuario;
+import persistencia.UsuarioDAO;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaLocalizaUsuario extends javax.swing.JFrame {
+
+    //icone de erro
+    ImageIcon erroIcon = new ImageIcon(this.getClass().getResource("/imagens/erro.png"));
+    Image erroImage = erroIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+    ImageIcon erroIcon2 = new ImageIcon(erroImage);
+
+    UsuarioDAO ud = new UsuarioDAO();
+    Usuario u = new Usuario();
 
     /**
      * Creates new form TelaLocalizaUsuario
@@ -28,16 +45,28 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tUsuario = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        tFiltro = new javax.swing.JTextField();
+        bFiltro = new javax.swing.JButton();
+        bSair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mNovo = new javax.swing.JMenuItem();
+        mEditar = new javax.swing.JMenuItem();
+        mExcluir = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tela do Administrador");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -56,22 +85,54 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane1.setViewportView(tUsuario);
+        if (tUsuario.getColumnModel().getColumnCount() > 0) {
+            tUsuario.getColumnModel().getColumn(0).setResizable(false);
+            tUsuario.getColumnModel().getColumn(2).setResizable(false);
         }
+
+        jLabel1.setText("Procurar usuários:");
+
+        bFiltro.setText("Ok");
+        bFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bFiltroActionPerformed(evt);
+            }
+        });
+
+        bSair.setBackground(new java.awt.Color(255, 0, 0));
+        bSair.setText("Sair");
+        bSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSairActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Opções");
 
-        jMenuItem1.setText("Novo");
-        jMenu1.add(jMenuItem1);
+        mNovo.setText("Novo");
+        mNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mNovoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mNovo);
 
-        jMenuItem2.setText("Editar");
-        jMenu1.add(jMenuItem2);
+        mEditar.setText("Editar");
+        mEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mEditarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mEditar);
 
-        jMenuItem3.setText("Excluir");
-        jMenu1.add(jMenuItem3);
+        mExcluir.setText("Excluir");
+        mExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mExcluirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mExcluir);
 
         jMenuBar1.add(jMenu1);
 
@@ -83,23 +144,99 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bFiltro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bSair)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bFiltro)
+                    .addComponent(bSair))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        usuarioToTela();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void bFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFiltroActionPerformed
+        usuarioToTela();
+    }//GEN-LAST:event_bFiltroActionPerformed
+
+    private void mNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mNovoActionPerformed
+        TelaUsuario tu = new TelaUsuario();
+        tu.setVisible(true);
+    }//GEN-LAST:event_mNovoActionPerformed
+
+    private void mEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEditarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tUsuario.getModel();
+        if (tUsuario.getSelectedRow() != -1) {
+            String usuario = modelo.getValueAt(tUsuario.getSelectedRow(), 0).toString();
+            TelaUsuario tu = new TelaUsuario();
+            tu.setUsuario(ud.localiza(usuario));
+            tu.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!", "Selecione algo!", JOptionPane.PLAIN_MESSAGE, erroIcon2);
+        }
+    }//GEN-LAST:event_mEditarActionPerformed
+
+    private void mExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExcluirActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tUsuario.getModel();
+        if (tUsuario.getSelectedRow() != -1) {
+            String usuario = modelo.getValueAt(tUsuario.getSelectedRow(), 0).toString();
+            Usuario u = ud.localiza(usuario);
+            if (!ud.verificaMensagem(usuario)) {
+                if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + u.getUsuario() + "?") == JOptionPane.YES_OPTION) {
+                    ud.excluiUsuario(u);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, u.getNome() + " precisa excluir todas as suas mensagens para que possa ser excluído!", "Não foi possível excluir o usuário " + u.getUsuario(), JOptionPane.PLAIN_MESSAGE, erroIcon2);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!", "Selecione algo!", JOptionPane.PLAIN_MESSAGE, erroIcon2);
+        }
+    }//GEN-LAST:event_mExcluirActionPerformed
+
+    private void bSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bSairActionPerformed
+
+    private void usuarioToTela() {
+        DefaultTableModel modelo = (DefaultTableModel) tUsuario.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Usuario> lista;
+        if (tFiltro.getText().equals("")) {
+            lista = ud.pesquisa();
+        } else {
+            lista = ud.pesquisa(tFiltro.getText());
+        }
+        for (Usuario u : lista) {
+            modelo.addRow(new Object[]{u.getUsuario(), u.getNome(), u.getSenha()});
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -133,12 +270,16 @@ public class TelaLocalizaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bFiltro;
+    private javax.swing.JButton bSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JMenuItem mEditar;
+    private javax.swing.JMenuItem mExcluir;
+    private javax.swing.JMenuItem mNovo;
+    private javax.swing.JTextField tFiltro;
+    private javax.swing.JTable tUsuario;
     // End of variables declaration//GEN-END:variables
 }

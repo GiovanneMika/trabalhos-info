@@ -5,12 +5,14 @@
  */
 package tela;
 
+import java.awt.Image;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vo.Usuario;
@@ -23,7 +25,12 @@ import persistencia.UsuarioDAO;
  * @author 2info2021
  */
 public class TelaLocalizaMensagem extends javax.swing.JFrame {
+//icone de erro
 
+    ImageIcon erroIcon = new ImageIcon(this.getClass().getResource("/imagens/erro.png"));
+    Image erroImage = erroIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+    ImageIcon erroIcon2 = new ImageIcon(erroImage);
+    
     EntityManager em;
     Usuario u = new Usuario();
     UsuarioDAO ud = new UsuarioDAO();
@@ -203,11 +210,11 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
-        usuarioToTela();
+        mensagemToTela();
     }//GEN-LAST:event_bOkActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        usuarioToTela();
+        mensagemToTela();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void tLerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tLerActionPerformed
@@ -241,7 +248,7 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
                 md.excluiMensagem(m);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!", "Selecione algo!", JOptionPane.PLAIN_MESSAGE, erroIcon2);
         }
     }//GEN-LAST:event_mExcluirActionPerformed
 
@@ -283,11 +290,11 @@ public class TelaLocalizaMensagem extends javax.swing.JFrame {
 
     public void setUsuario(Usuario u) {
         this.u = u;
-        usuarioToTela();
+        mensagemToTela();
 
     }
 
-    private void usuarioToTela() {
+    private void mensagemToTela() {
         tNome.setText(u.getNome());
         DefaultTableModel modelo = (DefaultTableModel) tMensagem.getModel();
         int i = modelo.getRowCount();

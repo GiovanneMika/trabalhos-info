@@ -5,9 +5,11 @@
  */
 package tela;
 
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import vo.Usuario;
 import vo.Mensagem;
@@ -20,6 +22,10 @@ import persistencia.UsuarioDAO;
  */
 public class TelaMensagem extends javax.swing.JFrame {
 
+    ImageIcon selecioneIcon = new ImageIcon(this.getClass().getResource("/imagens/erro.png"));
+    Image selecioneImage = selecioneIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+    ImageIcon selecioneIcon2 = new ImageIcon(selecioneImage);
+    
     Usuario u = new Usuario();
     Mensagem m = new Mensagem();
     MensagemDAO md = new MensagemDAO();
@@ -195,7 +201,7 @@ public class TelaMensagem extends javax.swing.JFrame {
                 this.dispose();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Destinatário inexistente!");
+            JOptionPane.showMessageDialog(this, "Destinatário inexistente!", "Não foi possível enviar a mensagem", JOptionPane.PLAIN_MESSAGE, selecioneIcon2);
         }
     }//GEN-LAST:event_bSalvarActionPerformed
 

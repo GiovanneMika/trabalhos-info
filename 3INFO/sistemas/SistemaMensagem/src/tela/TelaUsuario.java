@@ -5,17 +5,54 @@
  */
 package tela;
 
+import java.awt.Image;
+import java.text.DecimalFormat;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import persistencia.UsuarioDAO;
+import vo.Usuario;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaUsuario extends javax.swing.JFrame {
 
+    ImageIcon selecioneIcon = new ImageIcon(this.getClass().getResource("/imagens/erro.png"));
+    Image selecioneImage = selecioneIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+    ImageIcon selecioneIcon2 = new ImageIcon(selecioneImage);
+
+    Usuario u = new Usuario();
+    UsuarioDAO ud = new UsuarioDAO();
+    Boolean editando = false;
+
     /**
      * Creates new form TelaUsuario
      */
     public TelaUsuario() {
         initComponents();
+    }
+
+    private void usuarioToTela() {
+        tUsuario.setText(u.getUsuario());
+        tNome.setText(u.getNome());
+        tSenha.setText(u.getSenha());
+        editando = true;
+    }
+
+    private boolean telaToUsuario() {
+        editando = false;
+        u.setNome(tNome.getText());
+        u.setUsuario(tUsuario.getText());
+        u.setSenha(tSenha.getText());
+        return true;
+    }
+
+    public void setUsuario(Usuario u) {
+        this.u = u;
+        usuarioToTela();
+        tUsuario.setEditable(false);
     }
 
     /**
@@ -33,11 +70,11 @@ public class TelaUsuario extends javax.swing.JFrame {
         tUsuario = new javax.swing.JTextField();
         tNome = new javax.swing.JTextField();
         tSenha = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bSalvar = new javax.swing.JButton();
+        bCancelar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Usuário");
 
         jLabel1.setText("Usuário:");
@@ -46,9 +83,19 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         jLabel3.setText("Senha:");
 
-        jButton1.setText("Salvar");
+        bSalvar.setText("Salvar");
+        bSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancelar");
+        bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -72,9 +119,9 @@ public class TelaUsuario extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(tUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(bSalvar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(bCancelar)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,13 +141,36 @@ public class TelaUsuario extends javax.swing.JFrame {
                     .addComponent(tSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(bSalvar)
+                    .addComponent(bCancelar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+        if (!tUsuario.getText().equalsIgnoreCase("") && !tNome.getText().equalsIgnoreCase("") && !tSenha.getText().equalsIgnoreCase("")) {
+            if (!tUsuario.getText().equalsIgnoreCase("adm") && !tSenha.getText().equalsIgnoreCase("adm")) {
+                if (editando || !ud.verificaUsuario(tUsuario.getText())) {
+                    if (telaToUsuario()) {
+                        ud.salva(u);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Este usuário já existe!", "Mude o usuário", JOptionPane.PLAIN_MESSAGE, selecioneIcon2);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Senha e usuario 'adm' reservados para o administrador!", "Escolha outros nomes!", JOptionPane.PLAIN_MESSAGE, selecioneIcon2);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Um ou mais campos vazios", JOptionPane.PLAIN_MESSAGE, selecioneIcon2);
+        }
+    }//GEN-LAST:event_bSalvarActionPerformed
+
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,8 +208,8 @@ public class TelaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton bCancelar;
+    private javax.swing.JButton bSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

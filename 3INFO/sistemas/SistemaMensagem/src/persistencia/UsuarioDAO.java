@@ -58,8 +58,21 @@ public class UsuarioDAO {
         }
     }
 
+    public boolean verificaUsuario(String usuario) {
+        em.getTransaction().begin();
+        Query q = em.createNativeQuery("select * from Usuario where usuario like ? ");
+        q.setParameter(1, usuario);
+        if (!q.getResultList().isEmpty()) {
+            em.getTransaction().commit();
+            return true;
+        } else {
+            em.getTransaction().commit();
+            return false;
+        }
+    }
+
     public boolean verificaLoginAdm(String usuario, String senha) {
-        if (usuario.equalsIgnoreCase("Admin") && senha.equals("Admin")) {
+        if (usuario.equalsIgnoreCase("adm") && senha.equals("adm")) {
             return true;
         } else {
             return false;
@@ -67,7 +80,18 @@ public class UsuarioDAO {
     }
 
     public boolean verificaUsuarioExistente(String usuario) {
-        Query q = em.createNativeQuery("select * from Usuario where usuario like ? ");
+        Query q = em.createNativeQuery("select * from usuario where usuario like ? ");
+        q.setParameter(1, usuario);
+        if (!q.getResultList().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+//perguntar pro lucio se essas verificações são as mais eficazes
+
+    public boolean verificaMensagem(String usuario) {
+        Query q = em.createNativeQuery("select * from mensagem where destinatario like ? ");
         q.setParameter(1, usuario);
         if (!q.getResultList().isEmpty()) {
             return true;
