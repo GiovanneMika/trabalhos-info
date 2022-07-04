@@ -29,7 +29,7 @@ public class Mensagem implements Serializable {
     private String remetente;
     private String destinatario;
     private String assunto;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar data;
     private String mensagem;
 
