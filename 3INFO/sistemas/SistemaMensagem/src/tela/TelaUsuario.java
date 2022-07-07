@@ -44,8 +44,8 @@ public class TelaUsuario extends javax.swing.JFrame {
     private boolean telaToUsuario() {
         editando = false;
         u.setNome(tNome.getText());
-        u.setUsuario(tUsuario.getText());
-        u.setSenha(tSenha.getText());
+        u.setUsuario(tUsuario.getText().trim());
+        u.setSenha(tSenha.getText().trim());
         return true;
     }
 
@@ -149,21 +149,21 @@ public class TelaUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
-        if (!tUsuario.getText().equalsIgnoreCase("") && !tNome.getText().equalsIgnoreCase("") && !tSenha.getText().equalsIgnoreCase("")) {
+        if (!tUsuario.getText().trim().equalsIgnoreCase("") && !tNome.getText().trim().equalsIgnoreCase("") && !tSenha.getText().trim().equalsIgnoreCase("")) {
             if (!tUsuario.getText().equalsIgnoreCase("adm") && !tSenha.getText().equalsIgnoreCase("adm")) {
-                if (editando || !ud.verificaUsuario(tUsuario.getText())) {
+                if (editando || tUsuario.getText().length() <= 10 & !ud.verificaUsuario(tUsuario.getText())) {
                     if (telaToUsuario()) {
                         ud.salva(u);
                         this.dispose();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Este usuário já existe!", "Mude o usuário", JOptionPane.PLAIN_MESSAGE, selecioneIcon2);
+                    JOptionPane.showMessageDialog(this, "Este usuário já existe ou possui mais de 10 caracteres!", "Mude o usuário", JOptionPane.PLAIN_MESSAGE, selecioneIcon2);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Senha e usuario 'adm' reservados para o administrador!", "Escolha outros nomes!", JOptionPane.PLAIN_MESSAGE, selecioneIcon2);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Um ou mais campos vazios", JOptionPane.PLAIN_MESSAGE, selecioneIcon2);
+            JOptionPane.showMessageDialog(this, "dsfdsffsd ", "fdsdafs", JOptionPane.ERROR);
         }
     }//GEN-LAST:event_bSalvarActionPerformed
 

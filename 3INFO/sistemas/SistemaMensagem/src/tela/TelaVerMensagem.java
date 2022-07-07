@@ -31,7 +31,7 @@ public class TelaVerMensagem extends javax.swing.JFrame {
         tId.setText(Integer.toString(m.getId()));
         tRemetente.setText(m.getRemetente());
         tAssunto.setText(m.getAssunto());
-        SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         tData.setText(s.format(m.getData().getTime()));
         tMensagem.setText(m.getMensagem());
     }
