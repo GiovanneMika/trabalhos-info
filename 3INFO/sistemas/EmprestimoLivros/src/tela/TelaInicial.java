@@ -95,7 +95,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_bEmprestimosActionPerformed
 
     private void bAgricultorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgricultorActionPerformed
-        TelaLocalizaAgronomo tla = new TelaLocalizaAgronomo();
+        TelaLocalizaAgricultor tla = new TelaLocalizaAgricultor();
         tla.setVisible(true);
     }//GEN-LAST:event_bAgricultorActionPerformed
 

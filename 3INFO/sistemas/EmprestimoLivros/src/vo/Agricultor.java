@@ -12,12 +12,13 @@ import javax.persistence.Id;
  *
  * @author 2info2021
  */
+@Entity
 public class Agricultor {
 
     @Id
     private int id = 0;
     private String nome;
-    private String endereço;
+    private String endereco;
     private String telefone;
     private String email;
 
@@ -50,20 +51,6 @@ public class Agricultor {
     }
 
     /**
-     * @return the endereço
-     */
-    public String getEndereço() {
-        return endereço;
-    }
-
-    /**
-     * @param endereço the endereço to set
-     */
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
-    }
-
-    /**
      * @return the telefone
      */
     public String getTelefone() {
@@ -89,6 +76,20 @@ public class Agricultor {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return the endereco
+     */
+    public String getEndereco() {
+        return endereco;
+    }
+
+    /**
+     * @param endereco the endereco to set
+     */
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
 }

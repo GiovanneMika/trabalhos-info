@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class Emprestimo {
     @Id
     private int id=0;
-    private int idAgronomo;
+    private int idAgricultor;
     private int idMaquina;
     private Date dataEmprestimo;
     private Date dataPrevista;
@@ -36,21 +36,7 @@ public class Emprestimo {
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * @return the idAgronomo
-     */
-    public int getIdAgronomo() {
-        return idAgronomo;
-    }
-
-    /**
-     * @param idAgronomo the idAgronomo to set
-     */
-    public void setIdAgronomo(int idAgronomo) {
-        this.idAgronomo = idAgronomo;
-    }
+    }   
 
     /**
      * @return the idMaquina
@@ -120,5 +106,19 @@ public class Emprestimo {
      */
     public void setEmprestado(boolean emprestado) {
         this.emprestado = emprestado;
+    }
+
+    /**
+     * @return the idAgricultor
+     */
+    public int getIdAgricultor() {
+        return idAgricultor;
+    }
+
+    /**
+     * @param idAgricultor the idAgricultor to set
+     */
+    public void setIdAgricultor(int idAgricultor) {
+        this.idAgricultor = idAgricultor;
     }
 }

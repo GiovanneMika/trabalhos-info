@@ -17,6 +17,8 @@ public class Maquina {
 
     @Id
     private int id = 0;
+    private String nome;
+    private String fabricadora;
     private String descricao;
     private String anofab;
 
@@ -60,6 +62,34 @@ public class Maquina {
      */
     public void setAnofab(String anofab) {
         this.anofab = anofab;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the fabricadora
+     */
+    public String getFabricadora() {
+        return fabricadora;
+    }
+
+    /**
+     * @param fabricadora the fabricadora to set
+     */
+    public void setFabricadora(String fabricadora) {
+        this.fabricadora = fabricadora;
     }
 
 }

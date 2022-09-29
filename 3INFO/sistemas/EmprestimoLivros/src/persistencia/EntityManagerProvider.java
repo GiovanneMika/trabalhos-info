@@ -25,11 +25,11 @@ public class EntityManagerProvider {
     public static EntityManagerFactory getEMF() {
         if (emf == null) {
             Properties prop = new Properties();
-            prop.setProperty("javax.persistence.jdbc.url", "jdbc:mysql://192.168.198.106/emprestimo");
+            prop.setProperty("javax.persistence.jdbc.url", "jdbc:mysql://localhost/emprestimo");
             prop.setProperty("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
-            prop.setProperty("javax.persistence.jdbc.password", "root");
-            prop.setProperty("javax.persistence.jdbc.user", "vertrigo");
-            emf = Persistence.createEntityManagerFactory("SistemaMensagemPU", prop);
+            prop.setProperty("javax.persistence.jdbc.password", "vertrigo");
+            prop.setProperty("javax.persistence.jdbc.user", "root");
+            emf = Persistence.createEntityManagerFactory("SistemaCoppgPU", prop);
         }
         return emf;
     }

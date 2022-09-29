@@ -5,16 +5,21 @@
  */
 package tela;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import persistencia.AgricultorDAO;
+import vo.Agricultor;
+
 /**
  *
  * @author 2info2021
  */
-public class TelaLocalizaAgronomo extends javax.swing.JFrame {
-
+public class TelaLocalizaAgricultor extends javax.swing.JFrame {
+    AgricultorDAO ad = new AgricultorDAO();
     /**
      * Creates new form TelaLocalizaAgronomo
      */
-    public TelaLocalizaAgronomo() {
+    public TelaLocalizaAgricultor() {
         initComponents();
     }
 
@@ -28,12 +33,24 @@ public class TelaLocalizaAgronomo extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tLocalizaAgricultor = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        bNovo = new javax.swing.JMenuItem();
+        bEdita = new javax.swing.JMenuItem();
+        bExclui = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agricultores");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tLocalizaAgricultor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -44,7 +61,27 @@ public class TelaLocalizaAgronomo extends javax.swing.JFrame {
                 "Id", "Nome", "Endereço", "Telefone", "Email"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tLocalizaAgricultor);
+
+        jMenu1.setText("Ações");
+
+        bNovo.setText("Novo Agricultor");
+        bNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNovoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bNovo);
+
+        bEdita.setText("Editar Agricultor");
+        jMenu1.add(bEdita);
+
+        bExclui.setText("Exclui Agricultor");
+        jMenu1.add(bExclui);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,14 +95,33 @@ public class TelaLocalizaAgronomo extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        preencheTabelaAgricultor();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void bNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNovoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bNovoActionPerformed
+    private void preencheTabelaAgricultor() {
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaAgricultor.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Agricultor> lista;
+        lista = ad.pesquisa();
+        for (Agricultor a : lista) {
+            modelo.addRow(new Object[]{a.getId(), a.getNome(),a.getEndereco(),a.getTelefone(), a.getEmail()});
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -83,26 +139,32 @@ public class TelaLocalizaAgronomo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLocalizaAgronomo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLocalizaAgricultor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLocalizaAgronomo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLocalizaAgricultor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLocalizaAgronomo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLocalizaAgricultor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLocalizaAgronomo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLocalizaAgricultor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLocalizaAgronomo().setVisible(true);
+                new TelaLocalizaAgricultor().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem bEdita;
+    private javax.swing.JMenuItem bExclui;
+    private javax.swing.JMenuItem bNovo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tLocalizaAgricultor;
     // End of variables declaration//GEN-END:variables
 }
