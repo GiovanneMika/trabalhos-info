@@ -12,7 +12,7 @@ import javax.persistence.Id;
  *
  * @author 2info2021
  */
-public class Agronomo {
+public class Agricultor {
 
     @Id
     private int id = 0;

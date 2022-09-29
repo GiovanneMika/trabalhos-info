@@ -32,7 +32,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bAgricultor.setText("Ver Agricultor");
+        bAgricultor.setText("Ver Agricultores");
         bAgricultor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAgricultorActionPerformed(evt);
