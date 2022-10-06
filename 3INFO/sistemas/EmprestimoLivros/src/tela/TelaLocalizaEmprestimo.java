@@ -28,12 +28,18 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tLocalizaEmprestimo = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        bDevolve = new javax.swing.JMenu();
+        bNovo = new javax.swing.JMenuItem();
+        bDevolver = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Emprestimos");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tLocalizaEmprestimo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -44,7 +50,33 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
                 "Id", "Id Agricultor", "Id Maquina", "Data de Emprestimo", "Data Prevista", "Data de Devolução", "Emprestado"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tLocalizaEmprestimo);
+
+        jButton1.setText("Ver Atrasos");
+
+        jButton2.setText("Ver Todos");
+
+        bDevolve.setText("Ações");
+
+        bNovo.setText("Novo Emprestimo");
+        bNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNovoActionPerformed(evt);
+            }
+        });
+        bDevolve.add(bNovo);
+
+        bDevolver.setText("Devolver Emprestimo");
+        bDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDevolverActionPerformed(evt);
+            }
+        });
+        bDevolve.add(bDevolver);
+
+        jMenuBar1.add(bDevolve);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,19 +84,39 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNovoActionPerformed
+        TelaEmprestimo te = new TelaEmprestimo();
+        te.setVisible(true);
+    }//GEN-LAST:event_bNovoActionPerformed
+
+    private void bDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDevolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bDevolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,7 +154,13 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu bDevolve;
+    private javax.swing.JMenuItem bDevolver;
+    private javax.swing.JMenuItem bNovo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tLocalizaEmprestimo;
     // End of variables declaration//GEN-END:variables
 }
