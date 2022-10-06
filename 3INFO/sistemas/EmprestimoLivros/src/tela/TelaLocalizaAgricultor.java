@@ -6,6 +6,7 @@
 package tela;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.AgricultorDAO;
 import vo.Agricultor;
@@ -74,9 +75,19 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
         jMenu1.add(bNovo);
 
         bEdita.setText("Editar Agricultor");
+        bEdita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditaActionPerformed(evt);
+            }
+        });
         jMenu1.add(bEdita);
 
         bExclui.setText("Exclui Agricultor");
+        bExclui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExcluiActionPerformed(evt);
+            }
+        });
         jMenu1.add(bExclui);
 
         jMenuBar1.add(jMenu1);
@@ -108,8 +119,35 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void bNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNovoActionPerformed
-        // TODO add your handling code here:
+        TelaAgricultor ta = new TelaAgricultor();
+        ta.setVisible(true);
     }//GEN-LAST:event_bNovoActionPerformed
+
+    private void bEditaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditaActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaAgricultor.getModel();
+        if (tLocalizaAgricultor.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocalizaAgricultor.getSelectedRow(), 0);
+            TelaAgricultor ta = new TelaAgricultor();
+            ta.setAgricultor(ad.localiza(id));
+            ta.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bEditaActionPerformed
+
+    private void bExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluiActionPerformed
+        //tem que fazer um if vendo se o agricultor tem algo emprestado ainda
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaAgricultor.getModel();
+        if (tLocalizaAgricultor.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocalizaAgricultor.getSelectedRow(), 0);
+            Agricultor a = ad.localiza(id);
+            if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + a.getNome() + "?") == JOptionPane.YES_OPTION) {
+                ad.exclui(a);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bExcluiActionPerformed
     private void preencheTabelaAgricultor() {
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaAgricultor.getModel();
         int i = modelo.getRowCount();

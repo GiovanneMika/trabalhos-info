@@ -130,6 +130,7 @@
     <Component class="javax.swing.JTextField" name="tId">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tNome">

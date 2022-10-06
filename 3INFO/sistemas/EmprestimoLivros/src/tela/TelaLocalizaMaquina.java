@@ -35,13 +35,13 @@ public class TelaLocalizaMaquina extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Descrição", "Ano de Fabricação"
+                "Id", "Nome", "Fabricadora", "Descrição", "Ano de Fabricação"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

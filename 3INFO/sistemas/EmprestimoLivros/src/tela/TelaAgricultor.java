@@ -5,17 +5,41 @@
  */
 package tela;
 
+import persistencia.AgricultorDAO;
+import vo.Agricultor;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaAgricultor extends javax.swing.JFrame {
 
+    Agricultor a = new Agricultor();
+    AgricultorDAO ad = new AgricultorDAO();
+
     /**
      * Creates new form TelaAgricultor
      */
     public TelaAgricultor() {
         initComponents();
+    }
+
+    private void agricultorToTela() {
+        tId.setText(Integer.toString(a.getId()));
+        tNome.setText(a.getNome());
+        tEndereco.setText(a.getEndereco());
+        tTelefone.setText(a.getTelefone());
+        tEmail.setText(a.getEmail());
+    }
+
+    private boolean telaToAgricultor() {
+        a.setId(Integer.parseInt(tId.getText()));
+        a.setNome(tNome.getText());
+        a.setEndereco(tEndereco.getText());
+        a.setTelefone(tTelefone.getText());
+        a.setEmail(tEmail.getText());
+        
+        return true;
     }
 
     /**
@@ -53,6 +77,7 @@ public class TelaAgricultor extends javax.swing.JFrame {
         jLabel5.setText("Email");
 
         tId.setEditable(false);
+        tId.setText("0");
 
         bSalvar.setText("Salvar");
         bSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -136,12 +161,21 @@ public class TelaAgricultor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
-
+        if (telaToAgricultor()) {
+            ad.salva(a);
+            this.dispose();
+        }
     }//GEN-LAST:event_bSalvarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    public void setAgricultor(Agricultor a) {
+        this.a = a;
+        agricultorToTela();
+
+    }
 
     /**
      * @param args the command line arguments
