@@ -5,11 +5,21 @@
  */
 package tela;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vo.Maquina;
+import persistencia.MaquinaDAO;
+import vo.Maquina;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaLocalizaMaquina extends javax.swing.JFrame {
+
+    Maquina m = new Maquina();
+    MaquinaDAO md = new MaquinaDAO();
 
     /**
      * Creates new form TelaLocalizaMaquina
@@ -28,12 +38,24 @@ public class TelaLocalizaMaquina extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tLocalizaMaquina = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        bNovo = new javax.swing.JMenuItem();
+        bEdita = new javax.swing.JMenuItem();
+        bExclui = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Maquinas");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tLocalizaMaquina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -43,8 +65,46 @@ public class TelaLocalizaMaquina extends javax.swing.JFrame {
             new String [] {
                 "Id", "Nome", "Fabricadora", "Descrição", "Ano de Fabricação"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tLocalizaMaquina);
+
+        jMenu1.setText("Ações");
+
+        bNovo.setText("Nova Maquina");
+        bNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNovoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bNovo);
+
+        bEdita.setText("Editar Maquina");
+        bEdita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bEdita);
+
+        bExclui.setText("Excluir Maquina");
+        bExclui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExcluiActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bExclui);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,7 +118,7 @@ public class TelaLocalizaMaquina extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -66,6 +126,55 @@ public class TelaLocalizaMaquina extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNovoActionPerformed
+        TelaMaquina tm = new TelaMaquina();
+        tm.setVisible(true);
+    }//GEN-LAST:event_bNovoActionPerformed
+
+    private void bEditaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditaActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaMaquina.getModel();
+        if (tLocalizaMaquina.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocalizaMaquina.getSelectedRow(), 0);
+            TelaMaquina ta = new TelaMaquina();
+            ta.setMaquina(md.localiza(id));
+            ta.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bEditaActionPerformed
+
+    private void bExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluiActionPerformed
+        //tem que fazer um if vendo se o agricultor tem algo emprestado ainda
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaMaquina.getModel();
+        if (tLocalizaMaquina.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocalizaMaquina.getSelectedRow(), 0);
+            Maquina a = md.localiza(id);
+            if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + a.getNome() + "?") == JOptionPane.YES_OPTION) {
+                md.exclui(a);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bExcluiActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        preencheTabelaAgricultor();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    
+    
+    private void preencheTabelaAgricultor() {
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaMaquina.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Maquina> lista;
+        lista = md.pesquisa();
+        for (Maquina m : lista) {
+            modelo.addRow(new Object[]{m.getId(), m.getNome(), m.getFabricadora(),m.getDescricao(), m.getAnofab()});
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -101,8 +210,26 @@ public class TelaLocalizaMaquina extends javax.swing.JFrame {
         });
     }
 
+    private void preencheTabelaMaquina() {
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaMaquina.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Maquina> lista;
+        lista = md.pesquisa();
+        for (Maquina m : lista) {
+            modelo.addRow(new Object[]{m.getId(), m.getNome(), m.getFabricadora(), m.getDescricao(), m.getAnofab()});
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem bEdita;
+    private javax.swing.JMenuItem bExclui;
+    private javax.swing.JMenuItem bNovo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tLocalizaMaquina;
     // End of variables declaration//GEN-END:variables
 }

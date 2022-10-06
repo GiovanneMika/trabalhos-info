@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 29-Set-2022 às 20:24
+-- Generation Time: 06-Out-2022 às 04:05
 -- Versão do servidor: 5.7.25
 -- versão do PHP: 7.1.26
 
@@ -74,6 +74,13 @@ CREATE TABLE `maquina` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Extraindo dados da tabela `maquina`
+--
+
+INSERT INTO `maquina` (`id`, `nome`, `fabricadora`, `descricao`, `anofab`) VALUES
+(1, 'Colheitadeira 2', 'Volvo', 'Modelo 20320 amarela turbinada', '2003');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -103,7 +110,7 @@ ALTER TABLE `maquina`
 -- AUTO_INCREMENT for table `agricultor`
 --
 ALTER TABLE `agricultor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `emprestimo`
@@ -115,7 +122,7 @@ ALTER TABLE `emprestimo`
 -- AUTO_INCREMENT for table `maquina`
 --
 ALTER TABLE `maquina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
