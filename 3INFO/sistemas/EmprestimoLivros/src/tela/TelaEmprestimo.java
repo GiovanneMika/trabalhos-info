@@ -228,7 +228,11 @@ public class TelaEmprestimo extends javax.swing.JFrame {
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
         if (telaToEmprestimo()) {
-            ed.salva(e);
+            if (!ed.localiza(Integer.parseInt(tId.getText())).isEmprestado()) {
+                ed.salva(e);
+            }else{
+                
+            }
             this.dispose();
         }
     }//GEN-LAST:event_bSalvaActionPerformed

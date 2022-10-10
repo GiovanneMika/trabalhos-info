@@ -1,6 +1,7 @@
 package persistencia;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -41,8 +42,9 @@ public class EmprestimoDAO {
         return lista;
     }
 
-    public List<Emprestimo> pesquisaAtrasos(Calendar dataprev, Calendar dataatual) {
-        Query q = em.createNativeQuery("select * from emprestimo where dataprev < dataatual by dataprev ", Emprestimo.class);
+    public List<Emprestimo> pesquisaAtrasos(Date dataatual) {
+        Query q = em.createNativeQuery("select * from emprestimo where dataprevista < ? order by dataprevista ", Emprestimo.class);
+        q.setParameter(1, dataatual);
         List<Emprestimo> lista = q.getResultList();
         return lista;
     }
