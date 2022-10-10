@@ -8,21 +8,27 @@ package vo;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author 2info2021
+ *
  */
+@Entity
 public class Emprestimo {
+
     @Id
-    private int id=0;
+    private int id = 0;
     private int idAgricultor;
     private int idMaquina;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataEmprestimo;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataPrevista;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataDevolucao;
     private boolean emprestado;
-    
 
     /**
      * @return the id
@@ -36,7 +42,7 @@ public class Emprestimo {
      */
     public void setId(int id) {
         this.id = id;
-    }   
+    }
 
     /**
      * @return the idMaquina

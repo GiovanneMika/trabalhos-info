@@ -5,11 +5,24 @@
  */
 package tela;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import persistencia.EmprestimoDAO;
+import vo.Emprestimo;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
+
+    EmprestimoDAO ed = new EmprestimoDAO();
+    Emprestimo e = new Emprestimo();
+
+    SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Creates new form TelaLocalizaEmprestimo
@@ -30,7 +43,12 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tLocalizaEmprestimo = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bVerTodos = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         bDevolve = new javax.swing.JMenu();
         bNovo = new javax.swing.JMenuItem();
@@ -38,6 +56,13 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Emprestimos");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         tLocalizaEmprestimo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -54,7 +79,18 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
 
         jButton1.setText("Ver Atrasos");
 
-        jButton2.setText("Ver Todos");
+        bVerTodos.setText("Ver Todos");
+        bVerTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVerTodosActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Procurar por Maquina:");
+
+        jLabel2.setText("Procurar por Agricultor:");
+
+        jButton3.setText("Procurar");
 
         bDevolve.setText("Ações");
 
@@ -85,24 +121,50 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSpinner1)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(220, 220, 220)
+                                .addComponent(bVerTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel1)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bVerTodos)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton3)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -117,6 +179,14 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
     private void bDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDevolverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bDevolverActionPerformed
+
+    private void bVerTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerTodosActionPerformed
+        preencheTabelaEmprestimo();
+    }//GEN-LAST:event_bVerTodosActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        preencheTabelaEmprestimo();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -153,14 +223,46 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
         });
     }
 
+    private void preencheTabelaEmprestimo() {
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaEmprestimo.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Emprestimo> lista;
+        lista = ed.pesquisa();
+        for (Emprestimo e : lista) {
+            modelo.addRow(new Object[]{e.getId(), e.getIdAgricultor(), e.getIdMaquina(), s.format(e.getDataEmprestimo()), s.format(e.getDataPrevista()), s.format(e.getDataDevolucao()), e.isEmprestado()});
+        }
+    }
+
+    private void preencheTabelaEmprestimoAtrasado() {
+        LocalDateTime agora = LocalDateTime.now();
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaEmprestimo.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Emprestimo> lista;
+        lista = ed.pesquisaAtrasos(e.getDataPrevista(), agora.setTime(date));
+        for (Emprestimo e : lista) {
+            modelo.addRow(new Object[]{e.getId(), e.getIdAgricultor(), e.getIdMaquina(), s.format(e.getDataEmprestimo()), s.format(e.getDataPrevista()), s.format(e.getDataDevolucao()), e.isEmprestado()});
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu bDevolve;
     private javax.swing.JMenuItem bDevolver;
     private javax.swing.JMenuItem bNovo;
+    private javax.swing.JButton bVerTodos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable tLocalizaEmprestimo;
     // End of variables declaration//GEN-END:variables
 }

@@ -71,14 +71,20 @@ public class TelaEmprestimo extends javax.swing.JFrame {
     }*/
     private boolean telaToEmprestimo() {
         e.setId(Integer.parseInt(tId.getText()));
-        e.setIdAgricultor(Integer.parseInt(ad.pesquisa(cAgricultor.getSelectedItem().toString()).toString()));
-        e.setIdMaquina(Integer.parseInt(md.pesquisa(cMaquina.getSelectedItem().toString()).toString()));
+        e.setIdAgricultor(ad.pesquisa(cAgricultor.getSelectedItem().toString()).get(0).getId());
+        e.setIdMaquina(md.pesquisa(cMaquina.getSelectedItem().toString()).get(0).getId());
         e.setDataEmprestimo(Calendar.getInstance().getTime());
         try {
-            e.setDataPrevista(s.parse(tDatadev.getText()));
+            e.setDataPrevista(s.parse(tDataprev.getText()));
         } catch (ParseException ex) {
             Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            e.setDataDevolucao(s.parse("01/01/9999"));
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        e.setEmprestado(true);
 
         return true;
     }
@@ -99,7 +105,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         tId = new javax.swing.JTextField();
         cMaquina = new javax.swing.JComboBox<>();
         cAgricultor = new javax.swing.JComboBox<>();
-        tDatadev = new javax.swing.JFormattedTextField();
+        tDataprev = new javax.swing.JFormattedTextField();
         bSalva = new javax.swing.JButton();
         bCancela = new javax.swing.JButton();
 
@@ -128,13 +134,13 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         cAgricultor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         try {
-            tDatadev.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            tDataprev.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        tDatadev.addActionListener(new java.awt.event.ActionListener() {
+        tDataprev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDatadevActionPerformed(evt);
+                tDataprevActionPerformed(evt);
             }
         });
 
@@ -174,7 +180,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(tDatadev, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tDataprev, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(bSalva)
@@ -200,7 +206,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tDatadev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tDataprev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bSalva)
@@ -211,9 +217,9 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDatadevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDatadevActionPerformed
+    private void tDataprevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDataprevActionPerformed
 
-    }//GEN-LAST:event_tDatadevActionPerformed
+    }//GEN-LAST:event_tDataprevActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         preencheComboMaquina();
@@ -275,7 +281,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JFormattedTextField tDatadev;
+    private javax.swing.JFormattedTextField tDataprev;
     private javax.swing.JTextField tId;
     // End of variables declaration//GEN-END:variables
 }

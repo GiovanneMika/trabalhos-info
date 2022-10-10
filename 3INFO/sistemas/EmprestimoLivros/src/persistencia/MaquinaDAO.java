@@ -40,13 +40,13 @@ public class MaquinaDAO {
     }
 
     public List<Maquina> pesquisa() {
-        Query q = em.createQuery("select a from Maquina as a order by a.nome");
+        Query q = em.createQuery("select m from Maquina as m order by m.nome");
         List<Maquina> lista = q.getResultList();
         return lista;
     }
 
     public List<Maquina> pesquisa(String nome) {
-        Query q = em.createNativeQuery("select * from agricultor where nome like ? order by nome ", Maquina.class);
+        Query q = em.createNativeQuery("select * from maquina where nome like ? order by nome ", Maquina.class);
         q.setParameter(1, '%' + nome + '%');
         List<Maquina> lista = q.getResultList();
         return lista;
