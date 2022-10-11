@@ -56,4 +56,17 @@ public class EmprestimoDAO {
         return lista;
     }
 
+    public List<Emprestimo> pesquisaIdmaq(Integer idmaq) {
+        Query q = em.createNativeQuery("select * from emprestimo where idmaquina = ? order by dataprevista ", Emprestimo.class);
+        q.setParameter(1, idmaq);
+        List<Emprestimo> lista = q.getResultList();
+        return lista;
+    }
+    public List<Emprestimo> pesquisaIdagri(Integer idagri) {
+        Query q = em.createNativeQuery("select * from emprestimo where idagricultor = ? order by dataprevista ", Emprestimo.class);
+        q.setParameter(1, idagri);
+        List<Emprestimo> lista = q.getResultList();
+        return lista;
+    }
+
 }
