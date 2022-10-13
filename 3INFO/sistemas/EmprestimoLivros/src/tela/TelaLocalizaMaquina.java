@@ -8,6 +8,7 @@ package tela;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import persistencia.EmprestimoDAO;
 import vo.Maquina;
 import persistencia.MaquinaDAO;
 import vo.Maquina;
@@ -20,6 +21,7 @@ public class TelaLocalizaMaquina extends javax.swing.JFrame {
 
     Maquina m = new Maquina();
     MaquinaDAO md = new MaquinaDAO();
+    EmprestimoDAO ed = new EmprestimoDAO();
 
     /**
      * Creates new form TelaLocalizaMaquina
@@ -173,12 +175,16 @@ public class TelaLocalizaMaquina extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaMaquina.getModel();
         if (tLocalizaMaquina.getSelectedRow() != -1) {
             int id = (Integer) modelo.getValueAt(tLocalizaMaquina.getSelectedRow(), 0);
-            Maquina a = md.localiza(id);
-            if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + a.getNome() + "?") == JOptionPane.YES_OPTION) {
-                md.exclui(a);
+            if (ed.pesquisaIdmaq(id).isEmpty()) {
+                Maquina a = md.localiza(id);
+                if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + a.getNome() + "?") == JOptionPane.YES_OPTION) {
+                    md.exclui(a);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Essa máquina possui registro de emprestimos!");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
         }
     }//GEN-LAST:event_bExcluiActionPerformed
 

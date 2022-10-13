@@ -43,7 +43,7 @@ public class EmprestimoDAO {
     }
 
     public List<Emprestimo> pesquisaAtrasos(Date dataatual) {
-        Query q = em.createNativeQuery("select * from emprestimo where dataprevista < ? order by dataprevista ", Emprestimo.class);
+        Query q = em.createNativeQuery("select * from emprestimo where dataprevista < ? and emprestado=1 order by dataprevista ", Emprestimo.class);
         q.setParameter(1, dataatual);
         List<Emprestimo> lista = q.getResultList();
         return lista;
@@ -62,8 +62,15 @@ public class EmprestimoDAO {
         return lista;
     }
 
+    public List<Emprestimo> pesquisaMaq(Integer idmaq) {
+        Query q = em.createNativeQuery("select * from emprestimo where idmaquina = ? and emprestado=1 order by dataemprestimo", Emprestimo.class);
+        q.setParameter(1, idmaq);
+        List<Emprestimo> lista = q.getResultList();
+        return lista;
+    }
+
     public List<Emprestimo> pesquisaIdmaq(Integer idmaq) {
-        Query q = em.createNativeQuery("select * from emprestimo where idmaquina = ? order by id desc ", Emprestimo.class);
+        Query q = em.createNativeQuery("select * from emprestimo where idmaquina = ? order by dataemprestimo", Emprestimo.class);
         q.setParameter(1, idmaq);
         List<Emprestimo> lista = q.getResultList();
         return lista;

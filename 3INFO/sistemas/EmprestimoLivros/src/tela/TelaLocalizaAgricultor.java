@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.AgricultorDAO;
+import persistencia.EmprestimoDAO;
 import vo.Agricultor;
 
 /**
@@ -18,6 +19,7 @@ import vo.Agricultor;
 public class TelaLocalizaAgricultor extends javax.swing.JFrame {
 
     AgricultorDAO ad = new AgricultorDAO();
+    EmprestimoDAO ed = new EmprestimoDAO();
 
     /**
      * Creates new form TelaLocalizaAgronomo
@@ -167,9 +169,13 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaAgricultor.getModel();
         if (tLocalizaAgricultor.getSelectedRow() != -1) {
             int id = (Integer) modelo.getValueAt(tLocalizaAgricultor.getSelectedRow(), 0);
-            Agricultor a = ad.localiza(id);
-            if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + a.getNome() + "?") == JOptionPane.YES_OPTION) {
-                ad.exclui(a);
+            if (ed.pesquisaIdagri(id).isEmpty()) {
+                Agricultor a = ad.localiza(id);
+                if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + a.getNome() + "?") == JOptionPane.YES_OPTION) {
+                    ad.exclui(a);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Esse agricultor possui registro de emprestimos!");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Não há nada selecionado!");

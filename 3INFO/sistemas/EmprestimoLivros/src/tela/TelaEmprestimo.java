@@ -48,7 +48,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         lista = md.pesquisa();
         Vector listamaq = new Vector();
         for (Maquina m : lista) {
-            listamaq.add(m.getNome());
+            listamaq.add(m.getId() + " - " + m.getNome());
         }
         cMaquina.setModel(new JComboBox(listamaq).getModel());
     }
@@ -58,7 +58,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         lista = ad.pesquisa();
         Vector listaagr = new Vector();
         for (Agricultor a : lista) {
-            listaagr.add(a.getNome());
+            listaagr.add(a.getId() + " - " + a.getNome());
         }
         cAgricultor.setModel(new JComboBox(listaagr).getModel());
     }
@@ -72,8 +72,11 @@ public class TelaEmprestimo extends javax.swing.JFrame {
     }*/
     private boolean telaToEmprestimo() {
         e.setId(Integer.parseInt(tId.getText()));
-        e.setIdAgricultor(ad.pesquisa(cAgricultor.getSelectedItem().toString()).get(0).getId());
-        e.setIdMaquina(md.pesquisa(cMaquina.getSelectedItem().toString()).get(0).getId());
+//      e.setIdAgricultor(ad.pesquisa(cAgricultor.getSelectedItem().toString()).get(0).getId());
+        int positionAgri = cAgricultor.getSelectedItem().toString().indexOf(" - ");
+        int positionMaq = cMaquina.getSelectedItem().toString().indexOf(" - ");
+        e.setIdAgricultor(Integer.parseInt(cAgricultor.getSelectedItem().toString().substring(0, positionAgri)));
+        e.setIdMaquina(Integer.parseInt(cMaquina.getSelectedItem().toString().substring(0, positionMaq)));
         e.setDataEmprestimo(Calendar.getInstance().getTime());
         try {
             e.setDataPrevista(s.parse(tDataprev.getText()));
@@ -229,16 +232,20 @@ public class TelaEmprestimo extends javax.swing.JFrame {
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
         if (telaToEmprestimo()) {
-            if (tDataprev.isEditValid()) {
-                System.out.println(ed.pesquisaIdmaq(md.pesquisa(cMaquina.getSelectedItem().toString()).get(0).getId()).get(0).isEmprestado());
-                if (ed.pesquisaIdmaq(md.pesquisa(cMaquina.getItemAt(0)).get(0).getId()).isEmpty() | !ed.pesquisaIdmaq(md.pesquisa(cMaquina.getSelectedItem().toString()).get(0).getId()).get(0).isEmprestado()) {
+            int positionAgri = cAgricultor.getSelectedItem().toString().indexOf(" - ");
+            int positionMaq = cMaquina.getSelectedItem().toString().indexOf(" - ");
+            try {
+
+                Date dev = s.parse(tDataprev.getText());
+                if (ed.pesquisaIdmaq(Integer.parseInt(cMaquina.getSelectedItem().toString().substring(0, positionMaq))).isEmpty() || ed.pesquisaMaq(Integer.parseInt(cMaquina.getSelectedItem().toString().substring(0, positionMaq))).isEmpty()) {
                     ed.salva(e);
                 } else {
                     JOptionPane.showMessageDialog(this, "Esta maquina ja esta emprestada!");
                 }
-            } else {
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Preencha direito!");
             }
+
             this.dispose();
         }
     }//GEN-LAST:event_bSalvaActionPerformed

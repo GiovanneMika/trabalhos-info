@@ -85,7 +85,15 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
             new String [] {
                 "Id", "Id Agricultor", "Agricultor", "Id Maquina", "Maquina", "Data de Emprestimo", "Data Prevista", "Data de Devolução", "Emprestado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tLocalizaEmprestimo);
 
         bVeratrasos.setText("Ver Atrasos");
