@@ -78,11 +78,15 @@
                               <Component id="bProcuraAgricultor" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="bVeratrasos" alignment="1" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="bAtivos" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="bVeratrasos" min="-2" pref="92" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="bVerTodos" alignment="1" min="-2" pref="92" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -103,7 +107,10 @@
                               <Component id="sIdmaq" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="bProcuraMaquina" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="bVeratrasos" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="bVeratrasos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bAtivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -230,8 +237,18 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="sIdmaq">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="sIdagri">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="bProcuraMaquina">
       <Properties>
@@ -256,6 +273,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Bem-Vindo"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="bAtivos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver emprestimos ativos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAtivosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

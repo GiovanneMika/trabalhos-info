@@ -14,6 +14,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import persistencia.AgricultorDAO;
 import persistencia.EmprestimoDAO;
 import persistencia.MaquinaDAO;
@@ -228,10 +229,15 @@ public class TelaEmprestimo extends javax.swing.JFrame {
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
         if (telaToEmprestimo()) {
-            if (!ed.localiza(Integer.parseInt(tId.getText())).isEmprestado()) {
-                ed.salva(e);
-            }else{
-                
+            if (tDataprev.isEditValid()) {
+                System.out.println(ed.pesquisaIdmaq(md.pesquisa(cMaquina.getSelectedItem().toString()).get(0).getId()).get(0).isEmprestado());
+                if (ed.pesquisaIdmaq(md.pesquisa(cMaquina.getItemAt(0)).get(0).getId()).isEmpty() | !ed.pesquisaIdmaq(md.pesquisa(cMaquina.getSelectedItem().toString()).get(0).getId()).get(0).isEmprestado()) {
+                    ed.salva(e);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Esta maquina ja esta emprestada!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Preencha direito!");
             }
             this.dispose();
         }

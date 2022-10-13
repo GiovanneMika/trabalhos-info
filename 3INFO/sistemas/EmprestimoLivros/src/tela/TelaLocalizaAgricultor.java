@@ -16,7 +16,9 @@ import vo.Agricultor;
  * @author 2info2021
  */
 public class TelaLocalizaAgricultor extends javax.swing.JFrame {
+
     AgricultorDAO ad = new AgricultorDAO();
+
     /**
      * Creates new form TelaLocalizaAgronomo
      */
@@ -35,6 +37,9 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tLocalizaAgricultor = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        tFiltro = new javax.swing.JTextField();
+        bFiltro = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         bNovo = new javax.swing.JMenuItem();
@@ -63,6 +68,15 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tLocalizaAgricultor);
+
+        jLabel1.setText("Filtro:");
+
+        bFiltro.setText("Ok");
+        bFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bFiltroActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Ações");
 
@@ -102,11 +116,24 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bFiltro)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bFiltro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -148,6 +175,10 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
         }
     }//GEN-LAST:event_bExcluiActionPerformed
+
+    private void bFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFiltroActionPerformed
+        preencheTabelaAgricultor();
+    }//GEN-LAST:event_bFiltroActionPerformed
     private void preencheTabelaAgricultor() {
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaAgricultor.getModel();
         int i = modelo.getRowCount();
@@ -155,11 +186,16 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
             modelo.removeRow(i);
         }
         List<Agricultor> lista;
-        lista = ad.pesquisa();
+        if (tFiltro.getText().equals("")) {
+            lista = ad.pesquisa();
+        } else {
+            lista = ad.pesquisa(tFiltro.getText());
+        }
         for (Agricultor a : lista) {
-            modelo.addRow(new Object[]{a.getId(), a.getNome(),a.getEndereco(),a.getTelefone(), a.getEmail()});
+            modelo.addRow(new Object[]{a.getId(), a.getNome(), a.getEndereco(), a.getTelefone(), a.getEmail()});
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -199,10 +235,13 @@ public class TelaLocalizaAgricultor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem bEdita;
     private javax.swing.JMenuItem bExclui;
+    private javax.swing.JButton bFiltro;
     private javax.swing.JMenuItem bNovo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField tFiltro;
     private javax.swing.JTable tLocalizaAgricultor;
     // End of variables declaration//GEN-END:variables
 }

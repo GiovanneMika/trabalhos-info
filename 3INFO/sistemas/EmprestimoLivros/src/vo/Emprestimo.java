@@ -7,6 +7,8 @@ package vo;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 
@@ -19,6 +21,7 @@ import javax.persistence.Temporal;
 public class Emprestimo {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id = 0;
     private int idAgricultor;
     private int idMaquina;

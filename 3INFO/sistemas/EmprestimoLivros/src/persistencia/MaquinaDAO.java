@@ -51,7 +51,5 @@ public class MaquinaDAO {
         List<Maquina> lista = q.getResultList();
         return lista;
     }
-    
 
 }
-

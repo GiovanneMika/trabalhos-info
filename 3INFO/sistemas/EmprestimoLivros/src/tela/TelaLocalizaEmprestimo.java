@@ -23,6 +23,8 @@ import vo.Emprestimo;
  */
 public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
 
+    Date dataatual = new Date();
+
     EmprestimoDAO ed = new EmprestimoDAO();
     Emprestimo e = new Emprestimo();
     AgricultorDAO ad = new AgricultorDAO();
@@ -57,6 +59,7 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
         bProcuraMaquina = new javax.swing.JButton();
         bProcuraAgricultor = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        bAtivos = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         bDevolve = new javax.swing.JMenu();
         bNovo = new javax.swing.JMenuItem();
@@ -103,6 +106,10 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
 
         jLabel2.setText("Procurar por Agricultor:");
 
+        sIdmaq.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        sIdagri.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         bProcuraMaquina.setText("Procurar");
         bProcuraMaquina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +126,13 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
         jLabel3.setText("Bem-Vindo");
+
+        bAtivos.setText("Ver emprestimos ativos");
+        bAtivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAtivosActionPerformed(evt);
+            }
+        });
 
         bDevolve.setText("Ações");
 
@@ -164,11 +178,14 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
                                 .addComponent(sIdagri, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
                                 .addComponent(bProcuraAgricultor)))
-                        .addGap(116, 116, 116)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bVeratrasos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(bAtivos)
+                                .addGap(18, 18, 18)
+                                .addComponent(bVeratrasos, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(bVerTodos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -183,7 +200,9 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addComponent(sIdmaq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(bProcuraMaquina))
-                            .addComponent(bVeratrasos))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(bVeratrasos)
+                                .addComponent(bAtivos)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bVerTodos)
@@ -212,6 +231,8 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
             Emprestimo e = ed.localiza(id);
             if (JOptionPane.showConfirmDialog(this, "Confirma a devolução de " + md.localiza(e.getIdMaquina()).getNome() + "?") == JOptionPane.YES_OPTION) {
                 e.setEmprestado(false);
+                e.setDataDevolucao(dataatual);
+                ed.salva(e);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
@@ -237,6 +258,10 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
     private void bProcuraAgricultorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProcuraAgricultorActionPerformed
         preencheTabelaEmprestimoIdagri(Integer.parseInt(sIdagri.getValue().toString()));
     }//GEN-LAST:event_bProcuraAgricultorActionPerformed
+
+    private void bAtivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtivosActionPerformed
+        preencheTabelaEmprestimosAtivos();
+    }//GEN-LAST:event_bAtivosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,7 +318,6 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
     }
 
     private void preencheTabelaEmprestimoAtrasado() {
-        Date dataatual = new Date();
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaEmprestimo.getModel();
         int i = modelo.getRowCount();
         while (i-- > 0) {
@@ -350,7 +374,27 @@ public class TelaLocalizaEmprestimo extends javax.swing.JFrame {
         }
     }
 
+    private void preencheTabelaEmprestimosAtivos() {
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaEmprestimo.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Emprestimo> lista;
+        lista = ed.pesquisaAtivos();
+        for (Emprestimo e : lista) {
+            String entregue;
+            if (e.isEmprestado()) {
+                entregue = "Sim";
+            } else {
+                entregue = "Não";
+            }
+            modelo.addRow(new Object[]{e.getId(), e.getIdAgricultor(), ad.localiza(e.getIdAgricultor()).getNome(), e.getIdMaquina(), md.localiza(e.getIdMaquina()).getNome(), s.format(e.getDataEmprestimo()), s.format(e.getDataPrevista()), s.format(e.getDataDevolucao()), entregue});
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAtivos;
     private javax.swing.JMenu bDevolve;
     private javax.swing.JMenuItem bDevolver;
     private javax.swing.JMenuItem bNovo;
