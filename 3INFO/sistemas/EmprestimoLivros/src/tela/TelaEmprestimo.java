@@ -80,6 +80,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         e.setDataEmprestimo(Calendar.getInstance().getTime());
         try {
             e.setDataPrevista(s.parse(tDataprev.getText()));
+
         } catch (ParseException ex) {
             Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -231,16 +232,17 @@ public class TelaEmprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
+        Date dataatual = new Date();
         if (telaToEmprestimo()) {
             int positionAgri = cAgricultor.getSelectedItem().toString().indexOf(" - ");
             int positionMaq = cMaquina.getSelectedItem().toString().indexOf(" - ");
             try {
 
                 Date dev = s.parse(tDataprev.getText());
-                if (ed.pesquisaIdmaq(Integer.parseInt(cMaquina.getSelectedItem().toString().substring(0, positionMaq))).isEmpty() || ed.pesquisaMaq(Integer.parseInt(cMaquina.getSelectedItem().toString().substring(0, positionMaq))).isEmpty()) {
+                if (ed.pesquisaIdmaq(Integer.parseInt(cMaquina.getSelectedItem().toString().substring(0, positionMaq))).isEmpty() || ed.pesquisaMaq(Integer.parseInt(cMaquina.getSelectedItem().toString().substring(0, positionMaq))).isEmpty() || s.parse(tDataprev.getText()).before(dataatual)) {
                     ed.salva(e);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Esta maquina ja esta emprestada!");
+                    JOptionPane.showMessageDialog(this, "Esta maquina ja esta emprestada ou a data prevista esta anterior a atual!");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Preencha direito!");
