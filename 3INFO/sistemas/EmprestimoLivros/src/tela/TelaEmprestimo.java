@@ -234,7 +234,6 @@ public class TelaEmprestimo extends javax.swing.JFrame {
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
         Date dataatual = new Date();
         if (telaToEmprestimo()) {
-            int positionAgri = cAgricultor.getSelectedItem().toString().indexOf(" - ");
             int positionMaq = cMaquina.getSelectedItem().toString().indexOf(" - ");
             try {
 
