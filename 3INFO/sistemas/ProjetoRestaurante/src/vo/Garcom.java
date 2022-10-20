@@ -5,10 +5,19 @@
  */
 package vo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author 2info2021
  */
-public class Garcom {
-    
+@Entity
+public class Garcom implements Serializable {
+
+    @Id
+    private int id = 0;
+    private int idGarcom = 2;
+
 }

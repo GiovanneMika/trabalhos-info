@@ -17,6 +17,6 @@ public class Pedido implements Serializable {
     private int id = 0;
     private int idGarcom;
     private int idProduto;
-    private int situacao;
+    private int estado;
 
 }

@@ -5,10 +5,18 @@
  */
 package vo;
 
+import java.io.Serializable;
+import javax.persistence.Id;
+import javax.persistence.Entity;
+
 /**
  *
  * @author 2info2021
  */
-public class Cozinha {
-    
+@Entity
+public class Cozinha implements Serializable {
+
+    @Id
+    private int id = 0;
+    private int idCozinha = 2;
 }

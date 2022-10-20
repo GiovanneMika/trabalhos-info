@@ -5,10 +5,14 @@
  */
 package vo;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author 2info2021
  */
+@Entity
 public class Caixa {
-    
+    private int id = 0;
+    private int idCaixa = 1;
 }
