@@ -9,7 +9,7 @@ package vo;
  *
  * @author 2info2021
  */
-public class funcionario {
+public class Funcionario {
     private int id = 0;
     private int idFuncao;
     private String nome;
