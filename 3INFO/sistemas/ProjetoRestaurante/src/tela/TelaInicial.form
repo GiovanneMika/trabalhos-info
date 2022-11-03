@@ -90,11 +90,10 @@
     <Component class="javax.swing.JComboBox" name="cFuncao">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="Administrador"/>
             <StringItem index="1" value="Caixa"/>
-            <StringItem index="2" value="Gar&#xe7;om"/>
-            <StringItem index="3" value="Cozinheiro"/>
+            <StringItem index="2" value="Cozinheiro"/>
           </StringArray>
         </Property>
       </Properties>
@@ -115,6 +114,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Entrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEntraActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

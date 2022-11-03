@@ -5,15 +5,16 @@
  */
 package tela;
 
+import persistencia.FuncionarioDAO;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaInicial extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaInicial
-     */
+    FuncionarioDAO fd = new FuncionarioDAO();
+
     public TelaInicial() {
         initComponents();
     }
@@ -41,11 +42,16 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jLabel2.setText("Senha:");
 
-        cFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Caixa", "Garçom", "Cozinheiro" }));
+        cFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Caixa", "Cozinheiro" }));
 
         jLabel3.setText("Função:");
 
         bEntra.setText("Entrar");
+        bEntra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEntraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,6 +100,26 @@ public class TelaInicial extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bEntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntraActionPerformed
+        if (tUsuario.getText().equals("adm") && tSenha.getText().equals("adm") && cFuncao.getSelectedItem().equals("Administrador")) {
+            TelaAdm ta = new TelaAdm();
+            ta.setVisible(true);
+        } else if (fd.verificaLoginUsuario(tUsuario.getText(), tSenha.getText())) {
+            switch (fd.pesquisaUsuario(tUsuario.getText()).get(1).getIdFuncao()){
+                case 2:
+                    TelaCozinha tc = new TelaCozinha();
+                    tc.setVisible(true);
+                    break;
+                case 3:
+                    TelaCaixa tca = new TelaCaixa();
+                    tca.setVisible(true);
+                    break;
+                    
+            }
+            
+        }
+    }//GEN-LAST:event_bEntraActionPerformed
 
     /**
      * @param args the command line arguments
