@@ -67,7 +67,7 @@ public class TelaAdmProdutos extends javax.swing.JFrame {
         bEdita = new javax.swing.JMenuItem();
         bExclui = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -162,7 +162,15 @@ public class TelaAdmProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_bNovoActionPerformed
 
     private void bEditaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditaActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        if (tLocaliza.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocaliza.getSelectedRow(), 0);
+            TelaProduto tp = new TelaProduto();
+            tp.setProduto(pd.localiza(id));
+            tp.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
     }//GEN-LAST:event_bEditaActionPerformed
 
     private void bExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluiActionPerformed

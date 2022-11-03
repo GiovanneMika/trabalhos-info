@@ -109,6 +109,7 @@ public class TelaInicial extends javax.swing.JFrame {
             switch (fd.pesquisaUsuario(tUsuario.getText()).get(1).getIdFuncao()){
                 case 2:
                     TelaCozinha tc = new TelaCozinha();
+                    tc.setFuncionario(fd.pesquisaUsuario(tUsuario.getText()).get(1));
                     tc.setVisible(true);
                     break;
                 case 3:

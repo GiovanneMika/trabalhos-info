@@ -13,11 +13,14 @@ import vo.Funcionario;
  */
 public class TelaCozinha extends javax.swing.JFrame {
 
+    Funcionario f = new Funcionario();
+
     /**
      * Creates new form TelaCozinha
      */
     public TelaCozinha() {
         initComponents();
+        tNome.setText(f.getNome());
     }
 
     /**
@@ -29,17 +32,71 @@ public class TelaCozinha extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tLocalizaCozinha = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        tNome = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        bComecar = new javax.swing.JMenuItem();
+        bTerminar = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tLocalizaCozinha.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Id Garçom", "Id Produto", "Estado", "Id Mesa"
+            }
+        ));
+        jScrollPane1.setViewportView(tLocalizaCozinha);
+
+        jLabel1.setText("Olá");
+
+        tNome.setText("jLabel2");
+
+        jMenu1.setText("Ações");
+
+        bComecar.setText("Começar Preparo");
+        jMenu1.add(bComecar);
+
+        bTerminar.setText("Terminar Preparo");
+        jMenu1.add(bTerminar);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tNome)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tNome))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -82,9 +139,17 @@ public class TelaCozinha extends javax.swing.JFrame {
 
     public void setFuncionario(Funcionario f) {
         this.f = f;
-        cozinhaToTela();
 
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem bComecar;
+    private javax.swing.JMenuItem bTerminar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tLocalizaCozinha;
+    private javax.swing.JLabel tNome;
     // End of variables declaration//GEN-END:variables
 }
