@@ -48,10 +48,40 @@ public class PedidoDAO {
         List<Pedido> lista = q.getResultList();
         return lista;
     }
+
     public List<Pedido> pesquisaPedido(int idmesa) {
         Query q = em.createNativeQuery("select * from pedido where idmesa=? and estado=? order by estado ", Pedido.class);
         q.setParameter(1, idmesa);
         q.setParameter(2, "Entregue");
+        List<Pedido> lista = q.getResultList();
+        return lista;
+    }
+
+    public List<Pedido> pesquisaPedidoCozinha() {
+        Query q = em.createNativeQuery("select * from pedido where estado=? or estado=? order by estado ", Pedido.class);
+        q.setParameter(1, "Pendente");
+        q.setParameter(2, "Preparando");
+        List<Pedido> lista = q.getResultList();
+        return lista;
+    }
+
+    public List<Pedido> pesquisaPedidoPendente() {
+        Query q = em.createNativeQuery("select * from pedido where estado=? order by estado ", Pedido.class);
+        q.setParameter(1, "Pendente");
+        List<Pedido> lista = q.getResultList();
+        return lista;
+    }
+
+    public List<Pedido> pesquisaPedidoPreparando() {
+        Query q = em.createNativeQuery("select * from pedido where estado=? order by estado ", Pedido.class);
+        q.setParameter(1, "Preparando");
+        List<Pedido> lista = q.getResultList();
+        return lista;
+    }
+
+    public List<Pedido> pesquisaPedidoPronto() {
+        Query q = em.createNativeQuery("select * from pedido where estado=? order by estado ", Pedido.class);
+        q.setParameter(1, "Pronto");
         List<Pedido> lista = q.getResultList();
         return lista;
     }

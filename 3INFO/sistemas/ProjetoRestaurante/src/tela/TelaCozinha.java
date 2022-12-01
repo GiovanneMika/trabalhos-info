@@ -39,9 +39,9 @@ public class TelaCozinha extends javax.swing.JFrame {
             modelo.removeRow(i);
         }
         List<Pedido> lista;
-        lista = pd.pesquisa();
+        lista = pd.pesquisaPedidoCozinha();
         for (Pedido p : lista) {
-            modelo.addRow(new Object[]{p.getId(), p.getIdGarcom(), p.getIdProduto(), p.getIdMesa(), p.getQuantidade(), p.getEstado(),});
+            modelo.addRow(new Object[]{p.getId(), p.getIdGarcom(), p.getIdProduto(), p.getIdMesa(), p.getQuantidade(), p.getEstado()});
         }
     }
 
@@ -90,8 +90,24 @@ public class TelaCozinha extends javax.swing.JFrame {
             new String [] {
                 "Id", "Id Garçom", "Id Produto", "Id Mesa", "Quantidade", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tLocalizaCozinha);
+        if (tLocalizaCozinha.getColumnModel().getColumnCount() > 0) {
+            tLocalizaCozinha.getColumnModel().getColumn(0).setResizable(false);
+            tLocalizaCozinha.getColumnModel().getColumn(1).setResizable(false);
+            tLocalizaCozinha.getColumnModel().getColumn(2).setResizable(false);
+            tLocalizaCozinha.getColumnModel().getColumn(3).setResizable(false);
+            tLocalizaCozinha.getColumnModel().getColumn(4).setResizable(false);
+            tLocalizaCozinha.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Olá");
@@ -182,6 +198,7 @@ public class TelaCozinha extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
         }
+        preencheTabelaCozinha();
     }//GEN-LAST:event_bComecarActionPerformed
 
     private void bTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTerminarActionPerformed
@@ -200,6 +217,7 @@ public class TelaCozinha extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
         }
+        preencheTabelaCozinha();
     }//GEN-LAST:event_bTerminarActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus

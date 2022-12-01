@@ -116,8 +116,22 @@ public class TelaCaixa extends javax.swing.JFrame {
             new String [] {
                 "Numero da Mesa", "Produtos Pedidos", "Quantidade", "Preço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tLocalizaConta);
+        if (tLocalizaConta.getColumnModel().getColumnCount() > 0) {
+            tLocalizaConta.getColumnModel().getColumn(0).setResizable(false);
+            tLocalizaConta.getColumnModel().getColumn(1).setResizable(false);
+            tLocalizaConta.getColumnModel().getColumn(2).setResizable(false);
+            tLocalizaConta.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Seja bem vindo,");
@@ -145,6 +159,11 @@ public class TelaCaixa extends javax.swing.JFrame {
         });
 
         bFechar.setText("Fechar Conta");
+        bFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bFecharActionPerformed(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,6 +235,22 @@ public class TelaCaixa extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
 
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void bFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFecharActionPerformed
+        List<Pedido> lista;
+        if (!tMesa.getText().equals("")) {
+            lista = pd.pesquisaPedido(Integer.parseInt(tMesa.getText()));
+            for(Pedido p: lista){
+                p.setEstado("Pago");
+                pd.salva(p);
+            }
+            JOptionPane.showMessageDialog(this, "Conta paga com sucesso!");
+        } else {
+            if (r > 0) {
+                JOptionPane.showMessageDialog(this, "Nenhuma mesa a ser exibida!");
+            }
+        }
+    }//GEN-LAST:event_bFecharActionPerformed
 
     /**
      * @param args the command line arguments

@@ -113,30 +113,30 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Numero da Mesa" type="java.lang.Object"/>
-                <Column editable="true" title="Produtos Pedidos" type="java.lang.Object"/>
-                <Column editable="true" title="Quantidade" type="java.lang.Object"/>
-                <Column editable="true" title="Pre&#xe7;o" type="java.lang.Object"/>
+                <Column editable="false" title="Numero da Mesa" type="java.lang.Object"/>
+                <Column editable="false" title="Produtos Pedidos" type="java.lang.Object"/>
+                <Column editable="false" title="Quantidade" type="java.lang.Object"/>
+                <Column editable="false" title="Pre&#xe7;o" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -211,6 +211,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Fechar Conta"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bFecharActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -6,6 +6,7 @@
 package tela;
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import persistencia.ProdutoDAO;
 import vo.Produto;
@@ -38,7 +39,6 @@ public class TelaProduto extends javax.swing.JFrame {
 
     private boolean telaToProduto() {
         p.setId(Integer.parseInt(tId.getText()));
-        p.setNome(tNome.getText());
         if (cCategoria.getSelectedItem() == "1 - Bebida") {
             p.setCategoria("1 - Bebida");
         }
@@ -50,7 +50,11 @@ public class TelaProduto extends javax.swing.JFrame {
         }
         p.setDescricao(tDescricao.getText());
         p.setPreco((double) tPreco.getValue());
-
+        if (!pd.verificaNomeExistente(tNome.getText())) {
+            p.setNome(tNome.getText());
+        }else{
+            JOptionPane.showMessageDialog(this, "Já existe um prato com esse nome!");
+        }
         return true;
     }
 

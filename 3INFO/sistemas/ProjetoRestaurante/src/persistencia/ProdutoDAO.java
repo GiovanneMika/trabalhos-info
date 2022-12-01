@@ -47,4 +47,14 @@ public class ProdutoDAO {
         return lista;
     }
 
+    public boolean verificaNomeExistente(String nome) {
+        Query q = em.createNativeQuery("select * from produto where nome=? ");
+        q.setParameter(1, nome);
+        if (!q.getResultList().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
