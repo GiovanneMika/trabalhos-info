@@ -29,6 +29,7 @@ public class TelaAdm extends javax.swing.JFrame {
 
         bFuncionarios = new javax.swing.JButton();
         bPratos = new javax.swing.JButton();
+        bVer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -48,18 +49,31 @@ public class TelaAdm extends javax.swing.JFrame {
             }
         });
 
+        bVer.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bVer.setText("Ver todos os pedidos");
+        bVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(bPratos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bVer)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(bPratos)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,7 +82,9 @@ public class TelaAdm extends javax.swing.JFrame {
                 .addComponent(bFuncionarios)
                 .addGap(18, 18, 18)
                 .addComponent(bPratos)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bVer)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,6 +99,11 @@ public class TelaAdm extends javax.swing.JFrame {
         TelaAdmFuncionario taf = new TelaAdmFuncionario();
         taf.setVisible(true);
     }//GEN-LAST:event_bFuncionariosActionPerformed
+
+    private void bVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerActionPerformed
+        TelaPedidosGerais tpg = new TelaPedidosGerais();
+        tpg.setVisible(true);
+    }//GEN-LAST:event_bVerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,5 +143,6 @@ public class TelaAdm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bFuncionarios;
     private javax.swing.JButton bPratos;
+    private javax.swing.JButton bVer;
     // End of variables declaration//GEN-END:variables
 }

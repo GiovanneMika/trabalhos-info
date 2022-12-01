@@ -6,6 +6,7 @@
 package tela;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.PedidoDAO;
 import vo.Funcionario;
@@ -23,6 +24,7 @@ public class TelaGarcom extends javax.swing.JFrame {
     public TelaGarcom() {
         initComponents();
     }
+
     private void preencheTabelaPendente() {
         tNome.setText(f.getNome());
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaPendente.getModel();
@@ -90,7 +92,7 @@ public class TelaGarcom extends javax.swing.JFrame {
         bNovo = new javax.swing.JMenuItem();
         bEntregar = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -179,6 +181,11 @@ public class TelaGarcom extends javax.swing.JFrame {
         jMenu1.add(bNovo);
 
         bEntregar.setText("Entregar Pedido");
+        bEntregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEntregarActionPerformed(evt);
+            }
+        });
         jMenu1.add(bEntregar);
 
         jMenuBar1.add(jMenu1);
@@ -231,7 +238,9 @@ public class TelaGarcom extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNovoActionPerformed
-        // TODO add your handling code here:
+        TelaNovoPedido tnp = new TelaNovoPedido();
+        tnp.setFuncionario(f);
+        tnp.setVisible(true);
     }//GEN-LAST:event_bNovoActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -239,6 +248,18 @@ public class TelaGarcom extends javax.swing.JFrame {
         preencheTabelaPreparando();
         preencheTabelaPronto();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void bEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntregarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaPronto.getModel();
+        if (tLocalizaPronto.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocalizaPronto.getSelectedRow(), 0);
+            Pedido p = pd.localiza(id);
+            p.setEstado("Entregue");
+            pd.salva(p);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bEntregarActionPerformed
 
     /**
      * @param args the command line arguments

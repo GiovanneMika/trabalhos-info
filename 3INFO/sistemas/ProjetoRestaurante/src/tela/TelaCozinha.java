@@ -189,7 +189,7 @@ public class TelaCozinha extends javax.swing.JFrame {
             Pedido p = pd.localiza(id);
             if (p.getEstado().equals("Pendente")) {
                 if (JOptionPane.showConfirmDialog(this, "Confirma começar o preparo de " + prd.localiza(p.getIdProduto()).getNome() + "?") == JOptionPane.YES_OPTION) {
-                    p.setEstado("Pronto");
+                    p.setEstado("Preparando");
                     pd.salva(p);
                 }
             } else {

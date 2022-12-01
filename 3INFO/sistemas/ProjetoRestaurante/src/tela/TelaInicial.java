@@ -103,10 +103,11 @@ public class TelaInicial extends javax.swing.JFrame {
                     tca.setFuncionario(fd.pesquisaUsuario(tUsuario.getText()).get(0));
                     tca.setVisible(true);
                     break;
-                case "Garcom":
+                case "Garçom":
                     TelaGarcom tg = new TelaGarcom();
                     tg.setFuncionario(fd.pesquisaUsuario(tUsuario.getText()).get(0));
                     tg.setVisible(true);
+                    break;
             }
             
         }
