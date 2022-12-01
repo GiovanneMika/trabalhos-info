@@ -5,17 +5,43 @@
  */
 package tela;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import persistencia.FuncionarioDAO;
+import vo.Funcionario;
+
 /**
  *
  * @author pcnov
  */
 public class TelaAdmFuncionario extends javax.swing.JFrame {
 
+    Funcionario f = new Funcionario();
+    FuncionarioDAO fd = new FuncionarioDAO();
+
     /**
      * Creates new form TelaAdm
      */
     public TelaAdmFuncionario() {
         initComponents();
+    }
+
+    private void preencheTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Funcionario> lista;
+        if (tFiltro.getText().equals("")) {
+            lista = fd.pesquisa();
+        } else {
+            lista = fd.pesquisa(tFiltro.getText());
+        }
+        for (Funcionario f : lista) {
+            modelo.addRow(new Object[]{f.getId(), f.getFuncao(), f.getNome(), f.getUsuario(), f.getSenha()});
+        }
     }
 
     /**
@@ -28,38 +54,72 @@ public class TelaAdmFuncionario extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tLocaliza = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        tFiltro = new javax.swing.JTextField();
+        bOk = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        bNovo = new javax.swing.JMenuItem();
+        bEdita = new javax.swing.JMenuItem();
+        bExclui = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tLocaliza.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Função", "Usuário", "Senha"
+                "Id", "Função", "Nome", "Usuário", "Senha"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tLocaliza);
+
+        jLabel1.setText("Pesquisar:");
+
+        bOk.setText("Ok");
+        bOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOkActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Ações");
 
-        jMenuItem1.setText("Novo Funcionário");
-        jMenu1.add(jMenuItem1);
+        bNovo.setText("Novo Funcionário");
+        bNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNovoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bNovo);
 
-        jMenuItem2.setText("Editar Funcionário");
-        jMenu1.add(jMenuItem2);
+        bEdita.setText("Editar Funcionário");
+        bEdita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bEdita);
 
-        jMenuItem3.setText("Excluir Funcionário");
-        jMenu1.add(jMenuItem3);
+        bExclui.setText("Excluir Funcionário");
+        bExclui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExcluiActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bExclui);
 
         jMenuBar1.add(jMenu1);
 
@@ -69,21 +129,72 @@ public class TelaAdmFuncionario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(bOk)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bOk))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNovoActionPerformed
+        TelaNovoFuncionario tnf = new TelaNovoFuncionario();
+        tnf.setVisible(true);
+    }//GEN-LAST:event_bNovoActionPerformed
+
+    private void bEditaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditaActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        if (tLocaliza.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocaliza.getSelectedRow(), 0);
+            TelaNovoFuncionario tnf = new TelaNovoFuncionario();
+            tnf.setFuncionario(fd.localiza(id));
+            tnf.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bEditaActionPerformed
+
+    private void bExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluiActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        if (tLocaliza.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocaliza.getSelectedRow(), 0);
+            Funcionario f = fd.localiza(id);
+            if (JOptionPane.showConfirmDialog(this, "Confirma exclusão de " + f.getNome() + "?") == JOptionPane.YES_OPTION) {
+                fd.exclui(f);
+            } else {
+                JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+            }
+        }
+    }//GEN-LAST:event_bExcluiActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        preencheTabela();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
+        preencheTabela();
+    }//GEN-LAST:event_bOkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,12 +233,15 @@ public class TelaAdmFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem bEdita;
+    private javax.swing.JMenuItem bExclui;
+    private javax.swing.JMenuItem bNovo;
+    private javax.swing.JButton bOk;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField tFiltro;
+    private javax.swing.JTable tLocaliza;
     // End of variables declaration//GEN-END:variables
 }

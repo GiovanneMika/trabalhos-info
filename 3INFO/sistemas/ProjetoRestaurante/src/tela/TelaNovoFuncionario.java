@@ -5,17 +5,57 @@
  */
 package tela;
 
+import java.text.DecimalFormat;
+import javax.swing.JSpinner;
+import persistencia.FuncionarioDAO;
+import vo.Funcionario;
+
 /**
  *
  * @author 2info2021
  */
 public class TelaNovoFuncionario extends javax.swing.JFrame {
 
+    Funcionario f = new Funcionario();
+    FuncionarioDAO fd = new FuncionarioDAO();
+
     /**
      * Creates new form TelaNovoFuncionario
      */
     public TelaNovoFuncionario() {
         initComponents();
+    }
+
+    private void funcionarioToTela() {
+        tId.setText(Integer.toString(f.getId()));
+        tNome.setText(f.getNome());
+        cFuncao.setSelectedItem(f.getFuncao());
+        tUsuario.setText(f.getUsuario());
+        tSenha.setText(f.getSenha());
+    }
+
+    private boolean telaToFuncionario() {
+        f.setId(Integer.parseInt(tId.getText()));
+        f.setNome(tNome.getText());
+        if (cFuncao.getSelectedItem() == "Caixa") {
+            f.setFuncao("Caixa");
+        }
+        if (cFuncao.getSelectedItem() == "Garçom") {
+            f.setFuncao("Garçom");
+        }
+        if (cFuncao.getSelectedItem() == "Cozinheiro") {
+            f.setFuncao("Cozinheiro");
+        }
+        f.setUsuario(tUsuario.getText());
+        f.setSenha(tSenha.getText());
+
+        return true;
+    }
+
+    public void setFuncionario(Funcionario f) {
+        this.f = f;
+        funcionarioToTela();
+
     }
 
     /**
@@ -40,7 +80,7 @@ public class TelaNovoFuncionario extends javax.swing.JFrame {
         bSalva = new javax.swing.JButton();
         bCancela = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Id");
 
@@ -52,17 +92,24 @@ public class TelaNovoFuncionario extends javax.swing.JFrame {
 
         jLabel5.setText("Senha:");
 
-        tId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tIdActionPerformed(evt);
-            }
-        });
+        tId.setEditable(false);
+        tId.setText("0");
 
         cFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caixa", "Garçom", "Cozinheiro" }));
 
         bSalva.setText("Salvar");
+        bSalva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvaActionPerformed(evt);
+            }
+        });
 
-        bCancela.setText("Cancela");
+        bCancela.setText("Cancelar");
+        bCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,7 +121,7 @@ public class TelaNovoFuncionario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tId, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tId, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -131,9 +178,16 @@ public class TelaNovoFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tIdActionPerformed
+    private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
+        if (telaToFuncionario()) {
+            fd.salva(f);
+            this.dispose();
+        }
+    }//GEN-LAST:event_bSalvaActionPerformed
+
+    private void bCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelaActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bCancelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,7 +223,6 @@ public class TelaNovoFuncionario extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCancela;
     private javax.swing.JButton bSalva;

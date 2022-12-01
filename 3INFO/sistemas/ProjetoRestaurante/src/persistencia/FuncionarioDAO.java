@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistencia;
 
 import java.util.List;
@@ -40,14 +35,14 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> pesquisa() {
-        Query q = em.createQuery("select f from Funcionario as f order by f.nome");
+        Query q = em.createQuery("select f from Funcionario as f order by f.funcao");
         List<Funcionario> lista = q.getResultList();
         return lista;
     }
 
-    public List<Funcionario> pesquisa(String nome) {
-        Query q = em.createNativeQuery("select * from funcionario where nome like ? order by nome ", Funcionario.class);
-        q.setParameter(1, '%' + nome + '%');
+    public List<Funcionario> pesquisa(String usuario) {
+        Query q = em.createNativeQuery("select * from funcionario where usuario like ? order by usuario ", Funcionario.class);
+        q.setParameter(1, '%' + usuario + '%');
         List<Funcionario> lista = q.getResultList();
         return lista;
     }

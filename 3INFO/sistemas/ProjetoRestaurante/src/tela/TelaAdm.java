@@ -27,13 +27,18 @@ public class TelaAdm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        bFuncionarios = new javax.swing.JButton();
         bPratos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton1.setText("Ver Funcionários");
+        bFuncionarios.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bFuncionarios.setText("Ver Funcionários");
+        bFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bFuncionariosActionPerformed(evt);
+            }
+        });
 
         bPratos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bPratos.setText("Ver Pratos");
@@ -53,14 +58,14 @@ public class TelaAdm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(bFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jButton1)
+                .addComponent(bFuncionarios)
                 .addGap(18, 18, 18)
                 .addComponent(bPratos)
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -73,6 +78,11 @@ public class TelaAdm extends javax.swing.JFrame {
         TelaAdmProdutos tap = new TelaAdmProdutos();
         tap.setVisible(true);
     }//GEN-LAST:event_bPratosActionPerformed
+
+    private void bFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFuncionariosActionPerformed
+        TelaAdmFuncionario taf = new TelaAdmFuncionario();
+        taf.setVisible(true);
+    }//GEN-LAST:event_bFuncionariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,7 +120,7 @@ public class TelaAdm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bFuncionarios;
     private javax.swing.JButton bPratos;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -92,6 +92,11 @@ public class TelaAdmProdutos extends javax.swing.JFrame {
         jLabel1.setText("Pesquisar:");
 
         bOk.setText("Ok");
+        bOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOkActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Ações");
 
@@ -189,6 +194,10 @@ public class TelaAdmProdutos extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         preencheTabela();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
+        preencheTabela();
+    }//GEN-LAST:event_bOkActionPerformed
 
     /**
      * @param args the command line arguments

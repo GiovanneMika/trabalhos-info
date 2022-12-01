@@ -106,13 +106,13 @@ public class TelaInicial extends javax.swing.JFrame {
             TelaAdm ta = new TelaAdm();
             ta.setVisible(true);
         } else if (fd.verificaLoginUsuario(tUsuario.getText(), tSenha.getText())) {
-            switch (fd.pesquisaUsuario(tUsuario.getText()).get(1).getIdFuncao()){
-                case 2:
+            switch (fd.pesquisaUsuario(tUsuario.getText()).get(1).getFuncao()){
+                case "Cozinheiro":
                     TelaCozinha tc = new TelaCozinha();
                     tc.setFuncionario(fd.pesquisaUsuario(tUsuario.getText()).get(1));
                     tc.setVisible(true);
                     break;
-                case 3:
+                case "Caixa":
                     TelaCaixa tca = new TelaCaixa();
                     tca.setVisible(true);
                     break;

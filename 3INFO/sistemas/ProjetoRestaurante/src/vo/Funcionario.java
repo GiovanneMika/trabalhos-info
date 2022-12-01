@@ -5,13 +5,20 @@
  */
 package vo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author 2info2021
  */
-public class Funcionario {
+@Entity
+public class Funcionario implements Serializable {
+
+    @Id
     private int id = 0;
-    private int idFuncao;
+    private String funcao;
     private String nome;
     private String usuario;
     private String senha;
@@ -28,20 +35,6 @@ public class Funcionario {
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * @return the idFuncao
-     */
-    public int getIdFuncao() {
-        return idFuncao;
-    }
-
-    /**
-     * @param idFuncao the idFuncao to set
-     */
-    public void setIdFuncao(int idFuncao) {
-        this.idFuncao = idFuncao;
     }
 
     /**
@@ -84,5 +77,19 @@ public class Funcionario {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the funcao
+     */
+    public String getFuncao() {
+        return funcao;
+    }
+
+    /**
+     * @param funcao the funcao to set
+     */
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
     }
 }
