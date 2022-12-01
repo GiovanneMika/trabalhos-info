@@ -5,7 +5,13 @@
  */
 package tela;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import persistencia.PedidoDAO;
+import persistencia.ProdutoDAO;
 import vo.Funcionario;
+import vo.Pedido;
 
 /**
  *
@@ -13,6 +19,9 @@ import vo.Funcionario;
  */
 public class TelaCozinha extends javax.swing.JFrame {
 
+    Pedido p = new Pedido();
+    PedidoDAO pd = new PedidoDAO();
+    ProdutoDAO prd = new ProdutoDAO();
     Funcionario f = new Funcionario();
 
     /**
@@ -20,7 +29,26 @@ public class TelaCozinha extends javax.swing.JFrame {
      */
     public TelaCozinha() {
         initComponents();
+    }
+
+    private void preencheTabelaCozinha() {
         tNome.setText(f.getNome());
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaCozinha.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Pedido> lista;
+        lista = pd.pesquisa();
+        for (Pedido p : lista) {
+            modelo.addRow(new Object[]{p.getId(), p.getIdGarcom(), p.getIdProduto(), p.getIdMesa(), p.getQuantidade(), p.getEstado(),});
+        }
+    }
+
+    public void setFuncionario(Funcionario f) {
+        this.f = f;
+        preencheTabelaCozinha();
+
     }
 
     /**
@@ -36,36 +64,67 @@ public class TelaCozinha extends javax.swing.JFrame {
         tLocalizaCozinha = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         tNome = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        bAtualizar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         bComecar = new javax.swing.JMenuItem();
         bTerminar = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         tLocalizaCozinha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Id Garçom", "Id Produto", "Estado", "Id Mesa"
+                "Id", "Id Garçom", "Id Produto", "Id Mesa", "Quantidade", "Estado"
             }
         ));
         jScrollPane1.setViewportView(tLocalizaCozinha);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Olá");
 
+        tNome.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         tNome.setText("jLabel2");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText(", seja bem vindo(a)!");
+
+        bAtualizar.setText("Atualizar");
+        bAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAtualizarActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Ações");
 
         bComecar.setText("Começar Preparo");
+        bComecar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bComecarActionPerformed(evt);
+            }
+        });
         jMenu1.add(bComecar);
 
         bTerminar.setText("Terminar Preparo");
+        bTerminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bTerminarActionPerformed(evt);
+            }
+        });
         jMenu1.add(bTerminar);
 
         jMenuBar1.add(jMenu1);
@@ -79,28 +138,77 @@ public class TelaCozinha extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tNome)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bAtualizar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tNome))
+                    .addComponent(tNome)
+                    .addComponent(jLabel2)
+                    .addComponent(bAtualizar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bComecarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComecarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaCozinha.getModel();
+        if (tLocalizaCozinha.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocalizaCozinha.getSelectedRow(), 0);
+            Pedido p = pd.localiza(id);
+            if (p.getEstado().equals("Pendente")) {
+                if (JOptionPane.showConfirmDialog(this, "Confirma começar o preparo de " + prd.localiza(p.getIdProduto()).getNome() + "?") == JOptionPane.YES_OPTION) {
+                    p.setEstado("Pronto");
+                    pd.salva(p);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Para começar o preparo é necessário estar pendente!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bComecarActionPerformed
+
+    private void bTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTerminarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaCozinha.getModel();
+        if (tLocalizaCozinha.getSelectedRow() != -1) {
+            int id = (Integer) modelo.getValueAt(tLocalizaCozinha.getSelectedRow(), 0);
+            Pedido p = pd.localiza(id);
+            if (p.getEstado().equals("Preparando")) {
+                if (JOptionPane.showConfirmDialog(this, "Confirma terminar o preparo de " + prd.localiza(p.getIdProduto()).getNome() + "?") == JOptionPane.YES_OPTION) {
+                    p.setEstado("Pronto");
+                    pd.salva(p);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Para terminar o preparo é necessário iniciá-lo!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_bTerminarActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        preencheTabelaCozinha();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void bAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizarActionPerformed
+        preencheTabelaCozinha();
+    }//GEN-LAST:event_bAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,15 +245,13 @@ public class TelaCozinha extends javax.swing.JFrame {
         });
     }
 
-    public void setFuncionario(Funcionario f) {
-        this.f = f;
 
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAtualizar;
     private javax.swing.JMenuItem bComecar;
     private javax.swing.JMenuItem bTerminar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;

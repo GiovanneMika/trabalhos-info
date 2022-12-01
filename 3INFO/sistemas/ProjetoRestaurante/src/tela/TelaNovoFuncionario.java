@@ -6,6 +6,7 @@
 package tela;
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import persistencia.FuncionarioDAO;
 import vo.Funcionario;
@@ -179,9 +180,11 @@ public class TelaNovoFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
-        if (telaToFuncionario()) {
+        if (telaToFuncionario() && !fd.verificaFuncionarioExistente(tUsuario.getText())) {
             fd.salva(f);
             this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Esse usuário já existe!");
         }
     }//GEN-LAST:event_bSalvaActionPerformed
 

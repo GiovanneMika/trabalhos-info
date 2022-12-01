@@ -30,7 +30,7 @@ public class TelaAdm extends javax.swing.JFrame {
         bFuncionarios = new javax.swing.JButton();
         bPratos = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         bFuncionarios.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bFuncionarios.setText("Ver Funcionários");

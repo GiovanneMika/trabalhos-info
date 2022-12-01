@@ -5,17 +5,73 @@
  */
 package tela;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import persistencia.PedidoDAO;
+import persistencia.ProdutoDAO;
+import vo.Funcionario;
+import vo.Pedido;
+import vo.Produto;
+
 /**
  *
  * @author pcnov
  */
 public class TelaCaixa extends javax.swing.JFrame {
 
+    int r = 0;
+    Pedido p = new Pedido();
+    PedidoDAO pd = new PedidoDAO();
+    ProdutoDAO prd = new ProdutoDAO();
+    Produto pr = new Produto();
+    Funcionario f = new Funcionario();
+
     /**
      * Creates new form TelaCaixa
      */
     public TelaCaixa() {
         initComponents();
+    }
+
+    /**
+     * private List pesquisaMesa() { int contador = 0; List<Pedido> lista; lista
+     * = pd.pesquisa(); List<Integer> lista2; lista2 = new ArrayList<>(); while
+     * (contador < lista.size()) {
+     * if(!lista2.contains(lista.get(contador).getIdMesa())){
+     * lista2.add(lista.get(contador).getIdMesa()); } contador++; } return
+     * lista2; } *
+     */
+    private void preencheTabelaCaixa() {
+        tNome.setText(f.getNome());
+        DefaultTableModel modelo = (DefaultTableModel) tLocalizaConta.getModel();
+        int i = modelo.getRowCount();
+        while (i-- > 0) {
+            modelo.removeRow(i);
+        }
+        List<Pedido> lista;
+        if (!tMesa.getText().equals("")) {
+            lista = pd.pesquisaPedido(Integer.parseInt(tMesa.getText()));
+        } else {
+            lista = pd.pesquisaPedido(0);
+            if (r > 0) {
+                JOptionPane.showMessageDialog(this, "Nenhuma mesa a ser exibida!");
+            }
+        }
+        Double soma = 0.0;
+        for (Pedido p : lista) {
+            modelo.addRow(new Object[]{p.getIdMesa(), prd.localiza(p.getIdProduto()).getNome(), p.getQuantidade(), prd.localiza(p.getIdProduto()).getPreco() * p.getQuantidade()});
+            soma += prd.localiza(p.getIdProduto()).getPreco() * p.getQuantidade();
+        }
+        tTotalPedidos.setText(String.valueOf(lista.size()));
+        tTotalPreco.setText(String.valueOf(soma));
+        r++;
+    }
+
+    public void setFuncionario(Funcionario f) {
+        this.f = f;
+        preencheTabelaCaixa();
     }
 
     /**
@@ -27,21 +83,139 @@ public class TelaCaixa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tLocalizaConta = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        tNome = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        tTotalPedidos = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tTotalPreco = new javax.swing.JLabel();
+        tMesa = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        bOk = new javax.swing.JButton();
+        bFechar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+
+        tLocalizaConta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Numero da Mesa", "Produtos Pedidos", "Quantidade", "Preço"
+            }
+        ));
+        jScrollPane1.setViewportView(tLocalizaConta);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Seja bem vindo,");
+
+        tNome.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        tNome.setText("jLabel2");
+
+        jLabel2.setText("Total de Pedidos:");
+
+        tTotalPedidos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tTotalPedidos.setText("jLabel3");
+
+        jLabel4.setText("Preço da Conta:");
+
+        tTotalPreco.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tTotalPreco.setText("jLabel5");
+
+        jLabel6.setText("Procurar Mesa:");
+
+        bOk.setText("Ok");
+        bOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOkActionPerformed(evt);
+            }
+        });
+
+        bFechar.setText("Fechar Conta");
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bOk))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tTotalPedidos)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tTotalPreco)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bFechar)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(22, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(bOk))
+                        .addGap(11, 11, 11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(tNome))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tTotalPedidos)
+                    .addComponent(jLabel4)
+                    .addComponent(tTotalPreco)
+                    .addComponent(bFechar))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOkActionPerformed
+        preencheTabelaCaixa();
+    }//GEN-LAST:event_bOkActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -79,5 +253,18 @@ public class TelaCaixa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bFechar;
+    private javax.swing.JButton bOk;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tLocalizaConta;
+    private javax.swing.JTextField tMesa;
+    private javax.swing.JLabel tNome;
+    private javax.swing.JLabel tTotalPedidos;
+    private javax.swing.JLabel tTotalPreco;
     // End of variables declaration//GEN-END:variables
 }

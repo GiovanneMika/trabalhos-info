@@ -30,8 +30,6 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cFuncao = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         tUsuario = new javax.swing.JTextField();
         tSenha = new javax.swing.JTextField();
         bEntra = new javax.swing.JButton();
@@ -41,10 +39,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel1.setText("Usuário:");
 
         jLabel2.setText("Senha:");
-
-        cFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Caixa", "Cozinheiro" }));
-
-        jLabel3.setText("Função:");
 
         bEntra.setText("Entrar");
         bEntra.addActionListener(new java.awt.event.ActionListener() {
@@ -67,11 +61,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cFuncao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(tSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -89,11 +79,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bEntra)
                 .addContainerGap())
         );
@@ -102,18 +88,19 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bEntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntraActionPerformed
-        if (tUsuario.getText().equals("adm") && tSenha.getText().equals("adm") && cFuncao.getSelectedItem().equals("Administrador")) {
+        if (tUsuario.getText().equals("adm") && tSenha.getText().equals("adm")) {
             TelaAdm ta = new TelaAdm();
             ta.setVisible(true);
         } else if (fd.verificaLoginUsuario(tUsuario.getText(), tSenha.getText())) {
-            switch (fd.pesquisaUsuario(tUsuario.getText()).get(1).getFuncao()){
+            switch (fd.pesquisaUsuario(tUsuario.getText()).get(0).getFuncao()){
                 case "Cozinheiro":
                     TelaCozinha tc = new TelaCozinha();
-                    tc.setFuncionario(fd.pesquisaUsuario(tUsuario.getText()).get(1));
+                    tc.setFuncionario(fd.pesquisaUsuario(tUsuario.getText()).get(0));
                     tc.setVisible(true);
                     break;
                 case "Caixa":
                     TelaCaixa tca = new TelaCaixa();
+                    tca.setFuncionario(fd.pesquisaUsuario(tUsuario.getText()).get(0));
                     tca.setVisible(true);
                     break;
                     
@@ -159,10 +146,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bEntra;
-    private javax.swing.JComboBox<String> cFuncao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField tSenha;
     private javax.swing.JTextField tUsuario;
     // End of variables declaration//GEN-END:variables

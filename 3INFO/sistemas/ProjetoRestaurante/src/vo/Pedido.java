@@ -55,26 +55,13 @@ public class Pedido implements Serializable {
         this.idProduto = idProduto;
     }
 
-    /**
-     * @return the estado
-     */
-    public int getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
-
     @Id
     private int id = 0;
     private int idGarcom;
     private int idProduto;
-    private int estado;
+    private String estado;
     private int idMesa;
+    private int quantidade;
 
     /**
      * @return the idMesa
@@ -88,6 +75,34 @@ public class Pedido implements Serializable {
      */
     public void setIdMesa(int idMesa) {
         this.idMesa = idMesa;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    /**
+     * @return the quantidade
+     */
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    /**
+     * @param quantidade the quantidade to set
+     */
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
 }
