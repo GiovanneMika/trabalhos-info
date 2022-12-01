@@ -15,6 +15,7 @@ public class TelaProduto extends javax.swing.JFrame {
 
     Produto p = new Produto();
     ProdutoDAO pd = new ProdutoDAO();
+    Boolean editando = false;
 
     /**
      * Creates new form TelaPrato
@@ -35,9 +36,11 @@ public class TelaProduto extends javax.swing.JFrame {
         format.setMinimumFractionDigits(2);
 
         tPreco.setValue(p.getPreco());
+        editando = true;
     }
 
     private boolean telaToProduto() {
+        editando = false;
         p.setId(Integer.parseInt(tId.getText()));
         if (cCategoria.getSelectedItem() == "1 - Bebida") {
             p.setCategoria("1 - Bebida");
@@ -50,9 +53,9 @@ public class TelaProduto extends javax.swing.JFrame {
         }
         p.setDescricao(tDescricao.getText());
         p.setPreco((double) tPreco.getValue());
-        if (!pd.verificaNomeExistente(tNome.getText())) {
+        if (!pd.verificaNomeExistente(tNome.getText()) || !editando) {
             p.setNome(tNome.getText());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Já existe um prato com esse nome!");
         }
         return true;
